@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import BookingForm from '../components/BookingForm.astro'
+import GoogleMap from '../components/GoogleMap.astro'
+---
+
+<BaseLayout
+  title="Réserver un stage de teinture végétale"
+  description="Réservez votre stage de teinture végétale à l'Atelier Ilys (Pierrerue, Haute-Provence). Indigo, plantes, écoprint, pigments, ateliers famille. Réponse sous 48h."
+  canonicalPath="/reserver"
+>
+  <section class="py-16 bg-cream-dark border-b text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Réservation</p>
+      <h1 class="section-title text-4xl md:text-5xl">Réserver un stage</h1>
+      <p class="text-warm-text/70 mt-4 leading-relaxed">
+        Remplissez le formulaire ci-dessous. Isabelle vous répondra sous 48h pour confirmer la disponibilité et les modalités.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-white p-8 rounded-sm shadow-sm border border-cream-dark">
+            <h2 class="font-heading text-2xl text-indigo mb-6">Votre demande de stage</h2>
+            <BookingForm />
+          </div>
+        </div>
+
+        <!-- Sidebar info -->
+        <div class="space-y-6">
+          <!-- Pricing -->
+          <div class="bg-indigo text-cream p-6 rounded-sm">
+            <h3 class="font-heading text-lg text-ochre mb-4">Tarifs</h3>
+            <ul class="space-y-2 text-sm text-cream/90">
+              <li class="flex justify-between">
+                <span>Demi-journée</span>
+                <span class="font-semibold">55 €</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Journée complète</span>
+                <span class="font-semibold">110 €</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Week-end (2 jours)</span>
+                <span class="font-semibold">220 €</span>
+              </li>
+              <li class="flex justify-between border-t border-cream/20 pt-2">
+                <span>Atelier famille</span>
+                <span class="font-semibold">35 € / adulte</span>
+              </li>
+            </ul>
+            <p class="text-xs text-cream/60 mt-3">Matières premières et matériel inclus. Déjeuner non inclus.</p>
+          </div>
+
+          <!-- Contact info -->
+          <div class="bg-white p-6 rounded-sm shadow-sm border border-cream-dark">
+            <h3 class="font-heading text-lg text-indigo mb-4">Contact direct</h3>
+            <address class="not-italic text-sm text-warm-text/80 space-y-2">
+              <p>
+                <a href="tel:+33612345678" class="flex items-center gap-2 hover:text-terracotta">
+                  <svg class="w-4 h-4 text-ochre" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  06 12 34 56 78
+                </a>
+              </p>
+              <p>
+                <a href="mailto:atelier.ilys@gmail.com" class="flex items-center gap-2 hover:text-terracotta">
+                  <svg class="w-4 h-4 text-ochre" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  atelier.ilys@gmail.com
+                </a>
+              </p>
+            </address>
+          </div>
+
+          <!-- Travel info -->
+          <div class="bg-white p-6 rounded-sm shadow-sm border border-cream-dark">
+            <h3 class="font-heading text-lg text-indigo mb-4">Accès</h3>
+            <p class="text-xs text-warm-text/60 mb-3">Atelier Ilys · Chemin de Mane · 04300 Pierrerue</p>
+            <ul class="space-y-1.5 text-sm text-warm-text/70">
+              <li>🚗 Aix-en-Provence : 1h15</li>
+              <li>🚗 Marseille : 1h30</li>
+              <li>🚗 Avignon : 1h30</li>
+              <li>🚗 Manosque (gare) : 20 min</li>
+            </ul>
+            <p class="text-xs text-warm-text/50 mt-3">Parking gratuit sur place. Covoiturage possible sur demande.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="pb-16 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <GoogleMap height="350px" />
+    </div>
+  </section>
+</BaseLayout>

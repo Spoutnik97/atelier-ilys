@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import WorkshopCard from '../components/WorkshopCard.astro'
+
+const workshops = [
+  {
+    type: 'indigo',
+    title: 'Teinture à l\'indigo',
+    description: 'L\'indigo naturel, extrait de l\'indigotier ou de la guède, est la plus ancienne teinture connue. Apprenez la technique du bain de fermentation, la magie de l\'oxydation, et repartez avec vos créations bleues uniques.',
+    duration: 'Journée complète (9h–17h)',
+    price: '110 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/stage-indigo-teinture.jpg',
+    imageAlt: 'Participante sortant un tissu du bain d\'indigo — la couleur verte qui vire au bleu par oxydation',
+  },
+  {
+    type: 'teinture',
+    title: 'Teinture végétale',
+    description: 'Plantes du jardin, herbes de Provence, coquilles de noix, pelures d\'oignons… Découvrez l\'inépuisable palette des teintures végétales locales et apprenez les mordants naturels pour fixer les couleurs durablement.',
+    duration: 'Journée complète (9h–17h)',
+    price: '110 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/stage-teinture-vegetale-provence.jpg',
+    imageAlt: 'Plusieurs fils de laine teints avec des plantes naturelles — ocre, vert, rouille, rose',
+  },
+  {
+    type: 'ecoprint',
+    title: 'Écoprint',
+    description: 'La technique de l\'écoprint consiste à imprimer directement les pigments des feuilles sur tissu ou papier par compression et chaleur. Chaque création est unique, un vrai tableau botanique que vous emportez chez vous.',
+    duration: 'Demi-journée (9h–12h30)',
+    price: '55 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/stage-ecoprint-feuilles.jpg',
+    imageAlt: 'Empreintes de feuilles de fougère, rose et eucalyptus imprimées sur soie par écoprint',
+  },
+  {
+    type: 'pigments',
+    title: 'Pigments & Encres naturelles',
+    description: 'Fabrication de pigments à partir de plantes tinctoriales et de minéraux, puis création d\'encres aquarelles et de peintures naturelles. Idéal pour les artistes et les illustrateurs cherchant des couleurs vivantes et authentiques.',
+    duration: 'Journée complète (9h–17h)',
+    price: '110 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/stage-pigments-encres-naturelles.jpg',
+    imageAlt: 'Pots de pigments naturels de différentes couleurs — ocre, indigo, vert, rouge — préparés à l\'Atelier Ilys',
+  },
+  {
+    type: 'famille',
+    title: 'Atelier famille',
+    description: 'Un atelier ludique et pédagogique pour partager la magie des couleurs naturelles en famille. Les enfants comme les parents repartent émerveillés avec leurs créations teintes à la main. Accessible dès 6 ans.',
+    duration: 'Demi-journée (14h–16h30)',
+    price: '35 € / adulte · Enfant inclus',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/stage-famille-enfants-teinture.jpg',
+    imageAlt: 'Enfants et parents lors d\'un atelier famille de teinture végétale à l\'Atelier Ilys',
+  },
+  {
+    type: 'beaux-arts',
+    title: 'Stage Beaux-Arts & Pigments',
+    description: 'Pour les artistes confirmés : deux jours d\'immersion dans la fabrication de pigments, encres et aquarelles naturelles. Techniques avancées, extraction, conservation et applications créatives. Matériel fourni.',
+    duration: '2 jours complets',
+    price: '220 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/stage-beaux-arts-pigments-artiste.jpg',
+    imageAlt: 'Artiste en train de peindre avec des pigments naturels préparés lors du stage beaux-arts Atelier Ilys',
+  },
+]
+
+const eventLdItems = workshops.map((w, i) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: `Stage ${w.title} — Atelier Ilys`,
+  description: w.description,
+  url: `https://atelier-ilys.com/reserver`,
+  organizer: {
+    '@type': 'Organization',
+    name: 'Atelier Ilys',
+    url: 'https://atelier-ilys.com',
+  },
+  location: {
+    '@type': 'Place',
+    name: 'Atelier Ilys',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Chemin de Mane',
+      addressLocality: 'Pierrerue',
+      postalCode: '04300',
+      addressCountry: 'FR',
+    },
+  },
+  offers: {
+    '@type': 'Offer',
+    price: w.price.replace(/[^0-9]/g, ''),
+    priceCurrency: 'EUR',
+    availability: 'https://schema.org/InStock',
+    url: 'https://atelier-ilys.com/reserver',
+  },
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+}))
+---
+
+<BaseLayout
+  title="Stages de teinture végétale — Indigo, Plantes, Écoprint"
+  description="Stages de teinture végétale artisanale à l'Atelier Ilys (Pierrerue, Haute-Provence) : indigo, plantes, écoprint, pigments, ateliers famille. Dès 35 €. Tous niveaux."
+  canonicalPath="/initiation"
+  jsonLd={eventLdItems}
+>
+  <!-- Hero -->
+  <section class="py-20 bg-cream-dark border-b border-cream-dark">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Découverte</p>
+      <h1 class="section-title text-4xl md:text-5xl">Stages de teinture végétale</h1>
+      <p class="section-subtitle">Tous niveaux · Petits groupes · Matériel fourni</p>
+      <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+        Que vous soyez curieux du vivant, artiste textile, enseignant ou simplement en quête d'une expérience créative authentique, nos stages sont faits pour vous. Isabelle Lys accueille de petits groupes pour une transmission personnalisée.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing summary -->
+  <section class="py-10 bg-indigo text-cream">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-center">
+        {[
+          { label: 'Demi-journée', price: '55 €', detail: '2h30' },
+          { label: 'Journée complète', price: '110 €', detail: '7h' },
+          { label: 'Week-end (2j)', price: '220 €', detail: '14h' },
+          { label: 'Atelier famille', price: '35 €', detail: '/ adulte · enfant inclus' },
+        ].map(({ label, price, detail }) => (
+          <div class="px-4">
+            <p class="font-heading text-2xl text-ochre">{price}</p>
+            <p class="text-sm font-medium text-cream">{label}</p>
+            <p class="text-xs text-cream/60">{detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Workshop cards -->
+  <section class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {workshops.map((w) => (
+          <WorkshopCard {...w} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="section-title mb-3">Ce qui est inclus</h2>
+      <p class="section-subtitle">Tout le nécessaire pour apprendre et créer</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10 text-left">
+        {[
+          { icon: '🧪', label: 'Matières premières', detail: 'Plantes, mordants, fibres' },
+          { icon: '🥣', label: 'Cuves et équipement', detail: 'Fourni par l\'atelier' },
+          { icon: '📋', label: 'Supports pédagogiques', detail: 'Fiches techniques remises' },
+          { icon: '☕', label: 'Accueil café/thé', detail: 'Boissons chaudes offertes' },
+          { icon: '🎨', label: 'Vos créations', detail: 'Vous repartez avec vos œuvres' },
+          { icon: '👥', label: 'Petit groupe', detail: 'Max. 8–10 personnes' },
+        ].map(({ icon, label, detail }) => (
+          <div class="flex gap-3 items-start">
+            <span class="text-2xl">{icon}</span>
+            <div>
+              <p class="font-semibold text-sm text-warm-text">{label}</p>
+              <p class="text-xs text-warm-text/60">{detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-ochre text-cream text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="font-heading text-3xl text-cream mb-4">Prêt(e) à vous lancer ?</h2>
+      <p class="text-cream/90 mb-8">Consultez le calendrier des dates disponibles ou envoyez-nous une demande pour un stage sur mesure.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/planifiez" class="btn-primary bg-cream text-ochre hover:bg-cream-dark">Voir le calendrier</a>
+        <a href="/reserver" class="btn-secondary border-cream text-cream hover:bg-cream hover:text-ochre">Réserver un stage</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

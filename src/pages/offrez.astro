@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import SumUpButton from '../components/SumUpButton.astro'
+
+const SUMUP_STORE_URL = 'https://store.sumup.com/atelier-ilys'
+
+const giftCategories = [
+  {
+    icon: '🌿',
+    title: 'Offrir un stage',
+    subtitle: 'L\'expérience la plus précieuse',
+    description: 'Offrez une journée ou demi-journée de teinture végétale artisanale à vos proches. Une expérience unique, créative et mémorable en Haute-Provence.',
+    items: [
+      { name: 'Bon cadeau demi-journée', price: '55 €', url: `${SUMUP_STORE_URL}/bon-cadeau-demi-journee` },
+      { name: 'Bon cadeau journée complète', price: '110 €', url: `${SUMUP_STORE_URL}/bon-cadeau-journee` },
+      { name: 'Bon cadeau week-end (2j)', price: '220 €', url: `${SUMUP_STORE_URL}/bon-cadeau-weekend` },
+      { name: 'Bon cadeau atelier famille', price: '35 € / adulte', url: `${SUMUP_STORE_URL}/bon-cadeau-famille` },
+    ],
+  },
+  {
+    icon: '🌱',
+    title: 'Plantes & Graines',
+    subtitle: 'Pour teindre à la maison',
+    description: 'Nos plantes tinctoriales séchées et nos kits de teinture, pour que vos proches puissent explorer la couleur végétale chez eux.',
+    items: [
+      { name: 'Kit Découverte Indigo', price: '35 €', url: `${SUMUP_STORE_URL}/kit-indigo` },
+      { name: 'Kit Plantes Tinctoriales', price: '45 €', url: `${SUMUP_STORE_URL}/kit-plantes` },
+      { name: 'Cosmos sulfureux (50g)', price: '6 €', url: `${SUMUP_STORE_URL}/cosmos-sulfureux` },
+      { name: 'Coreopsis tinctoria (50g)', price: '6 €', url: `${SUMUP_STORE_URL}/coreopsis-tinctoria` },
+    ],
+  },
+  {
+    icon: '🎨',
+    title: 'Mode & Déco',
+    subtitle: 'Créations originales',
+    description: 'Écharpes, carrés de soie et pièces décoratives teintes à la main par Isabelle. Des créations uniques aux couleurs naturelles de la Provence.',
+    items: [],
+    comingSoon: true,
+  },
+]
+---
+
+<BaseLayout
+  title="Offrir un cadeau — Stages, plantes et créations artisanales"
+  description="Idées cadeaux Atelier Ilys : bons cadeaux pour des stages de teinture végétale en Provence, kits de teinture, plantes tinctoriales et créations artisanales. Dès 6 €."
+  canonicalPath="/offrez"
+>
+  <section class="py-20 bg-cream-dark border-b text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Idées cadeaux</p>
+      <h1 class="section-title text-4xl md:text-5xl">Offrir l'Atelier Ilys</h1>
+      <p class="section-subtitle">Des cadeaux naturels, originaux et faits en Provence</p>
+      <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+        Pour les passionné(e)s de nature, de couleurs et de créativité, offrez une expérience unique en Haute-Provence ou des produits artisanaux soigneusement préparés.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-16">
+        {giftCategories.map(({ icon, title, subtitle, description, items, comingSoon }) => (
+          <div>
+            <div class="text-center mb-10">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo/10 text-3xl mb-4">
+                {icon}
+              </div>
+              <h2 class="section-title mb-1">{title}</h2>
+              <p class="section-subtitle">{subtitle}</p>
+              <p class="text-warm-text/70 max-w-xl mx-auto text-sm leading-relaxed">{description}</p>
+            </div>
+
+            {comingSoon ? (
+              <div class="bg-white border-2 border-dashed border-cream-dark rounded-sm p-12 text-center">
+                <p class="text-warm-text/50 text-lg mb-2">✨ Bientôt disponible</p>
+                <p class="text-warm-text/40 text-sm">Nos créations textiles seront disponibles prochainement. Contactez-nous pour une commande personnalisée.</p>
+                <a href="/contact" class="btn-secondary mt-4 inline-block">Demander une création sur mesure</a>
+              </div>
+            ) : (
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {items.map((item) => (
+                  <div class="bg-white p-5 rounded-sm shadow-sm border border-cream-dark flex flex-col">
+                    <h3 class="font-heading text-base text-indigo mb-2 flex-1">{item.name}</h3>
+                    <p class="font-heading text-xl text-ochre mb-3">{item.price}</p>
+                    <SumUpButton label="Commander" url={item.url} variant="ochre" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-indigo text-cream text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="font-heading text-2xl text-cream mb-3">Cadeau personnalisé ?</h2>
+      <p class="text-cream/80 mb-6">
+        Vous cherchez quelque chose de particulier ? Contactez-nous, nous trouverons ensemble le cadeau idéal.
+      </p>
+      <a href="/contact" class="btn-ochre">Nous écrire</a>
+    </div>
+  </section>
+</BaseLayout>

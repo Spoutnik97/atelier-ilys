@@ -1,0 +1,81 @@
+/* Google Fonts — must come before @tailwind directives */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-indigo: #3D5A80;
+  --color-ochre: #C8963E;
+  --color-cream: #F5F0E8;
+  --color-terracotta: #B85C38;
+  --color-green: #5C7A4E;
+  --color-text: #2C2416;
+}
+
+@layer base {
+  html {
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-cream);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--color-indigo);
+  }
+
+  a {
+    color: var(--color-indigo);
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color-terracotta);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block px-6 py-3 bg-indigo text-cream font-semibold rounded-sm hover:bg-indigo-dark transition-colors duration-200 text-center;
+  }
+
+  .btn-secondary {
+    @apply inline-block px-6 py-3 border-2 border-indigo text-indigo font-semibold rounded-sm hover:bg-indigo hover:text-cream transition-all duration-200 text-center;
+  }
+
+  .btn-ochre {
+    @apply inline-block px-6 py-3 bg-ochre text-cream font-semibold rounded-sm hover:bg-ochre-dark transition-colors duration-200 text-center;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl md:text-4xl text-indigo mb-4;
+  }
+
+  .section-subtitle {
+    @apply font-heading text-xl text-ochre mb-8 italic;
+  }
+
+  .card {
+    @apply bg-white rounded-sm shadow-sm border border-cream-dark overflow-hidden;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-sm bg-white text-warm-text focus:outline-none focus:ring-2 focus:ring-indigo focus:border-transparent transition;
+  }
+
+  .form-label {
+    @apply block text-sm font-semibold text-warm-text mb-1;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4;
+  }
+}

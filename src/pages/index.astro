@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import EcoBadges from '../components/EcoBadges.astro'
+
+const localBusinessLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Atelier Ilys',
+  description: 'Stages de teinture végétale artisanale, hébergement et service personnalisé en Haute-Provence. Magnanerie du XVIIIe siècle à Pierrerue, près de Forcalquier.',
+  url: 'https://atelier-ilys.com',
+  telephone: '+33612345678',
+  email: 'atelier.ilys@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Chemin de Mane',
+    addressLocality: 'Pierrerue',
+    postalCode: '04300',
+    addressCountry: 'FR',
+    addressRegion: 'Provence-Alpes-Côte d\'Azur',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 43.9617,
+    longitude: 5.7833,
+  },
+  image: 'https://atelier-ilys.com/images/og-default.jpg',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '18:00',
+    },
+  ],
+  priceRange: '€€',
+  hasMap: 'https://maps.google.com/?q=Pierrerue+04300',
+  sameAs: [
+    'https://www.facebook.com/atelierteinturevegetal',
+    'https://www.instagram.com/atelier_ilys',
+  ],
+}
+
+const pressLogos = [
+  { name: 'Wonderbox', src: 'https://via.placeholder.com/120x40/F5F0E8/3D5A80?text=Wonderbox' },
+  { name: 'ELLE', src: 'https://via.placeholder.com/80x40/F5F0E8/3D5A80?text=ELLE' },
+  { name: 'La Thomassine', src: 'https://via.placeholder.com/140x40/F5F0E8/3D5A80?text=La+Thomassine' },
+]
+---
+
+<BaseLayout
+  title="Teintures végétales de Haute-Provence"
+  description="Atelier Ilys — Stages de teinture végétale artisanale, hébergement dans une magnanerie du XVIIIe siècle, service personnalisé. Pierrerue, Haute-Provence."
+  canonicalPath="/"
+  jsonLd={localBusinessLd}
+>
+  <!-- Hero -->
+  <section class="relative min-h-[90vh] flex items-center overflow-hidden bg-indigo-dark">
+    <div class="absolute inset-0">
+      <img
+        src="https://atelier-ilys.com/wp-content/uploads/2023/01/hero-teinture-vegetale-provence.jpg"
+        alt="Bains de teinture végétale à l'indigo dans l'atelier Ilys, Haute-Provence"
+        class="w-full h-full object-cover opacity-40"
+        fetchpriority="high"
+        decoding="sync"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-indigo-dark/80 via-indigo-dark/50 to-transparent"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="max-w-2xl">
+        <p class="text-ochre font-medium tracking-widest uppercase text-sm mb-4">Pierrerue · Haute-Provence</p>
+        <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl text-cream leading-tight mb-6">
+          Couleurs végétales<br />
+          <em class="text-ochre not-italic">de Haute-Provence</em>
+        </h1>
+        <p class="text-cream/80 text-xl leading-relaxed mb-8 max-w-xl">
+          Plongez dans l'art ancestral de la teinture naturelle. Stages artisanaux, hébergement de charme et créations sur mesure au cœur d'une magnanerie du XVIII<sup>e</sup> siècle.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/initiation" class="btn-ochre text-base">Découvrir les stages</a>
+          <a href="/sejournez" class="btn-secondary text-base border-cream text-cream hover:bg-cream hover:text-indigo">Séjourner sur place</a>
+        </div>
+      </div>
+    </div>
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-cream/50">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Eco Badges -->
+  <EcoBadges />
+
+  <!-- 3-column feature cards -->
+  <section class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="section-title">L'expérience Ilys</h2>
+        <p class="section-subtitle">Art, nature et authenticité en Provence</p>
+        <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+          Isabelle Lys vous ouvre les portes de son atelier pour partager sa passion des teintures végétales, dans un cadre naturel d'exception.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Stages -->
+        <article class="card group hover:shadow-lg transition-shadow duration-300">
+          <div class="overflow-hidden aspect-[4/3]">
+            <img
+              src="https://atelier-ilys.com/wp-content/uploads/2023/01/stage-teinture-indigo.jpg"
+              alt="Participantes plongeant des tissus dans un bain d'indigo lors d'un stage à l'Atelier Ilys"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6">
+            <div class="w-10 h-10 rounded-full bg-indigo/10 flex items-center justify-center mb-3">
+              <span class="text-xl">🌿</span>
+            </div>
+            <h3 class="font-heading text-2xl text-indigo mb-2">Stages de teinture</h3>
+            <p class="text-warm-text/70 text-sm leading-relaxed mb-4">
+              Indigo, plantes, écoprint, pigments : des ateliers pour tous niveaux, en demi-journée, journée ou week-end. Dès 35 € pour les familles.
+            </p>
+            <a href="/initiation" class="btn-primary text-sm">Voir les stages</a>
+          </div>
+        </article>
+
+        <!-- Séjour -->
+        <article class="card group hover:shadow-lg transition-shadow duration-300">
+          <div class="overflow-hidden aspect-[4/3]">
+            <img
+              src="https://atelier-ilys.com/wp-content/uploads/2023/01/hebergement-magnanerie-provence.jpg"
+              alt="Maisonnette en pierre dans le domaine de la magnanerie Atelier Ilys, Pierrerue"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6">
+            <div class="w-10 h-10 rounded-full bg-ochre/10 flex items-center justify-center mb-3">
+              <span class="text-xl">🏡</span>
+            </div>
+            <h3 class="font-heading text-2xl text-indigo mb-2">Séjour sur place</h3>
+            <p class="text-warm-text/70 text-sm leading-relaxed mb-4">
+              Maisonnette, loft ou chambres dans notre magnanerie du XVIII<sup>e</sup> siècle. 30 hectares de nature, piscine, jardins botaniques. Dès 110 €/nuit.
+            </p>
+            <a href="/sejournez" class="btn-primary text-sm">Voir l'hébergement</a>
+          </div>
+        </article>
+
+        <!-- Boutique -->
+        <article class="card group hover:shadow-lg transition-shadow duration-300">
+          <div class="overflow-hidden aspect-[4/3]">
+            <img
+              src="https://atelier-ilys.com/wp-content/uploads/2023/01/plantes-teinture-boutique.jpg"
+              alt="Sachets de plantes tinctoriales — cosmos, coreopsis et écorce de chêne — de la boutique Atelier Ilys"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6">
+            <div class="w-10 h-10 rounded-full bg-terracotta/10 flex items-center justify-center mb-3">
+              <span class="text-xl">🛍️</span>
+            </div>
+            <h3 class="font-heading text-2xl text-indigo mb-2">Boutique</h3>
+            <p class="text-warm-text/70 text-sm leading-relaxed mb-4">
+              Plantes tinctoriales, graines, kits de teinture maison. Cosmos sulfureux, coreopsis, écorce de chêne… Toutes nos semences et préparations.
+            </p>
+            <a href="/boutique" class="btn-primary text-sm">Visiter la boutique</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press / Partners -->
+  <section class="py-14 bg-cream-dark border-y border-cream-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-warm-text/50 text-sm uppercase tracking-widest mb-8">Ils parlent de nous / Partenaires</p>
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        {pressLogos.map((logo) => (
+          <img
+            src={logo.src}
+            alt={`Logo ${logo.name}`}
+            class="h-8 object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+            loading="lazy"
+            width="120"
+            height="40"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-indigo text-cream text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-4">Vivez l'expérience</p>
+      <h2 class="font-heading text-4xl md:text-5xl text-cream mb-6">Réservez votre stage</h2>
+      <p class="text-cream/80 text-lg leading-relaxed mb-8">
+        Atelier personnalisé sur demande — groupes, entreprises, particuliers.<br />
+        Nous adaptons chaque stage à vos envies et votre niveau.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/reserver" class="btn-ochre text-base">Réserver un stage</a>
+        <a href="/planifiez" class="btn-secondary text-base border-cream text-cream hover:bg-cream hover:text-indigo">Voir le calendrier</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

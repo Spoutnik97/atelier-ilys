@@ -1,0 +1,122 @@
+---
+interface Props {
+  formId?: string
+  successMessage?: string
+}
+
+const {
+  formId = 'contact-form',
+  successMessage = 'Votre message a bien été envoyé. Nous vous répondrons sous 48h.',
+} = Astro.props
+---
+
+<form
+  id={formId}
+  method="POST"
+  action="/api/contact"
+  class="space-y-5"
+  novalidate
+>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for={`${formId}-name`} class="form-label">Nom et prénom <span class="text-terracotta">*</span></label>
+      <input
+        type="text"
+        id={`${formId}-name`}
+        name="name"
+        required
+        autocomplete="name"
+        class="form-input"
+        placeholder="Marie Dupont"
+      />
+    </div>
+    <div>
+      <label for={`${formId}-email`} class="form-label">Email <span class="text-terracotta">*</span></label>
+      <input
+        type="email"
+        id={`${formId}-email`}
+        name="email"
+        required
+        autocomplete="email"
+        class="form-input"
+        placeholder="marie@exemple.fr"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for={`${formId}-phone`} class="form-label">Téléphone</label>
+    <input
+      type="tel"
+      id={`${formId}-phone`}
+      name="phone"
+      autocomplete="tel"
+      class="form-input"
+      placeholder="06 12 34 56 78"
+    />
+  </div>
+
+  <div>
+    <label for={`${formId}-message`} class="form-label">Message <span class="text-terracotta">*</span></label>
+    <textarea
+      id={`${formId}-message`}
+      name="message"
+      required
+      rows="5"
+      class="form-input resize-y"
+      placeholder="Votre message…"
+    ></textarea>
+  </div>
+
+  <!-- Honeypot anti-spam -->
+  <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
+  <div id={`${formId}-status`} class="hidden" role="alert" aria-live="polite"></div>
+
+  <button type="submit" class="btn-primary w-full sm:w-auto" id={`${formId}-submit`}>
+    Envoyer le message
+  </button>
+</form>
+
+<script define:vars={{ formId, successMessage }}>
+  const form = document.getElementById(formId)
+  const status = document.getElementById(`${formId}-status`)
+  const submit = document.getElementById(`${formId}-submit`)
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!form || !status || !submit) return
+
+    // Honeypot check
+    const honey = form.querySelector('[name="_honey"]')
+    if (honey && honey.value) return
+
+    submit.setAttribute('disabled', 'true')
+    submit.textContent = 'Envoi en cours…'
+    status.className = 'hidden'
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        body: new FormData(form),
+      })
+      const data = await res.json()
+
+      if (res.ok && data.ok) {
+        status.textContent = successMessage
+        status.className = 'p-4 bg-botanical/10 border border-botanical text-botanical rounded text-sm'
+        form.reset()
+      } else {
+        throw new Error(data.error || 'Erreur')
+      }
+    } catch (err) {
+      status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous contacter par email.'
+      status.className = 'p-4 bg-terracotta/10 border border-terracotta text-terracotta rounded text-sm'
+    } finally {
+      submit.removeAttribute('disabled')
+      submit.textContent = 'Envoyer le message'
+      status.classList.remove('hidden')
+      status.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  })
+</script>

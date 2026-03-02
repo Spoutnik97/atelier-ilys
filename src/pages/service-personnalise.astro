@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const clients = [
+  'Wonderbox', 'ELLE Magazine', 'La Thomassine', 'Maisons du Monde',
+  'École nationale supérieure des arts décoratifs', 'ESMOD Paris',
+  'Collectif Mode Éthique PACA', 'Conservatoire du Patrimoine Textile',
+  'Région Provence-Alpes-Côte d\'Azur',
+]
+
+const services = [
+  {
+    icon: '🎨',
+    title: 'Teinture professionnelle',
+    description: 'Teinture de pièces textiles en série pour créateurs, stylistes et marques de mode éco-responsables. Nous travaillons sur toutes les fibres naturelles : laine, soie, lin, coton.',
+    examples: ['Laines à tricoter', 'Étoffes pour couture', 'Accessoires de mode', 'Fils de broderie'],
+  },
+  {
+    icon: '🎤',
+    title: 'Conférences & démonstrations',
+    description: 'Interventions dans les écoles d\'art, musées, festivals et événements. Présentation de l\'histoire et des techniques de la teinture végétale, démonstrations en direct.',
+    examples: ['Écoles d\'art et de mode', 'Musées et médiathèques', 'Festivals artisanaux', 'Événements d\'entreprise'],
+  },
+  {
+    icon: '🏠',
+    title: 'Ateliers à domicile',
+    description: 'Isabelle se déplace pour organiser des ateliers de teinture végétale dans vos locaux. Idéal pour les entreprises, associations, EHPAD, centres de loisirs et événements privés.',
+    examples: ['Team building entreprise', 'EHPAD et structures sociales', 'Associations culturelles', 'Mariages & évènements'],
+  },
+  {
+    icon: '📋',
+    title: 'Conseil & accompagnement',
+    description: 'Accompagnement de projets professionnels intégrant la teinture végétale : définition de palettes, sélection des plantes, choix des mordants, protocoles reproductibles.',
+    examples: ['Marques de mode naturelle', 'Créateurs textiles', 'Projets pédagogiques', 'Musées & patrimoine'],
+  },
+]
+---
+
+<BaseLayout
+  title="Service personnalisé — Teinture pro, conférences, ateliers à domicile"
+  description="L'Atelier Ilys propose des services personnalisés de teinture végétale : teinture professionnelle, conférences, démonstrations, ateliers à domicile et conseil. Sur devis."
+  canonicalPath="/service-personnalise"
+>
+  <section class="py-20 bg-cream-dark border-b text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Sur mesure</p>
+      <h1 class="section-title text-4xl md:text-5xl">Service personnalisé</h1>
+      <p class="section-subtitle">Teinture pro · Conférences · Ateliers à domicile</p>
+      <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+        Vous avez un projet professionnel autour de la couleur végétale ? Isabelle met son expertise au service de vos ambitions créatives ou pédagogiques.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {services.map(({ icon, title, description, examples }) => (
+          <div class="bg-white p-8 rounded-sm shadow-sm border border-cream-dark">
+            <div class="text-3xl mb-4">{icon}</div>
+            <h2 class="font-heading text-xl text-indigo mb-3">{title}</h2>
+            <p class="text-warm-text/70 text-sm leading-relaxed mb-4">{description}</p>
+            <ul class="space-y-1">
+              {examples.map((ex) => (
+                <li class="text-xs text-warm-text/60 flex gap-2">
+                  <span class="text-ochre">→</span>
+                  {ex}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="section-title mb-3">Ils nous ont fait confiance</h2>
+      <p class="section-subtitle">Références & partenaires</p>
+      <div class="flex flex-wrap justify-center gap-4 mt-8">
+        {clients.map((client) => (
+          <span class="px-4 py-2 bg-cream-dark rounded text-sm text-warm-text/70 font-medium">
+            {client}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-ochre text-cream text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="font-heading text-3xl text-cream mb-4">Discutons de votre projet</h2>
+      <p class="text-cream/90 mb-8">
+        Chaque projet est unique. Contactez-nous pour un devis personnalisé, gratuit et sans engagement.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="btn-primary bg-cream text-ochre hover:bg-cream-dark">Nous contacter</a>
+        <a href="mailto:atelier.ilys@gmail.com" class="btn-secondary border-cream text-cream hover:bg-cream hover:text-ochre">
+          atelier.ilys@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

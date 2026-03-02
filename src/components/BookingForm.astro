@@ -1,0 +1,167 @@
+---
+const workshopTypes = [
+  'Teinture à l\'indigo',
+  'Teinture végétale',
+  'Pigments et encres naturelles',
+  'Écoprint',
+  'Atelier famille',
+  'Beaux-arts (pigments)',
+  'Stage personnalisé',
+]
+---
+
+<form
+  id="booking-form"
+  method="POST"
+  action="/api/booking-workshop"
+  class="space-y-5"
+  novalidate
+>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for="booking-name" class="form-label">Nom et prénom <span class="text-terracotta">*</span></label>
+      <input
+        type="text"
+        id="booking-name"
+        name="name"
+        required
+        autocomplete="name"
+        class="form-input"
+        placeholder="Marie Dupont"
+      />
+    </div>
+    <div>
+      <label for="booking-email" class="form-label">Email <span class="text-terracotta">*</span></label>
+      <input
+        type="email"
+        id="booking-email"
+        name="email"
+        required
+        autocomplete="email"
+        class="form-input"
+        placeholder="marie@exemple.fr"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="booking-phone" class="form-label">Téléphone <span class="text-terracotta">*</span></label>
+    <input
+      type="tel"
+      id="booking-phone"
+      name="phone"
+      required
+      autocomplete="tel"
+      class="form-input"
+      placeholder="06 12 34 56 78"
+    />
+  </div>
+
+  <div>
+    <label for="booking-type" class="form-label">Type de stage <span class="text-terracotta">*</span></label>
+    <select id="booking-type" name="workshopType" required class="form-input">
+      <option value="">Choisissez un type de stage…</option>
+      {workshopTypes.map((t) => <option value={t}>{t}</option>)}
+    </select>
+  </div>
+
+  <div>
+    <label for="booking-duration" class="form-label">Durée souhaitée <span class="text-terracotta">*</span></label>
+    <select id="booking-duration" name="duration" required class="form-input">
+      <option value="">Choisissez une durée…</option>
+      <option value="demi-journee">Demi-journée (2h30) — 55 €</option>
+      <option value="journee">Journée complète — 110 €</option>
+      <option value="2-jours">2 jours — 220 €</option>
+      <option value="famille">Atelier famille (2h30) — 35 € / adulte</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="booking-date" class="form-label">Date(s) souhaitée(s) <span class="text-terracotta">*</span></label>
+    <input
+      type="text"
+      id="booking-date"
+      name="preferredDate"
+      required
+      class="form-input"
+      placeholder="ex: juillet 2026, ou une date précise"
+    />
+    <p class="text-xs text-warm-text/50 mt-1">Consultez le <a href="/planifiez" class="underline">calendrier des stages</a> pour les dates disponibles.</p>
+  </div>
+
+  <div>
+    <label for="booking-participants" class="form-label">Nombre de participants</label>
+    <input
+      type="number"
+      id="booking-participants"
+      name="participants"
+      min="1"
+      max="20"
+      class="form-input"
+      placeholder="1"
+    />
+  </div>
+
+  <div>
+    <label for="booking-wishes" class="form-label">Vos souhaits ou questions</label>
+    <textarea
+      id="booking-wishes"
+      name="wishes"
+      rows="4"
+      class="form-input resize-y"
+      placeholder="Précisions sur votre projet, niveau, fibres à teindre, besoins particuliers…"
+    ></textarea>
+  </div>
+
+  <!-- Honeypot -->
+  <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
+  <div id="booking-status" class="hidden" role="alert" aria-live="polite"></div>
+
+  <button type="submit" class="btn-primary w-full sm:w-auto" id="booking-submit">
+    Envoyer ma demande
+  </button>
+  <p class="text-xs text-warm-text/50">Nous vous confirmons la disponibilité par email sous 48h.</p>
+</form>
+
+<script>
+  const form = document.getElementById('booking-form')
+  const status = document.getElementById('booking-status')
+  const submit = document.getElementById('booking-submit')
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!form || !status || !submit) return
+
+    const honey = form.querySelector('[name="_honey"]') as HTMLInputElement
+    if (honey?.value) return
+
+    submit.setAttribute('disabled', 'true')
+    submit.textContent = 'Envoi en cours…'
+    status.className = 'hidden'
+
+    try {
+      const res = await fetch('/api/booking-workshop', {
+        method: 'POST',
+        body: new FormData(form),
+      })
+      const data = await res.json()
+
+      if (res.ok && data.ok) {
+        status.textContent = 'Votre demande a bien été reçue ! Nous vous répondons dans les 48h pour confirmer les disponibilités.'
+        status.className = 'p-4 bg-botanical/10 border border-botanical text-botanical rounded text-sm'
+        form.reset()
+      } else {
+        throw new Error(data.error || 'Erreur')
+      }
+    } catch {
+      status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous contacter directement par email.'
+      status.className = 'p-4 bg-terracotta/10 border border-terracotta text-terracotta rounded text-sm'
+    } finally {
+      submit.removeAttribute('disabled')
+      submit.textContent = 'Envoyer ma demande'
+      status.classList.remove('hidden')
+      status.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  })
+</script>

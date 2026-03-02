@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import SumUpButton from '../components/SumUpButton.astro'
+
+// Replace with real SumUp store URL
+const SUMUP_STORE_URL = 'https://store.sumup.com/atelier-ilys'
+
+const products = [
+  {
+    name: 'Cosmos sulfureux',
+    subtitle: 'Tagetes erecta',
+    description: 'Fleurs séchées de cosmos sulfureux, la plante tinctoriale aux tons jaunes et orangés intenses. Culture biologique, cueillette à la main. Teint laine, soie, coton.',
+    price: '6 €',
+    weight: 'sachet 50g',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/cosmos-sulfureux-teinture.jpg',
+    imageAlt: 'Sachet de fleurs séchées de cosmos sulfureux pour teinture végétale, Atelier Ilys',
+    url: `${SUMUP_STORE_URL}/cosmos-sulfureux`,
+    colors: ['Jaune citron', 'Orangé doré'],
+  },
+  {
+    name: 'Coreopsis tinctoria',
+    subtitle: 'Coreopsis tinctoria',
+    description: 'Capitules de coreopsis des teinturiers, plante tinctoriale traditionnelle aux magnifiques tons orangés et rouges. Séchées et conditionnées artisanalement.',
+    price: '6 €',
+    weight: 'sachet 50g',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/coreopsis-tinctoria-teinture.jpg',
+    imageAlt: 'Fleurs séchées de coreopsis tinctoria pour teinture végétale, Atelier Ilys',
+    url: `${SUMUP_STORE_URL}/coreopsis-tinctoria`,
+    colors: ['Orangé', 'Rouge brique', 'Kaki'],
+  },
+  {
+    name: 'Écorce de chêne',
+    subtitle: 'Quercus robur',
+    description: 'Écorce de chêne pédonculé séchée et broyée, mordant naturel puissant et fixateur de couleur. Donne des tons beige à brun chaud selon le mordant utilisé.',
+    price: '5 €',
+    weight: 'sachet 100g',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/ecorce-chene-teinture.jpg',
+    imageAlt: 'Écorce de chêne séchée et broyée pour teinture végétale, Atelier Ilys',
+    url: `${SUMUP_STORE_URL}/ecorce-chene`,
+    colors: ['Beige', 'Brun chaud', 'Gris taupe'],
+  },
+]
+
+const kits = [
+  {
+    name: 'Kit Découverte Indigo',
+    description: 'Tout le nécessaire pour réaliser votre premier bain d\'indigo à la maison : poudre d\'indigo naturel, chaux éteinte, sel de fructose, guide illustré pas-à-pas.',
+    price: '35 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/kit-indigo-decouverte.jpg',
+    imageAlt: 'Kit complet pour teinture à l\'indigo naturel à la maison — Atelier Ilys',
+    url: `${SUMUP_STORE_URL}/kit-indigo`,
+  },
+  {
+    name: 'Kit Plantes Tinctoriales',
+    description: '5 sachets de plantes tinctoriales sélectionnées (cosmos, coreopsis, gaude, millepertuis, tanaisie), 2 mordants (alun, crème de tartre) et un guide de recettes.',
+    price: '45 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/kit-plantes-tinctoriales.jpg',
+    imageAlt: 'Kit de 5 plantes tinctoriales avec mordants et guide de recettes — Atelier Ilys',
+    url: `${SUMUP_STORE_URL}/kit-plantes`,
+  },
+]
+---
+
+<BaseLayout
+  title="Boutique — Plantes tinctoriales et kits de teinture végétale"
+  description="Boutique Atelier Ilys : plantes tinctoriales séchées (cosmos, coreopsis, écorce de chêne), kits de teinture végétale. Livraison France. Culture biologique, cueillette artisanale."
+  canonicalPath="/boutique"
+>
+  <section class="py-16 bg-cream-dark border-b text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Boutique</p>
+      <h1 class="section-title text-4xl md:text-5xl">Boutique en ligne</h1>
+      <p class="section-subtitle">Plantes tinctoriales & kits de teinture</p>
+      <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+        Nos plantes et graines tinctoriales, cultivées ou cueillies artisanalement dans notre jardin de Haute-Provence. Pour teindre chez vous, en toute naturalité.
+      </p>
+    </div>
+  </section>
+
+  <!-- Plants -->
+  <section class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title mb-2 text-center">Plantes & Graines</h2>
+      <p class="section-subtitle text-center mb-12">Cultivées et séchées à la main à Pierrerue</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {products.map((product) => (
+          <article class="card hover:shadow-md transition-shadow">
+            <div class="overflow-hidden aspect-[4/3]">
+              <img
+                src={product.image}
+                alt={product.imageAlt}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-5">
+              <div class="mb-3">
+                <h3 class="font-heading text-xl text-indigo">{product.name}</h3>
+                <p class="text-xs text-warm-text/50 italic">{product.subtitle}</p>
+              </div>
+              <p class="text-warm-text/70 text-sm leading-relaxed mb-3">{product.description}</p>
+              <div class="flex flex-wrap gap-1 mb-4">
+                {product.colors.map((c) => (
+                  <span class="text-xs bg-ochre/10 text-ochre px-2 py-0.5 rounded">{c}</span>
+                ))}
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-cream-dark mb-3">
+                <span class="text-xs text-warm-text/50">{product.weight}</span>
+                <span class="font-heading text-xl text-ochre">{product.price}</span>
+              </div>
+              <SumUpButton label="Commander" url={product.url} variant="ochre" />
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Kits -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="section-title mb-2 text-center">Kits de teinture</h2>
+      <p class="section-subtitle text-center mb-12">Tout le nécessaire pour teindre à la maison</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {kits.map((kit) => (
+          <article class="card hover:shadow-md transition-shadow flex flex-col">
+            <div class="overflow-hidden aspect-[4/3]">
+              <img
+                src={kit.image}
+                alt={kit.imageAlt}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-5 flex flex-col flex-1">
+              <h3 class="font-heading text-xl text-indigo mb-2">{kit.name}</h3>
+              <p class="text-warm-text/70 text-sm leading-relaxed flex-1 mb-4">{kit.description}</p>
+              <div class="flex items-center justify-between pt-3 border-t border-cream-dark mb-3">
+                <span class="text-xs text-warm-text/50">Livraison France incluse</span>
+                <span class="font-heading text-xl text-ochre">{kit.price}</span>
+              </div>
+              <SumUpButton label="Commander ce kit" url={kit.url} variant="primary" />
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Note -->
+  <section class="py-12 bg-cream-dark text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <p class="text-warm-text/70 text-sm leading-relaxed">
+        <strong>Note :</strong> La boutique utilise SumUp pour le paiement sécurisé. Vous serez redirigé(e) vers notre page de paiement sécurisée.
+        <br />Pour toute commande groupée ou question, contactez-nous directement.
+      </p>
+      <a href="/contact" class="btn-secondary mt-4 inline-block">Nous contacter</a>
+    </div>
+  </section>
+
+  <!-- CTA gift -->
+  <section class="py-12 bg-indigo text-cream text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="font-heading text-2xl text-cream mb-3">Offrir un cadeau ?</h2>
+      <p class="text-cream/80 mb-6">Découvrez nos idées cadeaux : stages, plantes et créations originales.</p>
+      <a href="/offrez" class="btn-ochre">Voir les idées cadeaux</a>
+    </div>
+  </section>
+</BaseLayout>

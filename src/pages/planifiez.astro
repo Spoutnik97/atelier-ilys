@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { getEntry } from 'astro:content'
+
+const calendarData = await getEntry('calendar', '2026')
+const events = calendarData?.data.events ?? []
+
+type WorkshopType = 'indigo' | 'teinture' | 'ecoprint' | 'pigments' | 'famille' | 'beaux-arts'
+
+const typeLabels: Record<WorkshopType, string> = {
+  indigo: 'Indigo',
+  teinture: 'Teinture végétale',
+  ecoprint: 'Écoprint',
+  pigments: 'Pigments & Encres',
+  famille: 'Atelier famille',
+  'beaux-arts': 'Beaux-Arts',
+}
+
+const typeColors: Record<WorkshopType, string> = {
+  indigo: 'bg-indigo text-cream',
+  teinture: 'bg-botanical text-cream',
+  ecoprint: 'bg-terracotta text-cream',
+  pigments: 'bg-ochre text-cream',
+  famille: 'bg-indigo-light text-cream',
+  'beaux-arts': 'bg-warm-text text-cream',
+}
+
+const typeTextColors: Record<WorkshopType, string> = {
+  indigo: 'text-indigo border-indigo',
+  teinture: 'text-botanical border-botanical',
+  ecoprint: 'text-terracotta border-terracotta',
+  pigments: 'text-ochre border-ochre',
+  famille: 'text-indigo-light border-indigo-light',
+  'beaux-arts': 'text-warm-text border-warm-text',
+}
+
+const monthNames = [
+  '', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+  'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre',
+]
+
+// Group events by month
+const eventsByMonth = events.reduce((acc: Record<number, typeof events>, event) => {
+  const month = new Date(event.startDate).getMonth() + 1
+  if (!acc[month]) acc[month] = []
+  acc[month].push(event)
+  return acc
+}, {})
+
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr)
+  return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })
+}
+
+function formatDateRange(startDate: string, endDate?: string) {
+  if (!endDate) return formatDate(startDate)
+  const start = new Date(startDate)
+  const end = new Date(endDate)
+  if (start.getMonth() === end.getMonth()) {
+    return `${start.getDate()} – ${end.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}`
+  }
+  return `${formatDate(startDate)} – ${formatDate(endDate)}`
+}
+---
+
+<BaseLayout
+  title="Calendrier des stages 2026"
+  description="Toutes les dates des stages de teinture végétale à l'Atelier Ilys pour 2026 : indigo, plantes, écoprint, pigments, ateliers famille. Réservez votre place en ligne."
+  canonicalPath="/planifiez"
+>
+  <!-- Hero -->
+  <section class="py-16 bg-cream-dark border-b border-cream-dark text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Saison 2026</p>
+      <h1 class="section-title text-4xl md:text-5xl">Calendrier des stages</h1>
+      <p class="text-warm-text/70 leading-relaxed mt-4">
+        Retrouvez toutes les dates disponibles pour l'année 2026. Places limitées — réservation conseillée.
+        <br />
+        <strong>Atelier personnalisé sur demande</strong> hors calendrier.
+      </p>
+    </div>
+  </section>
+
+  <!-- Legend -->
+  <section class="py-6 bg-white border-b border-cream-dark">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-3">
+        {(Object.entries(typeLabels) as [WorkshopType, string][]).map(([type, label]) => (
+          <span class={`text-xs font-semibold px-3 py-1 rounded-full ${typeColors[type]}`}>
+            {label}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendar by month -->
+  <section class="py-16 bg-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      {Object.entries(eventsByMonth)
+        .sort(([a], [b]) => Number(a) - Number(b))
+        .map(([month, monthEvents]) => (
+          <div class="mb-12">
+            <h2 class="font-heading text-2xl text-indigo mb-6 pb-2 border-b-2 border-ochre inline-block pr-8">
+              {monthNames[Number(month)]} 2026
+            </h2>
+            <div class="space-y-4">
+              {monthEvents.map((event) => {
+                const type = event.type as WorkshopType
+                return (
+                  <article class={`bg-white rounded-sm border-l-4 ${typeTextColors[type]} p-5 shadow-sm flex flex-col sm:flex-row sm:items-center gap-4`}>
+                    <div class="sm:w-48 flex-shrink-0">
+                      <p class="font-semibold text-warm-text">
+                        {formatDateRange(event.startDate, event.endDate)}
+                      </p>
+                      <span class={`inline-block mt-1 text-xs font-semibold px-2 py-0.5 rounded ${typeColors[type]}`}>
+                        {typeLabels[type]}
+                      </span>
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="font-heading text-lg text-indigo mb-1">{event.title}</h3>
+                      {event.description && (
+                        <p class="text-warm-text/70 text-sm leading-relaxed">{event.description}</p>
+                      )}
+                    </div>
+                    <div class="sm:text-right flex-shrink-0">
+                      {event.price && (
+                        <p class="font-heading text-xl text-ochre">{event.price}</p>
+                      )}
+                      {event.spots && (
+                        <p class="text-xs text-warm-text/50">{event.spots} places</p>
+                      )}
+                      <a href="/reserver" class="btn-primary text-xs mt-2 inline-block py-2 px-4">
+                        Réserver
+                      </a>
+                    </div>
+                  </article>
+                )
+              })}
+            </div>
+          </div>
+        ))
+      }
+
+      <!-- Custom workshop CTA -->
+      <div class="bg-indigo/10 border border-indigo/20 rounded-sm p-8 text-center mt-8">
+        <h3 class="font-heading text-xl text-indigo mb-3">Vous ne trouvez pas de date qui vous convient ?</h3>
+        <p class="text-warm-text/70 text-sm mb-5">
+          Isabelle propose des <strong>ateliers personnalisés sur demande</strong> pour groupes, associations, entreprises ou particuliers — à la date et au format qui vous convient.
+        </p>
+        <a href="/reserver" class="btn-primary">Demander un stage personnalisé</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

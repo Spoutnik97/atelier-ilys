@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import StayForm from '../components/StayForm.astro'
+import GoogleMap from '../components/GoogleMap.astro'
+---
+
+<BaseLayout
+  title="Réserver un séjour — Hébergement en Haute-Provence"
+  description="Réservez votre séjour à l'Atelier Ilys : maisonnette, loft ou chambre dans notre magnanerie de Pierrerue (Forcalquier), Haute-Provence. Réponse sous 48h."
+  canonicalPath="/reserve-ton-sejour"
+>
+  <section class="py-16 bg-cream-dark border-b text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Réservation séjour</p>
+      <h1 class="section-title text-4xl md:text-5xl">Réserver un séjour</h1>
+      <p class="text-warm-text/70 mt-4 leading-relaxed">
+        Remplissez le formulaire ci-dessous. Isabelle vous répondra sous 48h pour confirmer la disponibilité.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-white p-8 rounded-sm shadow-sm border border-cream-dark">
+            <h2 class="font-heading text-2xl text-indigo mb-6">Votre demande de séjour</h2>
+            <StayForm />
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="bg-indigo text-cream p-6 rounded-sm">
+            <h3 class="font-heading text-lg text-ochre mb-4">Hébergements</h3>
+            <ul class="space-y-2 text-sm text-cream/90">
+              <li class="flex justify-between">
+                <span>Maisonnette (2p)</span>
+                <span class="font-semibold">dès 110 €/nuit</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Grand Pré Loft (12p)</span>
+                <span class="font-semibold">dès 250 €/nuit</span>
+              </li>
+              <li class="flex justify-between border-t border-cream/20 pt-2 mt-2">
+                <span>Chambres (2p)</span>
+                <span class="font-semibold">dès 80 €/nuit</span>
+              </li>
+            </ul>
+            <p class="text-xs text-cream/60 mt-3">Linge de maison inclus. Taxe de séjour non incluse.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-sm shadow-sm border border-cream-dark">
+            <h3 class="font-heading text-lg text-indigo mb-3">À savoir</h3>
+            <ul class="space-y-2 text-sm text-warm-text/70">
+              <li class="flex gap-2">
+                <span class="text-ochre">✓</span>
+                <span>Arrivée : à partir de 15h</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-ochre">✓</span>
+                <span>Départ : avant 11h</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-ochre">✓</span>
+                <span>Animaux acceptés sur demande</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-ochre">✓</span>
+                <span>Combinable avec un stage</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="text-ochre">✓</span>
+                <span>Piscine accessible en saison</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-cream-dark p-6 rounded-sm">
+            <h3 class="font-heading text-lg text-indigo mb-3">Contact direct</h3>
+            <p class="text-sm text-warm-text/70 mb-3">Préférez-vous nous appeler ?</p>
+            <a href="tel:+33612345678" class="btn-primary text-sm block text-center mb-2">
+              06 12 34 56 78
+            </a>
+            <a href="mailto:atelier.ilys@gmail.com" class="btn-secondary text-sm block text-center">
+              atelier.ilys@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-16 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <GoogleMap height="350px" />
+    </div>
+  </section>
+</BaseLayout>

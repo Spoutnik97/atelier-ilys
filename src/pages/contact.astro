@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ContactForm from '../components/ContactForm.astro'
+import GoogleMap from '../components/GoogleMap.astro'
+---
+
+<BaseLayout
+  title="Contact — Atelier Ilys, Pierrerue Haute-Provence"
+  description="Contactez l'Atelier Ilys : stages de teinture végétale, hébergement, service personnalisé. Chemin de Mane, Pierrerue (04300), Haute-Provence. Réponse sous 48h."
+  canonicalPath="/contact"
+>
+  <section class="py-16 bg-cream-dark border-b text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Restons en contact</p>
+      <h1 class="section-title text-4xl md:text-5xl">Nous contacter</h1>
+      <p class="text-warm-text/70 mt-4 leading-relaxed">
+        Une question, un projet, une demande de réservation ? Nous sommes là pour vous répondre.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-white p-8 rounded-sm shadow-sm border border-cream-dark">
+            <h2 class="font-heading text-2xl text-indigo mb-6">Envoyez-nous un message</h2>
+            <ContactForm />
+          </div>
+        </div>
+
+        <!-- Contact details -->
+        <div class="space-y-6">
+          <div class="bg-indigo text-cream p-6 rounded-sm">
+            <h3 class="font-heading text-lg text-ochre mb-4">Coordonnées</h3>
+            <address class="not-italic space-y-3 text-sm text-cream/90">
+              <div>
+                <p class="font-semibold text-cream">Isabelle Lys — Atelier Ilys</p>
+                <p>Chemin de Mane</p>
+                <p>04300 Pierrerue (Forcalquier)</p>
+                <p>Haute-Provence, France</p>
+              </div>
+              <div>
+                <a href="tel:+33612345678" class="flex items-center gap-2 hover:text-ochre transition-colors">
+                  <svg class="w-4 h-4 text-ochre" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  06 12 34 56 78
+                </a>
+              </div>
+              <div>
+                <a href="mailto:atelier.ilys@gmail.com" class="flex items-center gap-2 hover:text-ochre transition-colors">
+                  <svg class="w-4 h-4 text-ochre" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  atelier.ilys@gmail.com
+                </a>
+              </div>
+            </address>
+          </div>
+
+          <div class="bg-white p-6 rounded-sm shadow-sm border border-cream-dark">
+            <h3 class="font-heading text-lg text-indigo mb-3">Accès</h3>
+            <ul class="space-y-1.5 text-sm text-warm-text/70">
+              <li>🚗 Aix-en-Provence : 1h15</li>
+              <li>🚗 Marseille : 1h30</li>
+              <li>🚗 Avignon : 1h30</li>
+              <li>🚂 Gare de Manosque : 20 min</li>
+            </ul>
+            <p class="text-xs text-warm-text/50 mt-3">Parking gratuit sur place.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-sm shadow-sm border border-cream-dark">
+            <h3 class="font-heading text-lg text-indigo mb-3">Liens rapides</h3>
+            <div class="space-y-2">
+              <a href="/reserver" class="block text-sm text-indigo hover:text-terracotta transition-colors">→ Réserver un stage</a>
+              <a href="/reserve-ton-sejour" class="block text-sm text-indigo hover:text-terracotta transition-colors">→ Réserver un séjour</a>
+              <a href="/planifiez" class="block text-sm text-indigo hover:text-terracotta transition-colors">→ Voir le calendrier</a>
+              <a href="/service-personnalise" class="block text-sm text-indigo hover:text-terracotta transition-colors">→ Service personnalisé</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-16 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <GoogleMap height="400px" />
+    </div>
+  </section>
+</BaseLayout>

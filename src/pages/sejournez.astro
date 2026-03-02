@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import AccommodationCard from '../components/AccommodationCard.astro'
+
+const lodgingLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: 'Atelier Ilys — Hébergement',
+  description: 'Hébergement de charme dans une magnanerie du XVIIIe siècle à Pierrerue (Forcalquier), Haute-Provence. Maisonnette, loft et chambres au milieu d\'un domaine naturel de 30 ha.',
+  url: 'https://atelier-ilys.com/sejournez',
+  telephone: '+33612345678',
+  email: 'atelier.ilys@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Chemin de Mane',
+    addressLocality: 'Pierrerue',
+    postalCode: '04300',
+    addressCountry: 'FR',
+  },
+  priceRange: '€€',
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Piscine', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Jardin', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Parking', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'WiFi', value: true },
+  ],
+}
+
+const accommodations = [
+  {
+    title: 'La Maisonnette',
+    subtitle: 'Gîte indépendant · 25 m²',
+    description: 'Une maisonnette en pierre tout équipée, indépendante, au cœur du domaine. Idéale pour un couple en escapade nature ou pour combiner stage et hébergement. Cuisine, salon, salle de bain, terrasse privée.',
+    capacity: '2 personnes',
+    price: '110 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/maisonnette-gite-provence.jpg',
+    imageAlt: 'La Maisonnette — gîte en pierre de 25 m² dans le domaine de l\'Atelier Ilys, Pierrerue',
+    features: ['Cuisine équipée', 'Terrasse privée', 'Linge fourni', 'Parking', 'WiFi'],
+  },
+  {
+    title: 'Le Grand Pré Loft',
+    subtitle: 'Loft spacieux · 200 m²',
+    description: 'Un loft exceptionnel de 200 m² pouvant accueillir jusqu\'à 12 personnes, idéal pour les groupes, séminaires créatifs ou retraites. Grande cuisine ouverte, salon, plusieurs espaces de vie, vue sur la garrigue.',
+    capacity: '2 à 12 personnes',
+    price: '250 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/grand-pre-loft-groupe.jpg',
+    imageAlt: 'Le Grand Pré Loft — espace de 200 m² pour groupes dans la magnanerie Atelier Ilys',
+    features: ['Cuisine pro', 'Grand salon', 'Terrasse panoramique', 'WiFi', 'Parking'],
+  },
+]
+
+const rooms = [
+  {
+    title: 'Chambre Azur',
+    subtitle: 'Chambre double · Vue jardin',
+    description: 'Chambre aux tons bleus et blancs, fraîche et reposante. Lit double, salle de bain privée, vue sur le jardin de plantes tinctoriales.',
+    capacity: '2 personnes',
+    price: '90 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-azur-provence.jpg',
+    imageAlt: 'Chambre Azur — chambre double aux tons bleus dans la magnanerie Atelier Ilys',
+    features: ['Salle de bain privée', 'Vue jardin', 'Linge fourni'],
+  },
+  {
+    title: 'Chambre Verte',
+    subtitle: 'Chambre double · Vue garrigue',
+    description: 'Décorée de teintes végétales douces, cette chambre invite à la détente avec sa vue sur la garrigue provençale. Lit double, salle de bain partagée.',
+    capacity: '2 personnes',
+    price: '80 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-verte-provence.jpg',
+    imageAlt: 'Chambre Verte — chambre aux tons botaniques avec vue sur la garrigue, Atelier Ilys',
+    features: ['Vue garrigue', 'Linge fourni', 'SDB partagée'],
+  },
+  {
+    title: 'Chambre Rose',
+    subtitle: 'Chambre double · Charme provençal',
+    description: 'La chambre la plus romantique du domaine, aux tons rosés et ocres. Mobilier chiné, tissu aux couleurs végétales, lit double en fer forgé.',
+    capacity: '2 personnes',
+    price: '85 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-rose-provence.jpg',
+    imageAlt: 'Chambre Rose — chambre romantique aux teintes roses et ocres, Atelier Ilys Pierrerue',
+    features: ['Charme provençal', 'Lit double', 'Linge fourni'],
+  },
+  {
+    title: 'Chambre Grenade',
+    subtitle: 'Chambre double · Couleurs intenses',
+    description: 'Les couleurs vives de la Provence : rouge grenade, ocre doré, blanc calcaire. Une chambre énergisante et chaleureuse, avec terrasse commune.',
+    capacity: '2 personnes',
+    price: '85 €',
+    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-grenade-provence.jpg',
+    imageAlt: 'Chambre Grenade — décoration rouge et ocre inspirée des teintures végétales, Atelier Ilys',
+    features: ['Terrasse commune', 'Couleurs vives', 'Linge fourni'],
+  },
+]
+---
+
+<BaseLayout
+  title="Hébergement — Maisonnette, Loft et Chambres en Provence"
+  description="Séjournez à l'Atelier Ilys dans une magnanerie du XVIIIe siècle à Pierrerue, Haute-Provence. Maisonnette 2p dès 110 €/nuit, loft 12p, 4 chambres. Piscine, jardins, 30 ha de nature."
+  canonicalPath="/sejournez"
+  jsonLd={lodgingLd}
+>
+  <!-- Hero -->
+  <section class="relative py-24 overflow-hidden bg-indigo-dark">
+    <div class="absolute inset-0">
+      <img
+        src="https://atelier-ilys.com/wp-content/uploads/2023/01/domaine-magnanerie-sejour.jpg"
+        alt="Vue du domaine de l'Atelier Ilys au lever du soleil — magnanerie en pierre et jardins de Provence"
+        class="w-full h-full object-cover opacity-35"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-indigo-dark/80 to-indigo-dark/40"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 text-cream">
+      <div class="max-w-2xl">
+        <p class="text-ochre text-sm uppercase tracking-widest mb-4">Hébergement · Haute-Provence</p>
+        <h1 class="font-heading text-5xl md:text-6xl text-cream leading-tight mb-6">
+          Séjournez<br />sur place
+        </h1>
+        <p class="text-cream/80 text-xl leading-relaxed mb-8">
+          Prolongez l'expérience en dormant dans notre magnanerie du XVIII<sup>e</sup> siècle. 30 hectares de nature, piscine, jardins botaniques, et la Provence à votre porte.
+        </p>
+        <a href="/reserve-ton-sejour" class="btn-ochre text-base">Réserver un séjour</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gîtes -->
+  <section class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="text-ochre text-sm uppercase tracking-widest mb-3">Gîtes</p>
+        <h2 class="section-title">Locations complètes</h2>
+        <p class="section-subtitle">Pour un séjour en toute indépendance</p>
+      </div>
+      <div class="space-y-8">
+        {accommodations.map((a) => <AccommodationCard {...a} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Rooms -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="text-ochre text-sm uppercase tracking-widest mb-3">Chambres d'hôtes</p>
+        <h2 class="section-title">Nos 4 chambres</h2>
+        <p class="section-subtitle">Chacune teintée d'une couleur végétale</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {rooms.map((room) => (
+          <article class="card hover:shadow-md transition-shadow">
+            <div class="overflow-hidden aspect-[4/3]">
+              <img
+                src={room.image}
+                alt={room.imageAlt}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading text-xl text-indigo mb-1">{room.title}</h3>
+              <p class="text-ochre text-sm italic mb-2">{room.subtitle}</p>
+              <p class="text-warm-text/70 text-sm leading-relaxed mb-3">{room.description}</p>
+              <div class="flex flex-wrap gap-2 mb-3">
+                {room.features.map((f) => (
+                  <span class="text-xs bg-cream-dark px-2 py-1 rounded text-warm-text/70">{f}</span>
+                ))}
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-cream-dark">
+                <span class="text-sm text-warm-text/60">
+                  Capacité : <strong class="text-warm-text">{room.capacity}</strong>
+                </span>
+                <div class="text-right">
+                  <span class="text-xs text-warm-text/50">à partir de </span>
+                  <span class="font-heading text-xl text-ochre">{room.price}</span>
+                  <span class="text-xs text-warm-text/50">/nuit</span>
+                </div>
+              </div>
+              <a href="/reserve-ton-sejour" class="btn-primary mt-3 text-sm block text-center">
+                Réserver cette chambre
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities -->
+  <section class="py-16 bg-cream-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="section-title mb-3">Le domaine</h2>
+      <p class="section-subtitle">Tout ce qui fait le charme du lieu</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
+        {[
+          { icon: '🏊', label: 'Piscine' },
+          { icon: '🌿', label: 'Jardins botaniques' },
+          { icon: '🫒', label: 'Oliveraies' },
+          { icon: '🌄', label: '30 ha de garrigue' },
+          { icon: '🚗', label: 'Parking gratuit' },
+          { icon: '📶', label: 'WiFi inclus' },
+          { icon: '🧺', label: 'Linge de maison' },
+          { icon: '☀️', label: 'Terrasses' },
+        ].map(({ icon, label }) => (
+          <div class="bg-white p-4 rounded-sm shadow-sm">
+            <p class="text-3xl mb-2">{icon}</p>
+            <p class="text-sm font-medium text-warm-text">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-indigo text-center text-cream">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="font-heading text-3xl text-cream mb-4">Prêt(e) à séjourner ?</h2>
+      <p class="text-cream/80 mb-8">Nous répondons à votre demande dans les 48h pour confirmer disponibilité et tarifs.</p>
+      <a href="/reserve-ton-sejour" class="btn-ochre text-base">Réserver mon séjour</a>
+    </div>
+  </section>
+</BaseLayout>

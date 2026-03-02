@@ -1,0 +1,167 @@
+---
+const rooms = [
+  'Maisonnette (2 personnes)',
+  'Le Grand Pré Loft (2–12 personnes)',
+  'Chambre Azur',
+  'Chambre Verte',
+  'Chambre Rose',
+  'Chambre Grenade',
+  'À définir / Je ne sais pas encore',
+]
+---
+
+<form
+  id="stay-form"
+  method="POST"
+  action="/api/booking-stay"
+  class="space-y-5"
+  novalidate
+>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for="stay-name" class="form-label">Nom et prénom <span class="text-terracotta">*</span></label>
+      <input
+        type="text"
+        id="stay-name"
+        name="name"
+        required
+        autocomplete="name"
+        class="form-input"
+        placeholder="Marie Dupont"
+      />
+    </div>
+    <div>
+      <label for="stay-email" class="form-label">Email <span class="text-terracotta">*</span></label>
+      <input
+        type="email"
+        id="stay-email"
+        name="email"
+        required
+        autocomplete="email"
+        class="form-input"
+        placeholder="marie@exemple.fr"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="stay-phone" class="form-label">Téléphone <span class="text-terracotta">*</span></label>
+    <input
+      type="tel"
+      id="stay-phone"
+      name="phone"
+      required
+      autocomplete="tel"
+      class="form-input"
+      placeholder="06 12 34 56 78"
+    />
+  </div>
+
+  <div>
+    <label for="stay-room" class="form-label">Hébergement souhaité <span class="text-terracotta">*</span></label>
+    <select id="stay-room" name="room" required class="form-input">
+      <option value="">Choisissez un hébergement…</option>
+      {rooms.map((r) => <option value={r}>{r}</option>)}
+    </select>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <div>
+      <label for="stay-arrival" class="form-label">Date d'arrivée <span class="text-terracotta">*</span></label>
+      <input
+        type="date"
+        id="stay-arrival"
+        name="arrivalDate"
+        required
+        class="form-input"
+      />
+    </div>
+    <div>
+      <label for="stay-departure" class="form-label">Date de départ <span class="text-terracotta">*</span></label>
+      <input
+        type="date"
+        id="stay-departure"
+        name="departureDate"
+        required
+        class="form-input"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="stay-guests" class="form-label">Nombre de personnes <span class="text-terracotta">*</span></label>
+    <input
+      type="number"
+      id="stay-guests"
+      name="guests"
+      required
+      min="1"
+      max="20"
+      class="form-input"
+      placeholder="2"
+    />
+  </div>
+
+  <div>
+    <label for="stay-message" class="form-label">Message ou demandes particulières</label>
+    <textarea
+      id="stay-message"
+      name="message"
+      rows="4"
+      class="form-input resize-y"
+      placeholder="Animaux, besoins spécifiques, combinaison stage + hébergement…"
+    ></textarea>
+  </div>
+
+  <!-- Honeypot -->
+  <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
+  <div id="stay-status" class="hidden" role="alert" aria-live="polite"></div>
+
+  <button type="submit" class="btn-primary w-full sm:w-auto" id="stay-submit">
+    Envoyer ma demande
+  </button>
+  <p class="text-xs text-warm-text/50">Nous vous répondons dans les 48h pour confirmer la disponibilité.</p>
+</form>
+
+<script>
+  const form = document.getElementById('stay-form')
+  const status = document.getElementById('stay-status')
+  const submit = document.getElementById('stay-submit')
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    if (!form || !status || !submit) return
+
+    const honey = form.querySelector('[name="_honey"]') as HTMLInputElement
+    if (honey?.value) return
+
+    submit.setAttribute('disabled', 'true')
+    submit.textContent = 'Envoi en cours…'
+    status.className = 'hidden'
+
+    try {
+      const res = await fetch('/api/booking-stay', {
+        method: 'POST',
+        body: new FormData(form),
+      })
+      const data = await res.json()
+
+      if (res.ok && data.ok) {
+        status.textContent = 'Votre demande de séjour a bien été reçue ! Nous vous répondons dans les 48h.'
+        status.className = 'p-4 bg-botanical/10 border border-botanical text-botanical rounded text-sm'
+        form.reset()
+      } else {
+        throw new Error(data.error || 'Erreur')
+      }
+    } catch {
+      status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous contacter par email.'
+      status.className = 'p-4 bg-terracotta/10 border border-terracotta text-terracotta rounded text-sm'
+    } finally {
+      submit.removeAttribute('disabled')
+      submit.textContent = 'Envoyer ma demande'
+      status.classList.remove('hidden')
+      status.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  })
+</script>

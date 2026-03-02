@@ -1,0 +1,65 @@
+---
+interface Props {
+  title: string
+  subtitle?: string
+  description: string
+  capacity: string
+  price: string
+  image: string
+  imageAlt: string
+  features?: string[]
+  link?: string
+}
+
+const {
+  title,
+  subtitle = '',
+  description,
+  capacity,
+  price,
+  image,
+  imageAlt,
+  features = [],
+  link = '/reserve-ton-sejour',
+} = Astro.props
+---
+
+<article class="card flex flex-col md:flex-row overflow-hidden hover:shadow-md transition-shadow duration-200">
+  <div class="md:w-2/5 overflow-hidden aspect-[4/3] md:aspect-auto">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="md:w-3/5 p-6 flex flex-col">
+    <div class="mb-3">
+      <h3 class="font-heading text-2xl text-indigo">{title}</h3>
+      {subtitle && <p class="text-ochre text-sm font-medium italic mt-0.5">{subtitle}</p>}
+    </div>
+    <p class="text-warm-text/80 text-sm leading-relaxed flex-1 mb-4">{description}</p>
+    {features.length > 0 && (
+      <ul class="flex flex-wrap gap-2 mb-4">
+        {features.map((f) => (
+          <li class="text-xs bg-cream-dark px-2 py-1 rounded text-warm-text/70">{f}</li>
+        ))}
+      </ul>
+    )}
+    <div class="flex items-center justify-between pt-3 border-t border-cream-dark">
+      <div class="text-sm">
+        <span class="text-warm-text/60">Capacité : </span>
+        <span class="font-medium text-warm-text">{capacity}</span>
+      </div>
+      <div class="text-right">
+        <span class="text-xs text-warm-text/60">à partir de </span>
+        <span class="font-heading text-xl text-ochre font-semibold">{price}</span>
+        <span class="text-xs text-warm-text/60">/nuit</span>
+      </div>
+    </div>
+    <a href={link} class="btn-primary mt-4 text-sm text-center">
+      Réserver ce séjour
+    </a>
+  </div>
+</article>

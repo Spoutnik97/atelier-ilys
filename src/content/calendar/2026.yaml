@@ -1,0 +1,114 @@
+events:
+  - startDate: "2026-04-04"
+    title: Stage Teinture végétale — Printemps
+    type: teinture
+    description: "Découverte des premières plantes du printemps pour la teinture. Genêt, gaude, ortie. Journée complète."
+    price: "110 €"
+    spots: 8
+
+  - startDate: "2026-04-18"
+    title: Atelier famille Pâques
+    type: famille
+    description: "Atelier spécial vacances de Pâques pour les familles. Teinture naturelle avec les fleurs du jardin."
+    price: "35 € / adulte"
+    spots: 10
+
+  - startDate: "2026-05-09"
+    title: Stage Teinture à l'indigo
+    type: indigo
+    description: "Journée complète dédiée à la magie de l'indigo naturel. Bain de fermentation, mordançage, oxydation."
+    price: "110 €"
+    spots: 8
+
+  - startDate: "2026-05-23"
+    title: Stage Écoprint
+    type: ecoprint
+    description: "Impression botanique sur soie et papier. Feuilles fraîches du jardin. Demi-journée matin."
+    price: "55 €"
+    spots: 10
+
+  - startDate: "2026-06-06"
+    title: Stage Pigments & Encres naturelles
+    type: pigments
+    description: "Fabrication de pigments végétaux et minéraux. Création d'encres aquarelle naturelles."
+    price: "110 €"
+    spots: 8
+
+  - startDate: "2026-06-20"
+    title: Stage Teinture végétale d'été
+    type: teinture
+    description: "Les plantes tinctoriales d'été : cosmos sulfureux, coreopsis, millefeuille, reine des prés."
+    price: "110 €"
+    spots: 8
+
+  - startDate: "2026-07-04"
+    title: Stage Teinture à l'indigo
+    type: indigo
+    description: "Session estivale — parfaite pour teindre lin et coton. Groupe limité pour un suivi personnalisé."
+    price: "110 €"
+    spots: 6
+
+  - startDate: "2026-07-11"
+    endDate: "2026-07-12"
+    title: Stage Beaux-Arts & Pigments — Week-end
+    type: beaux-arts
+    description: "Deux jours d'immersion pour artistes. Pigments avancés, liants naturels, applications sur papier et toile."
+    price: "220 €"
+    spots: 6
+
+  - startDate: "2026-07-25"
+    title: Atelier famille juillet
+    type: famille
+    description: "Teinture naturelle en famille sous les oliviers. Safran des teinturiers et fleurs du jardin."
+    price: "35 € / adulte"
+    spots: 12
+
+  - startDate: "2026-08-08"
+    title: Stage Écoprint
+    type: ecoprint
+    description: "Empreintes botaniques d'été sur soie. Feuilles de figuier, eucalyptus, rose, fougère."
+    price: "55 €"
+    spots: 10
+
+  - startDate: "2026-08-22"
+    title: Stage Teinture végétale
+    type: teinture
+    description: "Dernières récoltes d'été — gaillet jaune, tanaisie, millefeuille. Journée complète."
+    price: "110 €"
+    spots: 8
+
+  - startDate: "2026-09-05"
+    title: Stage Teinture à l'indigo
+    type: indigo
+    description: "Retour des beaux jours de septembre : stage indigo en plein air sous la terrasse."
+    price: "110 €"
+    spots: 8
+
+  - startDate: "2026-09-19"
+    title: Stage Pigments & Encres naturelles
+    type: pigments
+    description: "Pigments d'automne : noix de galle, sumac, grenade. Encres et aquarelles terreuses."
+    price: "110 €"
+    spots: 8
+
+  - startDate: "2026-10-03"
+    endDate: "2026-10-04"
+    title: Stage Beaux-Arts & Pigments — Automne
+    type: beaux-arts
+    description: "Stage week-end pigments d'automne pour artistes confirmés. Ocorine, chêne, noix, rouille."
+    price: "220 €"
+    spots: 6
+
+  - startDate: "2026-10-17"
+    title: Stage Teinture végétale — Automne
+    type: teinture
+    description: "Les couleurs chaudes de l'automne provençal : noix, sumac, feuilles de figuier, kaki."
+    price: "110 €"
+    spots: 8
+
+  - startDate: "2026-11-07"
+    title: Stage Écoprint d'automne
+    type: ecoprint
+    description: "Empreintes des feuilles d'automne sur laine feutrée. Fougères, feuilles de vigne, ginkgo."
+    price: "55 €"
+    spots: 10

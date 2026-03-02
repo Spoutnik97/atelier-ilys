@@ -1,0 +1,224 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Gallery from "../components/Gallery.astro";
+
+const gallerySections = [
+    {
+        id: "le-lieu",
+        title: "Le lieu — La magnanerie",
+        images: [
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-lieu-01.jpg",
+                alt: "Vue de la façade de la magnanerie du XVIIIe siècle à Pierrerue, Haute-Provence",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-lieu-02.jpg",
+                alt: "Vue aérienne du domaine Atelier Ilys — 30 hectares de nature provençale",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-lieu-03.jpg",
+                alt: "La piscine du domaine entourée de lavande et d'oliviers",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-lieu-04.jpg",
+                alt: "Terrasse ombragée de la magnanerie avec vue sur la garrigue provençale",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-lieu-05.jpg",
+                alt: "L'allée de cyprès menant au domaine Atelier Ilys à Pierrerue",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-lieu-06.jpg",
+                alt: "Le puits ancien dans la cour de la magnanerie Atelier Ilys",
+            },
+        ],
+    },
+    {
+        id: "atelier-jardin",
+        title: "L'atelier et le jardin",
+        images: [
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-atelier-01.jpg",
+                alt: "L'atelier de teinture végétale avec ses cuves, fils et bains colorés",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-atelier-02.jpg",
+                alt: "Jardin de plantes tinctoriales — cosmos sulfureux, coreopsis et indigotier en fleur",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-atelier-03.jpg",
+                alt: "Séchage de fils teints à l'indigo sur des branches dans le jardin",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-atelier-04.jpg",
+                alt: "Pots de teinture végétale — résines, poudres et extrait de plantes tinctoriales",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-atelier-05.jpg",
+                alt: "Rangées de plantes colorantes dans le jardin de l'Atelier Ilys",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-atelier-06.jpg",
+                alt: "Isabelle Lys dans son atelier préparant un bain de teinture végétale",
+            },
+        ],
+    },
+    {
+        id: "les-stages",
+        title: "Les stages",
+        images: [
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-stage-01.jpg",
+                alt: "Groupe de participants lors d'un stage teinture à l'indigo à l'Atelier Ilys",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-stage-02.jpg",
+                alt: "Tissu sortant du bain d'indigo — la couleur verte s'oxyde en bleu à l'air libre",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-stage-03.jpg",
+                alt: "Atelier écoprint — impression de feuilles sur soie par chaleur et pression",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-stage-04.jpg",
+                alt: "Enfants lors d'un atelier famille de teinture végétale à l'Atelier Ilys",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-stage-05.jpg",
+                alt: "Participante montrant ses créations teintées à la gaude et au coreopsis",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-stage-06.jpg",
+                alt: "Fabrication de pigments naturels lors du stage beaux-arts Atelier Ilys",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-stage-07.jpg",
+                alt: "Fil de laine suspendu après teinture végétale — ocre, vert, terracotta",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-stage-08.jpg",
+                alt: "Stage teinture végétale en plein air sur la terrasse de la magnanerie",
+            },
+        ],
+    },
+    {
+        id: "les-creations",
+        title: "Les créations",
+        images: [
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-creation-01.jpg",
+                alt: "Écharpe en soie teintée à l'indigo naturel, dégradé bleu foncé à pâle",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-creation-02.jpg",
+                alt: "Aquarelles naturelles réalisées avec des pigments végétaux de l'Atelier Ilys",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-creation-03.jpg",
+                alt: "Créations écoprint sur papier — empreintes de fougère et feuilles de vigne",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-creation-04.jpg",
+                alt: "Carré de soie teint avec cosmos sulfureux — tons jaunes et orangés naturels",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-creation-05.jpg",
+                alt: "Pots d'encre naturelle préparés à l'Atelier Ilys — sépia, ocre, bleu indigo",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-creation-06.jpg",
+                alt: "Toile de lin teintée à la coque de noix et au sumac — tons chauds terreux",
+            },
+        ],
+    },
+    {
+        id: "service-personnalise",
+        title: "Service personnalisé",
+        images: [
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-perso-01.jpg",
+                alt: "Teinture de pièces textiles en série pour une marque de mode éco-responsable",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-perso-02.jpg",
+                alt: "Démonstration de teinture végétale lors d'un événement pour une école d'art",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-perso-03.jpg",
+                alt: "Atelier de teinture à domicile organisé pour un groupe d'entreprise",
+            },
+        ],
+    },
+    {
+        id: "dormir-sur-place",
+        title: "Dormir sur place",
+        images: [
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-hebergement-01.jpg",
+                alt: "La Maisonnette — gîte en pierre pour 2 personnes dans le domaine Atelier Ilys",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-hebergement-02.jpg",
+                alt: "Le Grand Pré Loft — espace de 200 m² pour groupes, Atelier Ilys",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-hebergement-03.jpg",
+                alt: "Chambre Azur — chambre d'hôtes aux tons bleus dans la magnanerie",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-hebergement-04.jpg",
+                alt: "Chambre Verte — chambre d'hôtes avec vue sur la garrigue provençale",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-hebergement-05.jpg",
+                alt: "Chambre Rose — chambre romantique aux teintes rosées et ocres",
+            },
+            {
+                src: "https://atelier-ilys.com/wp-content/uploads/2023/01/galerie-hebergement-06.jpg",
+                alt: "Chambre Grenade — décoration rouge et dorée inspirée des couleurs végétales",
+            },
+        ],
+    },
+];
+---
+
+<BaseLayout
+    title="Galerie photos — L'atelier, les stages et l'hébergement"
+    description="Galerie photos de l'Atelier Ilys : le lieu, l'atelier et le jardin, les stages de teinture végétale, les créations, le service personnalisé et l'hébergement à Pierrerue."
+    canonicalPath="/galerie-photo"
+>
+    <section class="py-16 bg-cream-dark border-b text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <p class="text-ochre text-sm uppercase tracking-widest mb-3">
+                Galerie
+            </p>
+            <h1 class="section-title text-4xl md:text-5xl">Photos</h1>
+            <p class="text-warm-text/70 mt-4">
+                Découvrez en images le domaine, l'atelier, les stages et les
+                créations de l'Atelier Ilys.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-12 bg-cream">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <Gallery sections={gallerySections} />
+        </div>
+    </section>
+
+    <section class="py-12 bg-indigo text-center text-cream">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="font-heading text-2xl text-cream mb-4">
+                Vous aussi, vivez l'expérience
+            </h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/initiation" class="btn-ochre">Voir les stages</a>
+                <a
+                    href="/sejournez"
+                    class="btn-secondary border-cream text-cream hover:bg-cream hover:text-indigo"
+                    >Séjourner sur place</a
+                >
+            </div>
+        </div>
+    </section>
+</BaseLayout>

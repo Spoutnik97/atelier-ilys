@@ -1,0 +1,69 @@
+backend:
+  name: github
+  repo: owner/atelier-ilys  # TODO: update with real GitHub username/repo
+  branch: main
+  # For local development, comment out the backend above and use:
+  # name: git-gateway
+
+# OAuth proxy for Decap CMS (Vercel)
+# auth_endpoint: api/auth
+
+media_folder: public/images
+public_folder: /images
+
+# Locale for the CMS UI
+locale: fr
+
+collections:
+  - name: calendar
+    label: Calendrier des stages
+    files:
+      - label: Stages 2026
+        name: "2026"
+        file: src/content/calendar/2026.yaml
+        fields:
+          - label: Stages
+            name: events
+            widget: list
+            summary: "{{fields.startDate}} — {{fields.title}}"
+            fields:
+              - label: Date de début
+                name: startDate
+                widget: date
+                format: "YYYY-MM-DD"
+                date_format: "DD/MM/YYYY"
+              - label: Date de fin (optionnel)
+                name: endDate
+                widget: date
+                format: "YYYY-MM-DD"
+                date_format: "DD/MM/YYYY"
+                required: false
+              - label: Titre du stage
+                name: title
+                widget: string
+              - label: Type de stage
+                name: type
+                widget: select
+                options:
+                  - { label: "Indigo", value: "indigo" }
+                  - { label: "Teinture végétale", value: "teinture" }
+                  - { label: "Écoprint", value: "ecoprint" }
+                  - { label: "Pigments & Encres", value: "pigments" }
+                  - { label: "Atelier famille", value: "famille" }
+                  - { label: "Beaux-Arts", value: "beaux-arts" }
+              - label: Description
+                name: description
+                widget: text
+                required: false
+              - label: Tarif
+                name: price
+                widget: string
+                required: false
+                hint: "Ex: 110 €"
+              - label: Nombre de places
+                name: spots
+                widget: number
+                required: false
+                value_type: int
+                min: 1
+                max: 30

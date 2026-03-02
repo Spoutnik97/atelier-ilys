@@ -1,0 +1,31 @@
+---
+interface Props {
+  title?: string
+  height?: string
+}
+
+const {
+  title = 'Atelier Ilys — Pierrerue, Haute-Provence',
+  height = '400px',
+} = Astro.props
+
+// Embedded Google Maps for Pierrerue / Forcalquier area
+const mapSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11562.123456789!2d5.7833!3d43.9617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ca2a0e5a5a5a5a%3A0x1a2b3c4d5e6f7a8b!2sPierrerue%2C%2004300!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr'
+---
+
+<div class="rounded-sm overflow-hidden border border-cream-dark shadow-sm">
+  <iframe
+    src={mapSrc}
+    width="100%"
+    height={height}
+    style="border:0;"
+    allowfullscreen
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title={title}
+    aria-label={title}
+  ></iframe>
+</div>
+<p class="text-xs text-warm-text/50 mt-2 text-center">
+  Atelier Ilys · Chemin de Mane · 04300 Pierrerue (Forcalquier)
+</p>

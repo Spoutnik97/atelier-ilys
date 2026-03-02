@@ -1,0 +1,244 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Atelier Ilys",
+    description:
+        "Atelier de teinture végétale artisanale fondé par Isabelle Lys dans une magnanerie du XVIIIe siècle à Pierrerue, Haute-Provence.",
+    url: "https://atelier-ilys.com/atelier-ilys",
+    telephone: "+33612345678",
+    email: "atelier.ilys@gmail.com",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "Chemin de Mane",
+        addressLocality: "Pierrerue",
+        postalCode: "04300",
+        addressCountry: "FR",
+    },
+    founder: {
+        "@type": "Person",
+        name: "Isabelle Lys",
+    },
+    foundingDate: "2015",
+};
+---
+
+<BaseLayout
+    title="L'atelier — Isabelle Lys, teinturière végétale"
+    description="Découvrez l'Atelier Ilys et sa fondatrice Isabelle Lys : une magnanerie du XVIIIe siècle à Pierrerue (Forcalquier), 30 ha de nature, et une passion pour les teintures végétales artisanales."
+    canonicalPath="/atelier-ilys"
+    jsonLd={localBusinessLd}
+>
+    <!-- Hero -->
+    <section class="relative py-24 bg-indigo-dark overflow-hidden">
+        <div class="absolute inset-0">
+            <img
+                src="https://atelier-ilys.com/wp-content/uploads/2023/01/magnanerie-provence-atelier.jpg"
+                alt="La magnanerie du XVIIIe siècle qui accueille l'Atelier Ilys à Pierrerue, Haute-Provence"
+                class="w-full h-full object-cover opacity-30"
+            />
+            <div class="absolute inset-0 bg-indigo-dark/60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 text-center text-cream">
+            <p class="text-ochre text-sm uppercase tracking-widest mb-4">
+                Pierrerue · Forcalquier · Haute-Provence
+            </p>
+            <h1 class="font-heading text-5xl md:text-6xl text-cream mb-6">
+                L'Atelier Ilys
+            </h1>
+            <p class="text-cream/80 text-xl max-w-2xl mx-auto">
+                Un lieu de vie, de création et de transmission, au cœur d'une
+                magnanerie provençale du XVIII<sup>e</sup> siècle.
+            </p>
+        </div>
+    </section>
+
+    <!-- Isabelle's story -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p
+                        class="text-ochre text-sm uppercase tracking-widest mb-3"
+                    >
+                        La fondatrice
+                    </p>
+                    <h2 class="section-title">Isabelle Lys</h2>
+                    <p class="section-subtitle">
+                        Teinturière végétale & transmettrice de savoirs
+                    </p>
+                    <div class="space-y-4 text-warm-text/80 leading-relaxed">
+                        <p>
+                            Isabelle Lys a découvert la teinture végétale lors
+                            d'un séjour en Inde, éblouie par la richesse des
+                            couleurs obtenues à partir des seules ressources de
+                            la nature. De retour en Provence, elle s'établit
+                            dans une ancienne magnanerie du XVIII<sup>e</sup> siècle
+                            à Pierrerue, nichée entre les collines de la Haute-Provence.
+                        </p>
+                        <p>
+                            Autodidacte passionnée, elle affine pendant
+                            plusieurs années ses techniques, expérimentant
+                            plantes locales et espèces tinctoriales, mordants
+                            naturels et bains successifs. Son approche est
+                            rigoureusement artisanale : pas de produits
+                            chimiques de synthèse, pas de colorants artificiels.
+                        </p>
+                        <p>
+                            Aujourd'hui, Isabelle partage ses savoirs à travers
+                            des stages accessibles à tous, du débutant curieux
+                            au professionnel textile, et propose également des
+                            services sur mesure pour les créateurs, marques et
+                            institutions.
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img
+                        src="https://atelier-ilys.com/wp-content/uploads/2023/01/isabelle-lys-portrait.jpg"
+                        alt="Isabelle Lys, fondatrice de l'Atelier Ilys, dans son jardin de plantes tinctoriales à Pierrerue"
+                        class="rounded-sm shadow-lg w-full object-cover aspect-[3/4]"
+                        loading="lazy"
+                    />
+                    <div
+                        class="absolute -bottom-4 -left-4 bg-ochre text-cream px-4 py-3 rounded-sm shadow"
+                    >
+                        <p class="font-heading text-2xl">+10 ans</p>
+                        <p class="text-xs opacity-90">
+                            d'expertise en teinture végétale
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The property -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-ochre text-sm uppercase tracking-widest mb-3">
+                    Le domaine
+                </p>
+                <h2 class="section-title">
+                    Une magnanerie provençale du XVIIIe siècle
+                </h2>
+                <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+                    30 hectares de garrigue, jardins et oliveraies dans les
+                    collines au-dessus de Forcalquier, classée parmi les
+                    villages les plus beaux de Provence.
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+            >
+                <img
+                    src="https://atelier-ilys.com/wp-content/uploads/2023/01/domaine-vue-aerienne.jpg"
+                    alt="Vue aérienne du domaine de l'Atelier Ilys — 30 hectares de nature à Pierrerue"
+                    class="w-full aspect-[4/3] object-cover rounded-sm shadow"
+                    loading="lazy"
+                />
+                <img
+                    src="https://atelier-ilys.com/wp-content/uploads/2023/01/jardin-teinture-vegetale.jpg"
+                    alt="Jardin de plantes tinctoriales de l'Atelier Ilys : cosmos, coreopsis, gaude et indigotier"
+                    class="w-full aspect-[4/3] object-cover rounded-sm shadow"
+                    loading="lazy"
+                />
+                <img
+                    src="https://atelier-ilys.com/wp-content/uploads/2023/01/atelier-interieur-teinture.jpg"
+                    alt="L'atelier intérieur de teinture végétale avec ses cuves et ses fils en cours de teinture"
+                    class="w-full aspect-[4/3] object-cover rounded-sm shadow"
+                    loading="lazy"
+                />
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                {
+                    [
+                        { value: "30 ha", label: "De domaine naturel" },
+                        {
+                            value: "XVIIIe",
+                            label: "Siècle, bâtisse historique",
+                        },
+                        { value: "6", label: "Hébergements sur place" },
+                        { value: "100%", label: "Naturel & artisanal" },
+                    ].map(({ value, label }) => (
+                        <div class="p-4">
+                            <p class="font-heading text-3xl text-ochre mb-1">
+                                {value}
+                            </p>
+                            <p class="text-sm text-warm-text/60">{label}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-20 bg-cream-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Nos valeurs</h2>
+                <p class="section-subtitle">
+                    Artisanat, écologie et transmission
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {
+                    [
+                        {
+                            icon: "🌿",
+                            title: "Zéro déchet",
+                            text: "Chaque bain de teinture est réutilisé, les plantes compostées, les eaux filtrées. Notre atelier pense chaque étape pour minimiser son impact environnemental.",
+                        },
+                        {
+                            icon: "🤲",
+                            title: "Fait main",
+                            text: "Du jardin à la cuve, en passant par le mordançage et les bains successifs : chaque création passe entre les mains d'Isabelle ou de ses participants. Aucune machine ne remplace le geste.",
+                        },
+                        {
+                            icon: "📚",
+                            title: "Transmission",
+                            text: "La teinture végétale est un savoir ancestral. Isabelle le partage avec passion, pour que chacun reparte avec des techniques reproductibles chez soi et un regard neuf sur la couleur.",
+                        },
+                    ].map(({ icon, title, text }) => (
+                        <div class="bg-white p-8 rounded-sm shadow-sm border border-cream">
+                            <div class="text-3xl mb-4">{icon}</div>
+                            <h3 class="font-heading text-xl text-indigo mb-3">
+                                {title}
+                            </h3>
+                            <p class="text-warm-text/70 text-sm leading-relaxed">
+                                {text}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-indigo text-center text-cream">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="font-heading text-3xl text-cream mb-4">
+                Venez nous rendre visite
+            </h2>
+            <p class="text-cream/80 mb-8">
+                Découvrez les stages, séjournez sur place ou contactez-nous pour
+                un projet personnalisé.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/initiation" class="btn-ochre">Découvrir les stages</a>
+                <a
+                    href="/contact"
+                    class="btn-secondary border-cream text-cream hover:bg-cream hover:text-indigo"
+                    >Nous contacter</a
+                >
+            </div>
+        </div>
+    </section>
+</BaseLayout>
