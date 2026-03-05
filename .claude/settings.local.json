@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:atelier-ilys.com)"
+      "WebFetch(domain:atelier-ilys.com)",
+      "Bash(python3 -c \":*)"
     ]
   }
 }

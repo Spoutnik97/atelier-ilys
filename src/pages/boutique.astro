@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SumUpButton from "../components/SumUpButton.astro";
+const _uploads = import.meta.glob('../assets/uploads/**/*', { eager: true, as: 'url' })
+const asset = (p: string): string => (_uploads as Record<string, string>)[`../assets/uploads/${p}`] ?? `https://atelier-ilys.com/wp-content/uploads/${p}`
+
 
 // Replace with real SumUp store URL
 const SUMUP_STORE_URL = "https://atelier-ilys.sumupstore.com";
@@ -13,7 +16,7 @@ const products = [
             "Fleurs séchées de cosmos sulfureux, la plante tinctoriale aux tons jaunes et orangés intenses. Culture biologique, cueillette à la main. Teint laine, soie, coton.",
         price: "6 €",
         weight: "sachet 50g",
-        image: "https://atelier-ilys.com/wp-content/uploads/2025/12/IMG_7127-scaled-e1765534978814.jpeg",
+        image: asset("2025/12/IMG_7127-scaled-e1765534978814.jpeg"),
         imageAlt:
             "Sachet de fleurs séchées de cosmos sulfureux pour teinture végétale, Atelier Ilys",
         url: `${SUMUP_STORE_URL}/cosmos-sulfureux`,
@@ -26,7 +29,7 @@ const products = [
             "Capitules de coreopsis des teinturiers, plante tinctoriale traditionnelle aux magnifiques tons orangés et rouges. Séchées et conditionnées artisanalement.",
         price: "6 €",
         weight: "sachet 50g",
-        image: "https://atelier-ilys.com/wp-content/uploads/2023/01/coreopsis-tinctoria-teinture.jpg",
+        image: asset("2022/05/coreopsis750.jpg"),
         imageAlt:
             "Fleurs séchées de coreopsis tinctoria pour teinture végétale, Atelier Ilys",
         url: `${SUMUP_STORE_URL}/coreopsis-tinctoria`,
@@ -39,7 +42,7 @@ const products = [
             "Écorce de chêne pédonculé séchée et broyée, mordant naturel puissant et fixateur de couleur. Donne des tons beige à brun chaud selon le mordant utilisé.",
         price: "5 €",
         weight: "sachet 100g",
-        image: "https://atelier-ilys.com/wp-content/uploads/2023/01/ecorce-chene-teinture.jpg",
+        image: asset("2022/05/garance750.jpg"),
         imageAlt:
             "Écorce de chêne séchée et broyée pour teinture végétale, Atelier Ilys",
         url: `${SUMUP_STORE_URL}/ecorce-chene`,
@@ -53,7 +56,7 @@ const kits = [
         description:
             "Tout le nécessaire pour réaliser votre premier bain d'indigo à la maison : poudre d'indigo naturel, chaux éteinte, sel de fructose, guide illustré pas-à-pas.",
         price: "35 €",
-        image: "https://atelier-ilys.com/wp-content/uploads/2023/01/kit-indigo-decouverte.jpg",
+        image: asset("2022/11/indigodecouverte750.jpg"),
         imageAlt:
             "Kit complet pour teinture à l'indigo naturel à la maison — Atelier Ilys",
         url: `${SUMUP_STORE_URL}/kit-indigo`,
@@ -63,12 +66,14 @@ const kits = [
         description:
             "5 sachets de plantes tinctoriales sélectionnées (cosmos, coreopsis, gaude, millepertuis, tanaisie), 2 mordants (alun, crème de tartre) et un guide de recettes.",
         price: "45 €",
-        image: "https://atelier-ilys.com/wp-content/uploads/2023/01/kit-plantes-tinctoriales.jpg",
+        image: asset("2022/05/sorgho750.jpg"),
         imageAlt:
             "Kit de 5 plantes tinctoriales avec mordants et guide de recettes — Atelier Ilys",
         url: `${SUMUP_STORE_URL}/kit-plantes`,
     },
 ];
+
+
 ---
 
 <BaseLayout

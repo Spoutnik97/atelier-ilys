@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import EcoBadges from '../components/EcoBadges.astro'
+const _uploads = import.meta.glob('../assets/uploads/**/*', { eager: true, as: 'url' })
+const asset = (p: string): string => (_uploads as Record<string, string>)[`../assets/uploads/${p}`] ?? `https://atelier-ilys.com/wp-content/uploads/${p}`
+
 
 const localBusinessLd = {
   '@context': 'https://schema.org',
@@ -45,6 +48,8 @@ const pressLogos = [
   { name: 'ELLE', src: 'https://via.placeholder.com/80x40/F5F0E8/3D5A80?text=ELLE' },
   { name: 'La Thomassine', src: 'https://via.placeholder.com/140x40/F5F0E8/3D5A80?text=La+Thomassine' },
 ]
+
+
 ---
 
 <BaseLayout
@@ -57,7 +62,7 @@ const pressLogos = [
   <section class="relative min-h-[90vh] flex items-center overflow-hidden bg-indigo-dark">
     <div class="absolute inset-0">
       <img
-        src="https://atelier-ilys.com/wp-content/uploads/2023/01/hero-teinture-vegetale-provence.jpg"
+        src=asset("2022/05/atelier750.jpg")
         alt="Bains de teinture végétale à l'indigo dans l'atelier Ilys, Haute-Provence"
         class="w-full h-full object-cover opacity-40"
         fetchpriority="high"
@@ -108,7 +113,7 @@ const pressLogos = [
         <article class="card group hover:shadow-lg transition-shadow duration-300">
           <div class="overflow-hidden aspect-[4/3]">
             <img
-              src="https://atelier-ilys.com/wp-content/uploads/2023/01/stage-teinture-indigo.jpg"
+              src=asset("2024/01/stageindigo.jpg")
               alt="Participantes plongeant des tissus dans un bain d'indigo lors d'un stage à l'Atelier Ilys"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
@@ -130,7 +135,7 @@ const pressLogos = [
         <article class="card group hover:shadow-lg transition-shadow duration-300">
           <div class="overflow-hidden aspect-[4/3]">
             <img
-              src="https://atelier-ilys.com/wp-content/uploads/2023/01/hebergement-magnanerie-provence.jpg"
+              src=asset("2023/06/giteauprintemps-750.jpg")
               alt="Maisonnette en pierre dans le domaine de la magnanerie Atelier Ilys, Pierrerue"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
@@ -152,7 +157,7 @@ const pressLogos = [
         <article class="card group hover:shadow-lg transition-shadow duration-300">
           <div class="overflow-hidden aspect-[4/3]">
             <img
-              src="https://atelier-ilys.com/wp-content/uploads/2023/01/plantes-teinture-boutique.jpg"
+              src=asset("2022/05/coreopsis750.jpg")
               alt="Sachets de plantes tinctoriales — cosmos, coreopsis et écorce de chêne — de la boutique Atelier Ilys"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"

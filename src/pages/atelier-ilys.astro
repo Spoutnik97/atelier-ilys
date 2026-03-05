@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+const _uploads = import.meta.glob('../assets/uploads/**/*', { eager: true, as: 'url' })
+const asset = (p: string): string => (_uploads as Record<string, string>)[`../assets/uploads/${p}`] ?? `https://atelier-ilys.com/wp-content/uploads/${p}`
+
 
 const localBusinessLd = {
     "@context": "https://schema.org",
@@ -23,6 +26,8 @@ const localBusinessLd = {
     },
     foundingDate: "2021",
 };
+
+
 ---
 
 <BaseLayout
@@ -35,7 +40,7 @@ const localBusinessLd = {
     <section class="relative py-24 bg-indigo-dark overflow-hidden">
         <div class="absolute inset-0">
             <img
-                src="https://atelier-ilys.com/wp-content/uploads/2024/01/vuealentour.jpg"
+                src=asset("2024/01/vuealentour.jpg")
                 alt="La magnanerie du XVIIIe siècle qui accueille l'Atelier Ilys à Pierrerue, Haute-Provence"
                 class="w-full h-full object-cover opacity-30"
             />
@@ -115,7 +120,7 @@ Merci de faire partie de notre aventure ! 
                 </div>
                 <div class="relative">
                     <img
-                        src="https://atelier-ilys.com/wp-content/uploads/2026/03/Capture-decran-2026-02-10-a-21.09.59.png"
+                        src=asset("2026/03/Capture-decran-2026-02-10-a-21.09.59.png")
                         alt="Isabelle Lys, fondatrice de l'Atelier Ilys, dans son atelier à Pierrerue"
                         class="rounded-sm shadow-lg w-full object-cover aspect-[3/4]"
                         loading="lazy"
@@ -153,24 +158,24 @@ Merci de faire partie de notre aventure ! 
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
             >
                 <img
-                    src="https://atelier-ilys.com/wp-content/uploads/2025/08/597eb4b2-dfcb-465d-b086-0a444fd9110a.jpg"
+                    src=asset("2025/08/597eb4b2-dfcb-465d-b086-0a444fd9110a.jpg")
                     alt="Vue aérienne du domaine de l'Atelier Ilys — 30 hectares de nature à Pierrerue"
                     class="w-full aspect-[4/3] object-cover rounded-sm shadow"
                     loading="lazy"
                 />
                 <img
-                    src="https://atelier-ilys.com/wp-content/uploads/2022/11/baladejardin750-1.jpg"
+                    src=asset("2022/11/baladejardin750-1.jpg")
                     alt="Jardin de plantes tinctoriales de l'Atelier Ilys : découverte de la gaude avec isabelle"
                     class="w-full aspect-[4/3] object-cover rounded-sm shadow"
                     loading="lazy"
                 />
                 <img
-                    src="https://atelier-ilys.com/wp-content/uploads/2024/02/atelierhiver.jpg"
+                    src=asset("2024/02/atelierhiver.jpg")
                     alt="L'intérieur de atelier avec ses paniers prêts pour la cueillette de plantes tinctoriales"
                     class="w-full aspect-[4/3] object-cover rounded-sm shadow"
                     loading="lazy"
                 /><img
-                    src="https://atelier-ilys.com/wp-content/uploads/2024/01/motif3-1.jpg"
+                    src=asset("2024/01/motif3-1.jpg")
                     alt="L'intérier de atelier avec une teinture en cours"
                     class="w-full aspect-[4/3] object-cover rounded-sm shadow"
                     loading="lazy"

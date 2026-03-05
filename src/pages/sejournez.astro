@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import AccommodationCard from '../components/AccommodationCard.astro'
+const _uploads = import.meta.glob('../assets/uploads/**/*', { eager: true, as: 'url' })
+const asset = (p: string): string => (_uploads as Record<string, string>)[`../assets/uploads/${p}`] ?? `https://atelier-ilys.com/wp-content/uploads/${p}`
+
 
 const lodgingLd = {
   '@context': 'https://schema.org',
@@ -32,7 +35,7 @@ const accommodations = [
     description: 'Une maisonnette en pierre tout équipée, indépendante, au cœur du domaine. Idéale pour un couple en escapade nature ou pour combiner stage et hébergement. Cuisine, salon, salle de bain, terrasse privée.',
     capacity: '2 personnes',
     price: '110€ + menage 20€',
-    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/maisonnette-gite-provence.jpg',
+    image: asset("2023/06/giteauprintemps-750.jpg"),
     imageAlt: 'La Maisonnette — gîte en pierre de 25 m² dans le domaine de l\'Atelier Ilys, Pierrerue',
     features: ['Cuisine équipée', 'Jardin privé et mobilier de jardin','vure directe champ de lavande', 'Linge fourni', 'Plancha et barbecue','Parking', 'WiFi'],
   },
@@ -42,7 +45,7 @@ const accommodations = [
     description: 'Un loft exceptionnel de 130 m² pouvant accueillir jusqu\'à 12 personnes, idéal pour les groupes, séminaires créatifs ou retraites. Grande cuisine ouverte, salon, plusieurs espaces de vie, salle den bian et une chambre, vue sur les champs de lavandes.',
     capacity: '2 à 12 personnes',
     price: '250 € + prix des chambres + ménage 80€',
-    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/grand-pre-loft-groupe.jpg',
+    image: asset("2024/01/legrandpre.jpg"),
     imageAlt: 'Le Grand Pré Loft — espace de 130 m² pour groupes dans la magnanerie Atelier Ilys',
     features: ['Grande salle à manger -Cuisine', 'Grand salon', 'Terrasse partagée','Plancha et barbecue', 'WiFi', 'Parking'],
   },
@@ -55,7 +58,7 @@ const rooms = [
     description: 'Chambre aux tons bleus et blancs, fraîche et reposante. Lit double 140 cm, salle de bain privée, vue sur les champs de lavandes.15 m2',
     capacity: '2 personnes, un lit 140 cm',
     price: '90 €',
-    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-azur-provence.jpg',
+    image: asset("2023/07/azur-750.jpg"),
     imageAlt: 'Chambre Azur — chambre double aux tons bleus dans la magnanerie Atelier Ilys',
     features: ['Salle de bain privée', 'Vue champs de lavandes', 'Linge en option'],
   },
@@ -65,7 +68,7 @@ const rooms = [
     description: 'Décorée de teintes végétales douces, cette chambre invite à la détente avec sa vue sur les champs de lavandes provençaux. Lit double 140 cm, salle de bain partagée.',
     capacity: '2 personnes',
     price: '80 €',
-    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-verte-provence.jpg',
+    image: asset("2023/06/chambreverte5-750.jpg"),
     imageAlt: 'Chambre Verte — chambre aux tons botaniques avec vue sur les champs de lavandes, Atelier Ilys',
     features: ['Vue garrigue', 'Linge en option', 'SDB partagée'],
   },
@@ -75,7 +78,7 @@ const rooms = [
     description: 'La chambre la plus romantique du domaine, aux tons rosés et ocres. Mobilier chiné, tissu aux couleurs végétales, lit double en fer forgé.',
     capacity: '4 personnes',
     price: '85 €',
-    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-rose-provence.jpg',
+    image: asset("2023/06/chambrerose5-750.jpg"),
     imageAlt: 'Chambre Rose — chambre romantique aux teintes roses, Atelier Ilys Pierrerue',
     features: ['Charme provençal', 'Un Lit double 160, un lit simple, un lit d appoint', 'linge en option, 20m2'],
   },
@@ -85,11 +88,13 @@ const rooms = [
     description: 'Les couleurs vives de la Provence : ocre doré, blanc calcaire et noir d encre. Une chambre énergisante et chaleureuse, avec terrasse commune. 12 m2',
     capacity: '2 personnes',
     price: 'inclus dans le prix du loft',
-    image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-grenade-provence.jpg',
+    image: asset("2023/07/cochonnier-750.jpg"),
     imageAlt: 'Chambre Grenade — décoration ocre inspirée des teintures végétales, Atelier Ilys',
     features: ['Terrasse commune', 'Couleurs vives', 'Linge en option'],
   },
 ]
+
+
 ---
 
 <BaseLayout
@@ -102,7 +107,7 @@ const rooms = [
   <section class="relative py-24 overflow-hidden bg-indigo-dark">
     <div class="absolute inset-0">
       <img
-        src="https://atelier-ilys.com/wp-content/uploads/2023/01/domaine-magnanerie-sejour.jpg"
+        src=asset("2023/06/vuedemsemble-750.jpg")
         alt="Vue du domaine de l'Atelier Ilys — magnanerie en pierre et jardins en pleine nature"
         class="w-full h-full object-cover opacity-35"
       />
