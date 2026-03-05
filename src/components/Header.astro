@@ -1,97 +1,137 @@
 ---
-const navLinks = [
-  { href: '/atelier-ilys', label: "L'atelier" },
-  { href: '/initiation', label: 'Stages' },
-  { href: '/planifiez', label: 'Calendrier' },
-  { href: '/sejournez', label: 'Séjournez' },
-  { href: '/galerie-photo', label: 'Galerie' },
-  { href: '/boutique', label: 'Boutique' },
-  { href: '/contact', label: 'Contact' },
-]
+import logoSrc from "../assets/uploads/2022/05/cropped-atelier-ilys-bleu600.png";
 
-const currentPath = Astro.url.pathname
+const navLinks = [
+    { href: "/atelier-ilys", label: "L'atelier" },
+    { href: "/initiation", label: "Stages" },
+    { href: "/planifiez", label: "Calendrier" },
+    { href: "/sejournez", label: "Séjournez" },
+    { href: "/galerie-photo", label: "Galerie" },
+    { href: "/boutique", label: "Boutique" },
+    { href: "/contact", label: "Contact" },
+];
+
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="bg-cream border-b border-cream-dark sticky top-0 z-50 shadow-sm">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 md:h-20">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 group" aria-label="Atelier Ilys — Accueil">
-        <div class="w-10 h-10 rounded-full bg-indigo flex items-center justify-center text-cream font-heading font-bold text-lg">
-          I
-        </div>
-        <div class="hidden sm:block">
-          <span class="font-heading text-xl text-indigo font-semibold">Atelier Ilys</span>
-          <span class="block text-xs text-ochre tracking-wider uppercase">Teintures végétales · Haute-Provence</span>
-        </div>
-      </a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 md:h-20">
+            <!-- Logo -->
+            <div>
+                <a
+                    href="/"
+                    class="flex items-center gap-3 group"
+                    aria-label="Atelier Ilys — Accueil"
+                >
+                    <img
+                        src={logoSrc.src}
+                        alt="Atelier Ilys"
+                        class="h-10 md:h-14 w-auto"
+                    />
+                </a>
+                <span class="block text-xs text-ochre tracking-wider uppercase"
+                    >Teintures végétales · Haute-Provence</span
+                >
+            </div>
+            <!-- Desktop nav -->
+            <nav
+                class="hidden lg:flex items-center gap-6"
+                aria-label="Navigation principale"
+            >
+                {
+                    navLinks.map(({ href, label }) => (
+                        <a
+                            href={href}
+                            class={`text-sm font-medium tracking-wide transition-colors duration-200 hover:text-terracotta ${
+                                currentPath === href ||
+                                currentPath.startsWith(href + "/")
+                                    ? "text-terracotta border-b-2 border-terracotta pb-0.5"
+                                    : "text-warm-text"
+                            }`}
+                        >
+                            {label}
+                        </a>
+                    ))
+                }
+                <a href="/reserver" class="btn-primary text-sm py-2 px-4">
+                    Réserver un stage
+                </a>
+            </nav>
 
-      <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-6" aria-label="Navigation principale">
-        {navLinks.map(({ href, label }) => (
-          <a
-            href={href}
-            class={`text-sm font-medium tracking-wide transition-colors duration-200 hover:text-terracotta ${
-              currentPath === href || currentPath.startsWith(href + '/')
-                ? 'text-terracotta border-b-2 border-terracotta pb-0.5'
-                : 'text-warm-text'
-            }`}
-          >
-            {label}
-          </a>
-        ))}
-        <a href="/reserver" class="btn-primary text-sm py-2 px-4">
-          Réserver un stage
-        </a>
-      </nav>
-
-      <!-- Mobile menu button -->
-      <button
-        id="menu-toggle"
-        class="lg:hidden p-2 rounded text-indigo hover:bg-cream-dark transition-colors"
-        aria-label="Ouvrir le menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
+            <!-- Mobile menu button -->
+            <button
+                id="menu-toggle"
+                class="lg:hidden p-2 rounded text-indigo hover:bg-cream-dark transition-colors"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+            >
+                <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        id="menu-icon-open"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path
+                        id="menu-icon-close"
+                        class="hidden"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
     </div>
-  </div>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-cream-dark bg-cream">
-    <nav class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3" aria-label="Navigation mobile">
-      {navLinks.map(({ href, label }) => (
-        <a
-          href={href}
-          class={`text-base font-medium py-2 border-b border-cream-dark transition-colors hover:text-terracotta ${
-            currentPath === href ? 'text-terracotta' : 'text-warm-text'
-          }`}
+    <!-- Mobile menu -->
+    <div
+        id="mobile-menu"
+        class="hidden lg:hidden border-t border-cream-dark bg-cream"
+    >
+        <nav
+            class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3"
+            aria-label="Navigation mobile"
         >
-          {label}
-        </a>
-      ))}
-      <a href="/reserver" class="btn-primary mt-2 text-center">
-        Réserver un stage
-      </a>
-    </nav>
-  </div>
+            {
+                navLinks.map(({ href, label }) => (
+                    <a
+                        href={href}
+                        class={`text-base font-medium py-2 border-b border-cream-dark transition-colors hover:text-terracotta ${
+                            currentPath === href
+                                ? "text-terracotta"
+                                : "text-warm-text"
+                        }`}
+                    >
+                        {label}
+                    </a>
+                ))
+            }
+            <a href="/reserver" class="btn-primary mt-2 text-center">
+                Réserver un stage
+            </a>
+        </nav>
+    </div>
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle')
-  const menu = document.getElementById('mobile-menu')
-  const iconOpen = document.getElementById('menu-icon-open')
-  const iconClose = document.getElementById('menu-icon-close')
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const iconOpen = document.getElementById("menu-icon-open");
+    const iconClose = document.getElementById("menu-icon-close");
 
-  toggle?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden')
-    menu?.classList.toggle('hidden', isOpen)
-    iconOpen?.classList.toggle('hidden', !isOpen)
-    iconClose?.classList.toggle('hidden', isOpen)
-    toggle.setAttribute('aria-expanded', String(!isOpen))
-  })
+    toggle?.addEventListener("click", () => {
+        const isOpen = !menu?.classList.contains("hidden");
+        menu?.classList.toggle("hidden", isOpen);
+        iconOpen?.classList.toggle("hidden", !isOpen);
+        iconClose?.classList.toggle("hidden", isOpen);
+        toggle.setAttribute("aria-expanded", String(!isOpen));
+    });
 </script>
