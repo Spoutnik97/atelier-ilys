@@ -8,18 +8,17 @@ const lodgingLd = {
   name: 'Atelier Ilys — Hébergement',
   description: 'Hébergement de charme dans une magnanerie du XVIIIe siècle à Pierrerue (Forcalquier), Haute-Provence. Maisonnette, loft et chambres au milieu d\'un domaine naturel de 30 ha.',
   url: 'https://atelier-ilys.com/sejournez',
-  telephone: '+33612345678',
+  telephone: '+33764443715',
   email: 'atelier.ilys@gmail.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Chemin de Mane',
+    streetAddress: '1080 route de fontienne',
     addressLocality: 'Pierrerue',
     postalCode: '04300',
     addressCountry: 'FR',
   },
   priceRange: '€€',
   amenityFeature: [
-    { '@type': 'LocationFeatureSpecification', name: 'Piscine', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Jardin', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Parking', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'WiFi', value: true },
@@ -32,63 +31,63 @@ const accommodations = [
     subtitle: 'Gîte indépendant · 25 m²',
     description: 'Une maisonnette en pierre tout équipée, indépendante, au cœur du domaine. Idéale pour un couple en escapade nature ou pour combiner stage et hébergement. Cuisine, salon, salle de bain, terrasse privée.',
     capacity: '2 personnes',
-    price: '110 €',
+    price: '110€ + menage 20€',
     image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/maisonnette-gite-provence.jpg',
     imageAlt: 'La Maisonnette — gîte en pierre de 25 m² dans le domaine de l\'Atelier Ilys, Pierrerue',
-    features: ['Cuisine équipée', 'Terrasse privée', 'Linge fourni', 'Parking', 'WiFi'],
+    features: ['Cuisine équipée', 'Jardin privé et mobilier de jardin','vure directe champ de lavande', 'Linge fourni', 'Plancha et barbecue','Parking', 'WiFi'],
   },
   {
-    title: 'Le Grand Pré Loft',
-    subtitle: 'Loft spacieux · 200 m²',
-    description: 'Un loft exceptionnel de 200 m² pouvant accueillir jusqu\'à 12 personnes, idéal pour les groupes, séminaires créatifs ou retraites. Grande cuisine ouverte, salon, plusieurs espaces de vie, vue sur la garrigue.',
+    title: 'Le Loft',
+    subtitle: 'Loft spacieux · 130 m²',
+    description: 'Un loft exceptionnel de 130 m² pouvant accueillir jusqu\'à 12 personnes, idéal pour les groupes, séminaires créatifs ou retraites. Grande cuisine ouverte, salon, plusieurs espaces de vie, salle den bian et une chambre, vue sur les champs de lavandes.',
     capacity: '2 à 12 personnes',
-    price: '250 €',
+    price: '250 € + prix des chambres + ménage 80€',
     image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/grand-pre-loft-groupe.jpg',
-    imageAlt: 'Le Grand Pré Loft — espace de 200 m² pour groupes dans la magnanerie Atelier Ilys',
-    features: ['Cuisine pro', 'Grand salon', 'Terrasse panoramique', 'WiFi', 'Parking'],
+    imageAlt: 'Le Grand Pré Loft — espace de 130 m² pour groupes dans la magnanerie Atelier Ilys',
+    features: ['Grande salle à manger -Cuisine', 'Grand salon', 'Terrasse partagée','Plancha et barbecue', 'WiFi', 'Parking'],
   },
 ]
 
 const rooms = [
   {
     title: 'Chambre Azur',
-    subtitle: 'Chambre double · Vue jardin',
-    description: 'Chambre aux tons bleus et blancs, fraîche et reposante. Lit double, salle de bain privée, vue sur le jardin de plantes tinctoriales.',
-    capacity: '2 personnes',
+    subtitle: 'Chambre double · Vue champs de lavandes',
+    description: 'Chambre aux tons bleus et blancs, fraîche et reposante. Lit double 140 cm, salle de bain privée, vue sur les champs de lavandes.15 m2',
+    capacity: '2 personnes, un lit 140 cm',
     price: '90 €',
     image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-azur-provence.jpg',
     imageAlt: 'Chambre Azur — chambre double aux tons bleus dans la magnanerie Atelier Ilys',
-    features: ['Salle de bain privée', 'Vue jardin', 'Linge fourni'],
+    features: ['Salle de bain privée', 'Vue champs de lavandes', 'Linge en option'],
   },
   {
     title: 'Chambre Verte',
-    subtitle: 'Chambre double · Vue garrigue',
-    description: 'Décorée de teintes végétales douces, cette chambre invite à la détente avec sa vue sur la garrigue provençale. Lit double, salle de bain partagée.',
+    subtitle: 'Chambre double · Vue champs de lavandes',
+    description: 'Décorée de teintes végétales douces, cette chambre invite à la détente avec sa vue sur les champs de lavandes provençaux. Lit double 140 cm, salle de bain partagée.',
     capacity: '2 personnes',
     price: '80 €',
     image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-verte-provence.jpg',
-    imageAlt: 'Chambre Verte — chambre aux tons botaniques avec vue sur la garrigue, Atelier Ilys',
-    features: ['Vue garrigue', 'Linge fourni', 'SDB partagée'],
+    imageAlt: 'Chambre Verte — chambre aux tons botaniques avec vue sur les champs de lavandes, Atelier Ilys',
+    features: ['Vue garrigue', 'Linge en option', 'SDB partagée'],
   },
   {
     title: 'Chambre Rose',
     subtitle: 'Chambre double · Charme provençal',
     description: 'La chambre la plus romantique du domaine, aux tons rosés et ocres. Mobilier chiné, tissu aux couleurs végétales, lit double en fer forgé.',
-    capacity: '2 personnes',
+    capacity: '4 personnes',
     price: '85 €',
     image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-rose-provence.jpg',
-    imageAlt: 'Chambre Rose — chambre romantique aux teintes roses et ocres, Atelier Ilys Pierrerue',
-    features: ['Charme provençal', 'Lit double', 'Linge fourni'],
+    imageAlt: 'Chambre Rose — chambre romantique aux teintes roses, Atelier Ilys Pierrerue',
+    features: ['Charme provençal', 'Un Lit double 160, un lit simple, un lit d appoint', 'linge en option, 20m2'],
   },
   {
     title: 'Chambre Grenade',
     subtitle: 'Chambre double · Couleurs intenses',
-    description: 'Les couleurs vives de la Provence : rouge grenade, ocre doré, blanc calcaire. Une chambre énergisante et chaleureuse, avec terrasse commune.',
+    description: 'Les couleurs vives de la Provence : ocre doré, blanc calcaire et noir d encre. Une chambre énergisante et chaleureuse, avec terrasse commune. 12 m2',
     capacity: '2 personnes',
-    price: '85 €',
+    price: 'inclus dans le prix du loft',
     image: 'https://atelier-ilys.com/wp-content/uploads/2023/01/chambre-grenade-provence.jpg',
-    imageAlt: 'Chambre Grenade — décoration rouge et ocre inspirée des teintures végétales, Atelier Ilys',
-    features: ['Terrasse commune', 'Couleurs vives', 'Linge fourni'],
+    imageAlt: 'Chambre Grenade — décoration ocre inspirée des teintures végétales, Atelier Ilys',
+    features: ['Terrasse commune', 'Couleurs vives', 'Linge en option'],
   },
 ]
 ---
@@ -104,7 +103,7 @@ const rooms = [
     <div class="absolute inset-0">
       <img
         src="https://atelier-ilys.com/wp-content/uploads/2023/01/domaine-magnanerie-sejour.jpg"
-        alt="Vue du domaine de l'Atelier Ilys au lever du soleil — magnanerie en pierre et jardins de Provence"
+        alt="Vue du domaine de l'Atelier Ilys — magnanerie en pierre et jardins en pleine nature"
         class="w-full h-full object-cover opacity-35"
       />
       <div class="absolute inset-0 bg-gradient-to-r from-indigo-dark/80 to-indigo-dark/40"></div>
@@ -116,7 +115,7 @@ const rooms = [
           Séjournez<br />sur place
         </h1>
         <p class="text-cream/80 text-xl leading-relaxed mb-8">
-          Prolongez l'expérience en dormant dans notre magnanerie du XVIII<sup>e</sup> siècle. 30 hectares de nature, piscine, jardins botaniques, et la Provence à votre porte.
+          Prolongez l'expérience en dormant dans notre magnanerie du XVIII entouree de champs de lavandes<sup>e</sup> siècle. 30 hectares de nature, jardin tinctorial et bassin d'eau naturelle, et la Provence à votre porte.
         </p>
         <a href="/reserve-ton-sejour" class="btn-ochre text-base">Réserver un séjour</a>
       </div>
@@ -170,7 +169,6 @@ const rooms = [
                   Capacité : <strong class="text-warm-text">{room.capacity}</strong>
                 </span>
                 <div class="text-right">
-                  <span class="text-xs text-warm-text/50">à partir de </span>
                   <span class="font-heading text-xl text-ochre">{room.price}</span>
                   <span class="text-xs text-warm-text/50">/nuit</span>
                 </div>
@@ -192,13 +190,15 @@ const rooms = [
       <p class="section-subtitle">Tout ce qui fait le charme du lieu</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
         {[
-          { icon: '🏊', label: 'Piscine' },
-          { icon: '🌿', label: 'Jardins botaniques' },
-          { icon: '🫒', label: 'Oliveraies' },
+          { icon: '🏊', label: 'Bassin naturel- eau de source' },
+          { icon: '', label: 'Puits historique' },
+          { icon: '', label: 'Champs de lavandes' },
+          { icon: '', label: 'Arbres remarquables' },
+          { icon: '🌿', label: 'Jardins tinctorial' },
           { icon: '🌄', label: '30 ha de garrigue' },
           { icon: '🚗', label: 'Parking gratuit' },
           { icon: '📶', label: 'WiFi inclus' },
-          { icon: '🧺', label: 'Linge de maison' },
+          { icon: '🧺', label: 'Linge de maison en option' },
           { icon: '☀️', label: 'Terrasses' },
         ].map(({ icon, label }) => (
           <div class="bg-white p-4 rounded-sm shadow-sm">
