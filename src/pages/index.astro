@@ -4,6 +4,8 @@ import EcoBadges from '../components/EcoBadges.astro'
 const _uploads = import.meta.glob('../assets/uploads/**/*', { eager: true, as: 'url' })
 const asset = (p: string): string => (_uploads as Record<string, string>)[`../assets/uploads/${p}`] ?? `https://atelier-ilys.com/wp-content/uploads/${p}`
 
+const heroImage = asset("2025/04/e2f58e9c-660b-4e9f-ab38-0d5d9b24b5f6-1.jpg")
+
 
 const localBusinessLd = {
   '@context': 'https://schema.org',
@@ -59,19 +61,20 @@ const pressLogos = [
   jsonLd={localBusinessLd}
 >
   <!-- Hero -->
-  <section class="relative min-h-[90vh] flex items-center overflow-hidden bg-indigo-dark">
-    <div class="absolute inset-0">
+  <section class="min-h-[90vh] flex flex-col md:flex-row items-center overflow-hidden bg-indigo-dark">
+    <!-- image pane -->
+    <div class="w-full md:w-1/2 h-64 md:h-auto relative">
       <img
-        src=asset("2022/05/atelier750.jpg")
+        src={heroImage}
         alt="Bains de teinture végétale à l'indigo dans l'atelier Ilys, Haute-Provence"
-        class="w-full h-full object-cover opacity-40"
+        class="w-full h-full object-cover"
         fetchpriority="high"
         decoding="sync"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-indigo-dark/80 via-indigo-dark/50 to-transparent"></div>
     </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-      <div class="max-w-2xl">
+    <!-- text pane -->
+    <div class="w-full md:w-1/2 flex items-center">
+      <div class="relative max-w-2xl px-4 sm:px-6 lg:px-8 py-24">
         <p class="text-ochre font-medium tracking-widest uppercase text-sm mb-4">Pierrerue · Haute-Provence</p>
         <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl text-cream leading-tight mb-6">
           Couleurs végétales<br />

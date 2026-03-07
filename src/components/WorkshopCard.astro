@@ -40,7 +40,18 @@ const badgeClass = typeColors[type] || 'bg-ochre text-cream'
   </div>
   <div class="p-5 flex flex-col flex-1">
     <h3 class="font-heading text-xl text-indigo mb-2">{title}</h3>
-    <p class="text-warm-text/80 text-sm leading-relaxed flex-1 mb-4">{description}</p>
+    <!-- brief preview + collapsible details -->
+    <p class="text-warm-text/80 text-sm leading-relaxed flex-1 mb-2 line-clamp-3">
+      {description}
+    </p>
+    <details class="mb-4">
+      <summary class="cursor-pointer text-sm font-medium text-indigo hover:underline">
+        En savoir plus
+      </summary>
+      <p class="text-warm-text/80 text-sm leading-relaxed mt-2">
+        {description}
+      </p>
+    </details>
     <div class="flex items-center justify-between pt-3 border-t border-cream-dark">
       <div class="text-sm text-warm-text/60">
         <span class="font-medium text-warm-text">{duration}</span>

@@ -9,12 +9,14 @@ interface Props {
   image?: string
   canonicalPath?: string
   jsonLd?: object | object[]
+  background?: string
 }
 
 const {
   title,
   description,
   image = '/images/og-default.jpg',
+  background,
   canonicalPath = '',
   jsonLd,
 } = Astro.props
@@ -75,7 +77,7 @@ const breadcrumbLd = {
     ))}
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col" style={background ? `background-image:url('${background}');background-size:cover;background-position:center;` : undefined}>
     <Header />
     <main class="flex-1">
       <slot />
