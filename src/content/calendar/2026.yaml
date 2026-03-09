@@ -62,9 +62,4 @@ events:
     price: "220 € les 2 jours, repas non compris"
     spots: 10
 
-  - startDate: "Stage d'automne"
-    title: Stage d'automne
-    type: int
-    description: "dates à venir"
-    price: "  "
-    spots: 
+  

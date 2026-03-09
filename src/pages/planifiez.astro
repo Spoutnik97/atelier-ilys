@@ -32,9 +32,9 @@ const events = rawEvents
       }
     }
 
-    // normalize type to first token so we can apply colors
-    if (typeof type === 'string') {
-      type = type.split(/[\s-]+/)[0] as WorkshopType;
+    // keep raw type string; multiple types may be separated by spaces or hyphens
+    if (typeof type !== 'string') {
+      type = ''
     }
 
     return { ...e, startDate, endDate, type };
@@ -143,16 +143,24 @@ function formatDateRange(startDate: string, endDate?: string) {
             </h2>
             <div class="space-y-4">
               {monthEvents.map((event) => {
-                const type = event.type as WorkshopType
+                // split types into array, keeping defined workshop types
+                const types = (typeof event.type === 'string'
+                  ? event.type.split(/[\s,-]+/).filter(Boolean)
+                  : []) as WorkshopType[]
+                const primaryType: WorkshopType = types[0] || 'indigo'
                 return (
-                  <article class={`bg-white rounded-sm border-l-4 ${typeTextColors[type]} p-5 shadow-sm flex flex-col sm:flex-row sm:items-center gap-4`}>
+                  <article class={`bg-white rounded-sm border-l-4 ${typeTextColors[primaryType]} p-5 shadow-sm flex flex-col sm:flex-row sm:items-center gap-4`}>
                     <div class="sm:w-48 flex-shrink-0">
                       <p class="font-semibold text-warm-text">
                         {formatDateRange(event.startDate, event.endDate)}
                       </p>
-                      <span class={`inline-block mt-1 text-xs font-semibold px-2 py-0.5 rounded ${typeColors[type]}`}>
-                        {typeLabels[type]}
-                      </span>
+                      <div class="mt-1 flex flex-wrap gap-1">
+                        {types.map((t) => (
+                          <span class={`inline-block text-xs font-semibold px-2 py-0.5 rounded ${typeColors[t]}`}>
+                            {typeLabels[t]}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                     <div class="flex-1">
                       <h3 class="font-heading text-lg text-indigo mb-1">{event.title}</h3>
