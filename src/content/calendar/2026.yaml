@@ -36,7 +36,7 @@ events:
 
   - startDate: "2026-07-17/18"
     title: Stage beaux arts
-    type: beaux-arts
+    type: beauxarts
     description: "fabrication d'encres, pigments, aquarelle, pastels"
     price: "220 € les 2 jours, repas non compris"
     spots: 10
@@ -57,7 +57,7 @@ events:
 
   - startDate: "2026-08-29/30"
     title: Stage beaux arts
-    type: beaux-arts
+    type: beauxarts
     description: "fabrication d'encres, pigments, aquarelle, pastel"
     price: "220 € les 2 jours, repas non compris"
     spots: 10
