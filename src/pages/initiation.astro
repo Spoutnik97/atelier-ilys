@@ -15,7 +15,7 @@ const workshops = [
         type: "indigo",
         title: "Teinture à l'indigo",
         description:
-            "L'indigo naturel, extrait de l'indigotier ou de la guède, est la plus ancienne teinture connue. Apprenez la technique du bain de fermentation, la magie de l'oxydation, et repartez avec vos créations bleues uniques.",
+            "L'indigo naturel, est la plus ancienne teinture connue. Apprenez à monter une cuve organique d'indigo, découvrezla magie de l'oxydation, et repartez avec vos créations bleues uniques.",
         duration: "Journée complète (9h–17h)",
         price: "110 €",
         image: asset("2024/01/stageindigo.jpg"),
@@ -26,7 +26,7 @@ const workshops = [
         type: "teinture",
         title: "Teinture végétale",
         description:
-            "Plantes du jardin, herbes de Provence, coquilles de noix, pelures d'oignons… Découvrez l'inépuisable palette des teintures végétales locales et apprenez les mordants naturels pour fixer les couleurs durablement.",
+            "Plantes du jardin, cueillette sauvage, pelures d'oignons… Découvrez l'inépuisable palette des teintures végétales locales et apprenez à utiliser les mordants pour fixer les couleurs durablement.",
         duration: "Journée complète (9h–17h)",
         price: "110 €",
         image: asset("2024/01/atelierteinture.jpg"),
@@ -37,7 +37,7 @@ const workshops = [
         type: "ecoprint",
         title: "Écoprint",
         description:
-            "La technique de l'écoprint consiste à imprimer directement les pigments des feuilles sur tissu ou papier par compression et chaleur. Chaque création est unique, un vrai tableau botanique que vous emportez chez vous.",
+            "La technique de l'écoprint consiste à imprimer directement les colorants des feuilles sur tissu ou papier par compression et chaleur. Chaque création est unique, un vrai tableau botanique que vous emportez chez vous.",
         duration: "Demi-journée (9h–12h30)",
         price: "55 €",
         image: asset("2024/01/ecoprint3.jpg"),
@@ -45,7 +45,7 @@ const workshops = [
             "Empreintes de feuilles de fougère, rose et eucalyptus imprimées sur soie par écoprint",
     },
     {
-        type: "pigments",
+        type: "beaux arts",
         title: "Pigments & Encres naturelles",
         description:
             "Fabrication de pigments à partir de plantes tinctoriales et de minéraux, puis création d'encres aquarelles et de peintures naturelles. Idéal pour les artistes et les illustrateurs cherchant des couleurs vivantes et authentiques.",
@@ -61,16 +61,16 @@ const workshops = [
         description:
             "Un atelier ludique et pédagogique pour partager la magie des couleurs naturelles en famille. Les enfants comme les parents repartent émerveillés avec leurs créations teintes à la main. Accessible dès 6 ans.",
         duration: "Demi-journée (14h–16h30)",
-        price: "35 € / adulte · Enfant inclus",
+        price: "35 € / personne",
         image: asset("2024/01/atelierfamille.jpg"),
         imageAlt:
             "Enfants et parents lors d'un atelier famille de teinture végétale à l'Atelier Ilys",
     },
     {
-        type: "beaux-arts",
-        title: "Stage Beaux-Arts & Pigments",
+        type: "beaux arts",
+        title: "Stage Beaux-Arts",
         description:
-            "Pour les artistes confirmés : deux jours d'immersion dans la fabrication de pigments, encres et aquarelles naturelles. Techniques avancées, extraction, conservation et applications créatives. Matériel fourni.",
+            "Pour les artistes confirmés : deux jours d'immersion dans la fabrication de pigments, encres, aquarelles et pastels naturels. Techniques avancées, extraction, conservation et applications créatives. Matériel fourni.",
         duration: "2 jours complets",
         price: "220 €",
         image: asset("2023/01/encres-coplorees.jpg"),
@@ -95,7 +95,7 @@ const eventLdItems = workshops.map((w, i) => ({
         name: "Atelier Ilys",
         address: {
             "@type": "PostalAddress",
-            streetAddress: "Chemin de Mane",
+            streetAddress: "1080 route de fontienne",
             addressLocality: "Pierrerue",
             postalCode: "04300",
             addressCountry: "FR",
@@ -157,11 +157,6 @@ const eventLdItems = workshops.map((w, i) => ({
                             label: "Journée complète",
                             price: "110 €",
                             detail: "7h",
-                        },
-                        {
-                            label: "Week-end (2j)",
-                            price: "220 €",
-                            detail: "14h",
                         },
                         {
                             label: "Atelier famille",
