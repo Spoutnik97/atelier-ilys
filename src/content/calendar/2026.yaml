@@ -1,114 +1,70 @@
 events:
-  - startDate: "2026-04-04"
-    title: Stage Teinture végétale — Printemps
-    type: teinture
-    description: "Découverte des premières plantes du printemps pour la teinture. Genêt, gaude, ortie. Journée complète."
-    price: "110 €"
-    spots: 8
-
-  - startDate: "2026-04-18"
-    title: Atelier famille Pâques
-    type: famille
-    description: "Atelier spécial vacances de Pâques pour les familles. Teinture naturelle avec les fleurs du jardin."
-    price: "35 € / adulte"
-    spots: 10
-
-  - startDate: "2026-05-09"
-    title: Stage Teinture à l'indigo
+  - startDate: "2026-05-01"
+    title: Stage Indigo
     type: indigo
-    description: "Journée complète dédiée à la magie de l'indigo naturel. Bain de fermentation, mordançage, oxydation."
-    price: "110 €"
+    description: "Découverte de l'indigo naturel, montage d'une cuve, teinture d'échantillon et chèche personnalisé. Journée complète."
+    price: "110 €, repas non compris"
     spots: 8
 
-  - startDate: "2026-05-23"
-    title: Stage Écoprint
-    type: ecoprint
-    description: "Impression botanique sur soie et papier. Feuilles fraîches du jardin. Demi-journée matin."
-    price: "55 €"
-    spots: 10
+  - startDate: "2026-05-04 au 2026-05-08"
+    title: Découverte Ecoprint et indigo
+    type: ecoprint - indigo
+    description: "Initiation à l'Ecoprint et à l'indigo avec un jour de projet personnel"
+    price: "550 € les 5 jours, repas non compris"
+    spots: 4
 
-  - startDate: "2026-06-06"
-    title: Stage Pigments & Encres naturelles
-    type: pigments
-    description: "Fabrication de pigments végétaux et minéraux. Création d'encres aquarelle naturelles."
-    price: "110 €"
-    spots: 8
-
-  - startDate: "2026-06-20"
-    title: Stage Teinture végétale d'été
-    type: teinture
-    description: "Les plantes tinctoriales d'été : cosmos sulfureux, coreopsis, millefeuille, reine des prés."
-    price: "110 €"
-    spots: 8
-
-  - startDate: "2026-07-04"
-    title: Stage Teinture à l'indigo
-    type: indigo
-    description: "Session estivale — parfaite pour teindre lin et coton. Groupe limité pour un suivi personnalisé."
-    price: "110 €"
+  - startDate: "2026-05-23/24/25"
+    title: Stage découverte teinture ecoprint indigo
+    type: indigo - teinture - ecoprint
+    description: "3 jours pour découvrir les bases de la couleur végétale"
+    price: "330 € les 3 jours, repas non compris"
     spots: 6
 
-  - startDate: "2026-07-11"
-    endDate: "2026-07-12"
-    title: Stage Beaux-Arts & Pigments — Week-end
+  - startDate: "2026-06-13/14"
+    title: Stage Teinture, Écoprint et invitée surprise
+    type: teinture - ecoprint
+    description: "2 jours de stages avec une invitée surprise pour découvrir les couleurs végétales et les odeurs"
+    price: "220 € les 2 jours, repas non compris"
+    spots: 10
+
+  - startDate: "2026-07-4/5"
+    title: Stage indigo
+    type: indigo
+    description: "Découverte de l'indigo naturel, montage d'une cuve, teinture d'échantillon, motifs à base de pate d'argile et chèche personnalisé. Journée complète."
+    price: "220 € les 2 jours, repas non compris"
+    spots: 10
+
+  - startDate: "2026-07-17/18"
+    title: Stage beaux arts
     type: beaux-arts
-    description: "Deux jours d'immersion pour artistes. Pigments avancés, liants naturels, applications sur papier et toile."
-    price: "220 €"
-    spots: 6
-
-  - startDate: "2026-07-25"
-    title: Atelier famille juillet
-    type: famille
-    description: "Teinture naturelle en famille sous les oliviers. Safran des teinturiers et fleurs du jardin."
-    price: "35 € / adulte"
-    spots: 12
-
-  - startDate: "2026-08-08"
-    title: Stage Écoprint
-    type: ecoprint
-    description: "Empreintes botaniques d'été sur soie. Feuilles de figuier, eucalyptus, rose, fougère."
-    price: "55 €"
+    description: "fabrication d'encres, pigments, aquarelle, pastels"
+    price: "220 € les 2 jours, repas non compris"
     spots: 10
 
-  - startDate: "2026-08-22"
-    title: Stage Teinture végétale
+  - startDate: "2026-08-4/5/6"
+    title: Stage Ecoprint
+    type: ecoprint
+    description: "Session estivale — parfaite pour imprimer soie et coton et tester différentes méthodes. Groupe limité pour un suivi personnalisé."
+    price: "330 € les 3 jours, repas non compris"
+    spots: 6
+
+  - startDate: "2026-08-10/11/12/13/14"
+    title: motifs en teinture végétale
     type: teinture
-    description: "Dernières récoltes d'été — gaillet jaune, tanaisie, millefeuille. Journée complète."
-    price: "110 €"
-    spots: 8
+    description: "5 jours d'immersion pour tester tout type de motifs sur soie et fibres cellulosique"
+    price: "550 € les 5 jours, repas non compris"
+    spots: 6
 
-  - startDate: "2026-09-05"
-    title: Stage Teinture à l'indigo
-    type: indigo
-    description: "Retour des beaux jours de septembre : stage indigo en plein air sous la terrasse."
-    price: "110 €"
-    spots: 8
-
-  - startDate: "2026-09-19"
-    title: Stage Pigments & Encres naturelles
-    type: pigments
-    description: "Pigments d'automne : noix de galle, sumac, grenade. Encres et aquarelles terreuses."
-    price: "110 €"
-    spots: 8
-
-  - startDate: "2026-10-03"
-    endDate: "2026-10-04"
-    title: Stage Beaux-Arts & Pigments — Automne
+  - startDate: "2026-08-29/30"
+    title: Stage beaux arts
     type: beaux-arts
-    description: "Stage week-end pigments d'automne pour artistes confirmés. Ocorine, chêne, noix, rouille."
-    price: "220 €"
-    spots: 6
-
-  - startDate: "2026-10-17"
-    title: Stage Teinture végétale — Automne
-    type: teinture
-    description: "Les couleurs chaudes de l'automne provençal : noix, sumac, feuilles de figuier, kaki."
-    price: "110 €"
-    spots: 8
-
-  - startDate: "2026-11-07"
-    title: Stage Écoprint d'automne
-    type: ecoprint
-    description: "Empreintes des feuilles d'automne sur laine feutrée. Fougères, feuilles de vigne, ginkgo."
-    price: "55 €"
+    description: "fabrication d'encres, pigments, aquarelle, pastel"
+    price: "220 € les 2 jours, repas non compris"
     spots: 10
+
+  - startDate: "Stage d'automne"
+    title: Stage d'automne
+    type: int
+    description: "dates à venir"
+    price: "  "
+    spots: 
