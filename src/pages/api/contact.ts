@@ -44,9 +44,23 @@ export const POST: APIRoute = async ({ request }) => {
 
     const resend = new Resend(apiKey)
 
+    // allow overriding addresses via environment for easier deployment
+    const fromAddress = import.meta.env.CONTACT_FROM || 'atelier.ilys@gmail.com'
+    const toAddress = import.meta.env.CONTACT_TO || 'atelier.ilys@gmail.com'
+    if (!toAddress) {
+      console.error('CONTACT_TO not set')
+      return new Response(
+        JSON.stringify({ ok: false, error: 'Adresse de destination non configurée.' }),
+        { status: 500 }
+      )
+    }
+
+    // log incoming data for debugging
+    console.log('Contact form submission:', { name, email, phone, message })
+
     await resend.emails.send({
-      from: 'contact@atelier-ilys.com',
-      to: 'atelier.ilys@gmail.com',
+      from: fromAddress,
+      to: toAddress,
       replyTo: email,
       subject: `[Contact] Message de ${name}`,
       html: `
