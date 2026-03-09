@@ -3,7 +3,44 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import { getEntry } from 'astro:content'
 
 const calendarData = await getEntry('calendar', '2026')
-const events = calendarData?.data.events ?? []
+const rawEvents = calendarData?.data.events ?? []
+
+// clean up irregular date formats and types
+const events = rawEvents
+  .map((e) => {
+    let startDate: string = e.startDate;
+    let endDate: string | undefined = e.endDate;
+    let type: string = e.type;
+
+    // extract ISO dates from strings like "2026-05-04 au 2026-05-08" or "2026-05-23/24/25"
+    const isoMatches = startDate.match(/\d{4}-\d{2}-\d{2}/g);
+    if (isoMatches && isoMatches.length > 0) {
+      startDate = isoMatches[0];
+      if (!endDate && isoMatches.length > 1) {
+        endDate = isoMatches[1];
+      }
+    }
+
+    // handle slash‑separated days within same month (e.g. "2026-07-4/5/6")
+    const slashDay = startDate.match(/^(\d{4}-\d{2}-)(\d{1,2}(?:\/\d{1,2})+)$/);
+    if (slashDay) {
+      const prefix = slashDay[1];
+      const days = slashDay[2].split('/');
+      startDate = `${prefix}${days[0].padStart(2, '0')}`;
+      if (!endDate) {
+        endDate = `${prefix}${days[days.length - 1].padStart(2, '0')}`;
+      }
+    }
+
+    // normalize type to first token so we can apply colors
+    if (typeof type === 'string') {
+      type = type.split(/[\s-]+/)[0] as WorkshopType;
+    }
+
+    return { ...e, startDate, endDate, type };
+  })
+  // drop entries with invalid start dates
+  .filter((e) => !isNaN(new Date(e.startDate).getTime()));
 
 type WorkshopType = 'indigo' | 'teinture' | 'ecoprint' | 'pigments' | 'famille' | 'beaux-arts'
 
