@@ -1,63 +1,70 @@
-import type { APIRoute } from 'astro'
-import { Resend } from 'resend'
+import type { APIRoute } from "astro";
+import { Resend } from "resend";
 
-export const prerender = false
+export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const data = await request.formData()
+    const data = await request.json();
 
-    const name = data.get('name')?.toString().trim()
-    const email = data.get('email')?.toString().trim()
-    const phone = data.get('phone')?.toString().trim()
-    const workshopType = data.get('workshopType')?.toString().trim()
-    const duration = data.get('duration')?.toString().trim()
-    const preferredDate = data.get('preferredDate')?.toString().trim()
-    const participants = data.get('participants')?.toString().trim()
-    const wishes = data.get('wishes')?.toString().trim()
-    const honey = data.get('_honey')?.toString()
+    const name = data.name?.toString().trim();
+    const email = data.email?.toString().trim();
+    const phone = data.phone?.toString().trim();
+    const workshopType = data.workshopType?.toString().trim();
+    const duration = data.duration?.toString().trim();
+    const preferredDate = data.preferredDate?.toString().trim();
+    const participants = data.participants?.toString().trim();
+    const wishes = data.wishes?.toString().trim();
+    const honey = data._honey?.toString();
 
     // Honeypot check
     if (honey) {
-      return new Response(JSON.stringify({ ok: true }), { status: 200 })
+      return new Response(JSON.stringify({ ok: true }), { status: 200 });
     }
 
     // Validation
-    if (!name || !email || !phone || !workshopType || !duration || !preferredDate) {
+    if (
+      !name ||
+      !email ||
+      !phone ||
+      !workshopType ||
+      !duration ||
+      !preferredDate
+    ) {
       return new Response(
-        JSON.stringify({ ok: false, error: 'Champs requis manquants.' }),
-        { status: 400 }
-      )
+        JSON.stringify({ ok: false, error: "Champs requis manquants." }),
+        { status: 400 },
+      );
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response(
-        JSON.stringify({ ok: false, error: 'Email invalide.' }),
-        { status: 400 }
-      )
+        JSON.stringify({ ok: false, error: "Email invalide." }),
+        { status: 400 },
+      );
     }
 
-    const apiKey = import.meta.env.RESEND_API_KEY
+    const apiKey = import.meta.env.RESEND_API_KEY;
     if (!apiKey) {
-      console.error('RESEND_API_KEY not set')
+      console.error("RESEND_API_KEY not set");
       return new Response(
-        JSON.stringify({ ok: false, error: 'Configuration email manquante.' }),
-        { status: 500 }
-      )
+        JSON.stringify({ ok: false, error: "Configuration email manquante." }),
+        { status: 500 },
+      );
     }
 
-    const resend = new Resend(apiKey)
+    const resend = new Resend(apiKey);
 
     const durationLabels: Record<string, string> = {
-      'demi-journee': 'Demi-journée (2h30) — 55 €',
-      'journee': 'Journée complète — 110 €',
-      '2-jours': '2 jours — 220 €',
-      'famille': 'Atelier famille (2h30) — 35 € / adulte',
-    }
+      "demi-journee": "Demi-journée (2h30) — 55 €",
+      journee: "Journée complète — 110 €",
+      "2-jours": "2 jours — 220 €",
+      famille: "Atelier famille (2h30) — 35 € / adulte",
+    };
 
     await resend.emails.send({
-      from: 'reservations@atelier-ilys.com',
-      to: 'atelier.ilys@gmail.com',
+      from: "reservations@atelier-ilys.com",
+      to: "atelier.ilys@gmail.com",
       replyTo: email,
       subject: `[Stage] Demande de ${name} — ${workshopType}`,
       html: `
@@ -88,39 +95,47 @@ export const POST: APIRoute = async ({ request }) => {
               <td style="padding: 8px 12px; font-weight: bold; color: #2C2416; background: #EAE2D0;">Date(s) souhaitée(s)</td>
               <td style="padding: 8px 12px; color: #2C2416;">${escapeHtml(preferredDate)}</td>
             </tr>
-            ${participants ? `
+            ${
+              participants
+                ? `
             <tr>
               <td style="padding: 8px 12px; font-weight: bold; color: #2C2416; background: #EAE2D0;">Participants</td>
               <td style="padding: 8px 12px; color: #2C2416;">${escapeHtml(participants)}</td>
             </tr>
-            ` : ''}
-            ${wishes ? `
+            `
+                : ""
+            }
+            ${
+              wishes
+                ? `
             <tr>
               <td style="padding: 8px 12px; font-weight: bold; color: #2C2416; background: #EAE2D0; vertical-align: top;">Souhaits</td>
               <td style="padding: 8px 12px; color: #2C2416; white-space: pre-wrap;">${escapeHtml(wishes)}</td>
             </tr>
-            ` : ''}
+            `
+                : ""
+            }
           </table>
           <p style="margin-top: 20px; font-size: 12px; color: #999;">Demande envoyée depuis atelier-ilys.com/reserver</p>
         </div>
       `,
-    })
+    });
 
-    return new Response(JSON.stringify({ ok: true }), { status: 200 })
+    return new Response(JSON.stringify({ ok: true }), { status: 200 });
   } catch (err) {
-    console.error('Booking workshop API error:', err)
+    console.error("Booking workshop API error:", err);
     return new Response(
-      JSON.stringify({ ok: false, error: 'Erreur interne du serveur.' }),
-      { status: 500 }
-    )
+      JSON.stringify({ ok: false, error: "Erreur interne du serveur." }),
+      { status: 500 },
+    );
   }
-}
+};
 
 function escapeHtml(str: string): string {
   return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;')
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }

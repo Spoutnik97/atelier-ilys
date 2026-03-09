@@ -1,62 +1,66 @@
-import type { APIRoute } from 'astro'
-import { Resend } from 'resend'
+import type { APIRoute } from "astro";
+import { Resend } from "resend";
 
-export const prerender = false
+export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const data = await request.formData()
+    const data = await request.json();
 
-    const name = data.get('name')?.toString().trim()
-    const email = data.get('email')?.toString().trim()
-    const phone = data.get('phone')?.toString().trim()
-    const message = data.get('message')?.toString().trim()
-    const honey = data.get('_honey')?.toString()
+    const name = data.name?.toString().trim();
+    const email = data.email?.toString().trim();
+    const phone = data.phone?.toString().trim();
+    const message = data.message?.toString().trim();
+    const honey = data._honey?.toString();
 
     // Honeypot check
     if (honey) {
-      return new Response(JSON.stringify({ ok: true }), { status: 200 })
+      return new Response(JSON.stringify({ ok: true }), { status: 200 });
     }
 
     // Validation
     if (!name || !email || !message) {
       return new Response(
-        JSON.stringify({ ok: false, error: 'Champs requis manquants.' }),
-        { status: 400 }
-      )
+        JSON.stringify({ ok: false, error: "Champs requis manquants." }),
+        { status: 400 },
+      );
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response(
-        JSON.stringify({ ok: false, error: 'Email invalide.' }),
-        { status: 400 }
-      )
+        JSON.stringify({ ok: false, error: "Email invalide." }),
+        { status: 400 },
+      );
     }
 
-    const apiKey = import.meta.env.RESEND_API_KEY
+    const apiKey = import.meta.env.RESEND_API_KEY;
     if (!apiKey) {
-      console.error('RESEND_API_KEY not set')
+      console.error("RESEND_API_KEY not set");
       return new Response(
-        JSON.stringify({ ok: false, error: 'Configuration email manquante.' }),
-        { status: 500 }
-      )
+        JSON.stringify({ ok: false, error: "Configuration email manquante." }),
+        { status: 500 },
+      );
     }
 
-    const resend = new Resend(apiKey)
+    const resend = new Resend(apiKey);
 
     // allow overriding addresses via environment for easier deployment
-    const fromAddress = import.meta.env.CONTACT_FROM || 'atelier.ilys@gmail.com'
-    const toAddress = import.meta.env.CONTACT_TO || 'atelier.ilys@gmail.com'
+    const fromAddress =
+      import.meta.env.CONTACT_FROM || "atelier.ilys@gmail.com";
+    const toAddress = import.meta.env.CONTACT_TO || "atelier.ilys@gmail.com";
     if (!toAddress) {
-      console.error('CONTACT_TO not set')
+      console.error("CONTACT_TO not set");
       return new Response(
-        JSON.stringify({ ok: false, error: 'Adresse de destination non configurée.' }),
-        { status: 500 }
-      )
+        JSON.stringify({
+          ok: false,
+          error: "Adresse de destination non configurée.",
+        }),
+        { status: 500 },
+      );
     }
 
     // log incoming data for debugging
-    console.log('Contact form submission:', { name, email, phone, message })
+    console.log("Contact form submission:", { name, email, phone, message });
 
     await resend.emails.send({
       from: fromAddress,
@@ -75,12 +79,16 @@ export const POST: APIRoute = async ({ request }) => {
               <td style="padding: 8px 12px; font-weight: bold; color: #2C2416; background: #EAE2D0;">Email</td>
               <td style="padding: 8px 12px; color: #2C2416;"><a href="mailto:${escapeHtml(email)}" style="color: #3D5A80;">${escapeHtml(email)}</a></td>
             </tr>
-            ${phone ? `
+            ${
+              phone
+                ? `
             <tr>
               <td style="padding: 8px 12px; font-weight: bold; color: #2C2416; background: #EAE2D0;">Téléphone</td>
               <td style="padding: 8px 12px; color: #2C2416;">${escapeHtml(phone)}</td>
             </tr>
-            ` : ''}
+            `
+                : ""
+            }
             <tr>
               <td style="padding: 8px 12px; font-weight: bold; color: #2C2416; background: #EAE2D0; vertical-align: top;">Message</td>
               <td style="padding: 8px 12px; color: #2C2416; white-space: pre-wrap;">${escapeHtml(message)}</td>
@@ -89,23 +97,23 @@ export const POST: APIRoute = async ({ request }) => {
           <p style="margin-top: 20px; font-size: 12px; color: #999;">Message envoyé depuis atelier-ilys.com</p>
         </div>
       `,
-    })
+    });
 
-    return new Response(JSON.stringify({ ok: true }), { status: 200 })
+    return new Response(JSON.stringify({ ok: true }), { status: 200 });
   } catch (err) {
-    console.error('Contact API error:', err)
+    console.error("Contact API error:", err);
     return new Response(
-      JSON.stringify({ ok: false, error: 'Erreur interne du serveur.' }),
-      { status: 500 }
-    )
+      JSON.stringify({ ok: false, error: "Erreur interne du serveur." }),
+      { status: 500 },
+    );
   }
-}
+};
 
 function escapeHtml(str: string): string {
   return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;')
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }

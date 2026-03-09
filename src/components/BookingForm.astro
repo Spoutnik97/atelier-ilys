@@ -141,9 +141,12 @@ const workshopTypes = [
     status.className = 'hidden'
 
     try {
+      const formData = new FormData(form)
+      const payload = Object.fromEntries(formData.entries())
       const res = await fetch('/api/booking-workshop', {
         method: 'POST',
-        body: new FormData(form),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       })
       const data = await res.json()
 
