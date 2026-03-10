@@ -1,0 +1,70 @@
+---
+interface Props {
+  images: string[]
+  alt: string
+  class?: string
+}
+
+const { images, alt, class: className = '' } = Astro.props
+const id = `carousel-${Math.random().toString(36).slice(2, 9)}`
+---
+
+<div class={`relative overflow-hidden ${className}`} id={id}>
+  <div class="flex h-full" data-track style="transition: transform 0.3s ease-in-out;">
+    {images.map((src, i) => (
+      <img
+        src={src}
+        alt={`${alt} — photo ${i + 1}`}
+        class="w-full h-full object-cover flex-shrink-0"
+        loading={i === 0 ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    ))}
+  </div>
+
+  {images.length > 1 && (
+    <>
+      <button
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg leading-none transition-colors"
+        data-prev
+        aria-label="Image précédente"
+      >&#8249;</button>
+      <button
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg leading-none transition-colors"
+        data-next
+        aria-label="Image suivante"
+      >&#8250;</button>
+      <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5" data-dots>
+        {images.map((_, i) => (
+          <button
+            class={`w-2 h-2 rounded-full transition-opacity ${i === 0 ? 'bg-white opacity-100' : 'bg-white opacity-40'}`}
+            data-dot={i}
+            aria-label={`Photo ${i + 1}`}
+          />
+        ))}
+      </div>
+    </>
+  )}
+</div>
+
+<script define:vars={{ id }}>
+  const el = document.getElementById(id)
+  if (el) {
+    const track = el.querySelector('[data-track]')
+    const dots = el.querySelectorAll('[data-dot]')
+    const total = track ? track.children.length : 0
+    let current = 0
+
+    function go(n) {
+      current = (n + total) % total
+      track.style.transform = `translateX(-${current * 100}%)`
+      dots.forEach((d, i) => {
+        d.style.opacity = i === current ? '1' : '0.4'
+      })
+    }
+
+    el.querySelector('[data-prev]')?.addEventListener('click', () => go(current - 1))
+    el.querySelector('[data-next]')?.addEventListener('click', () => go(current + 1))
+    dots.forEach((d, i) => d.addEventListener('click', () => go(i)))
+  }
+</script>

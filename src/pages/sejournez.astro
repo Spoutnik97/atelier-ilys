@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AccommodationCard from "../components/AccommodationCard.astro";
+import ImageCarousel from "../components/ImageCarousel.astro";
 const _uploads = import.meta.glob("../assets/optimized/uploads/**/*", {
     eager: true,
     as: "url",
@@ -8,6 +9,11 @@ const _uploads = import.meta.glob("../assets/optimized/uploads/**/*", {
 const asset = (p: string): string =>
     (_uploads as Record<string, string>)[`../assets/optimized/uploads/${p}`] ??
     `https://atelier-ilys.com/wp-content/uploads/${p}`;
+
+const folderImages = (folder: string): string[] =>
+    Object.entries(_uploads as Record<string, string>)
+        .filter(([k]) => k.includes(`/uploads/sejourner/${folder}/`))
+        .map(([, v]) => v);
 
 const lodgingLd = {
     "@context": "https://schema.org",
@@ -52,6 +58,7 @@ const accommodations = [
         image: asset("2023/06/giteauprintemps-750.jpg"),
         imageAlt:
             "La Maisonnette — gîte en pierre de 25 m² dans le domaine de l'Atelier Ilys, Pierrerue",
+        images: folderImages("gite"),
         features: [
             "Cuisine équipée",
             "Jardin privé et mobilier de jardin",
@@ -72,6 +79,7 @@ const accommodations = [
         image: asset("2024/01/legrandpre.jpg"),
         imageAlt:
             "Le Grand Pré Loft — espace de 130 m² pour groupes dans la magnanerie Atelier Ilys",
+        images: folderImages("loft"),
         features: [
             "Grande salle à manger - Cuisine",
             "Grand salon",
@@ -79,7 +87,7 @@ const accommodations = [
             "Plancha et barbecue",
             "WiFi",
             "Parking",
-             "Mobilier de jardin", 
+             "Mobilier de jardin",
              "Terrasse partagée",
         ],
     },
@@ -93,9 +101,9 @@ const rooms = [
             "Chambre aux tons bleus et blancs, fraîche et reposante. Lit double 140 cm, salle de bain privée, vue sur les champs de lavandes.15 m2",
         capacity: "2 personnes, un lit 140 cm",
         price: "90 €",
-        image: asset("2023/07/azur-750.jpg"),
         imageAlt:
             "Chambre Azur — chambre double aux tons bleus dans la magnanerie Atelier Ilys",
+        images: folderImages("chambre bleue"),
         features: [
             "Salle de bain privée",
             "Vue champs de lavandes",
@@ -109,9 +117,9 @@ const rooms = [
             "Décorée de teintes végétales douces, cette chambre invite à la détente avec sa vue sur les champs de lavandes provençaux. Lit double 140 cm, salle de bain partagée.",
         capacity: "2 personnes",
         price: "80 €",
-        image: asset("2023/06/chambreverte5-750.jpg"),
         imageAlt:
             "Chambre Verte — chambre aux tons botaniques avec vue sur les champs de lavandes, Atelier Ilys",
+        images: folderImages("chambre verte"),
         features: ["Vue garrigue", "Linge en option", "SDB partagée", "lit 140cm", "15m2"],
     },
     {
@@ -121,9 +129,9 @@ const rooms = [
             "La chambre la plus romantique du domaine, aux tons rosés et ocres. Mobilier chiné, tissu aux couleurs végétales, lit double en fer forgé.",
         capacity: "4 personnes",
         price: "85 €",
-        image: asset("2023/06/chambrerose5-750.jpg"),
         imageAlt:
             "Chambre Rose — chambre romantique aux teintes roses, Atelier Ilys Pierrerue",
+        images: folderImages("chambre rose"),
         features: [
             "Vue champs de lavandes",
             "Un Lit double 160, un lit simple, un lit d appoint",
@@ -137,9 +145,9 @@ const rooms = [
             "Les couleurs vives de la Provence : ocre doré, blanc calcaire et noir d encre. Une chambre énergisante et chaleureuse, avec terrasse commune. 12 m2",
         capacity: "2 personnes",
         price: "inclus dans le prix du loft",
-        image: asset("2023/07/cochonnier-750.jpg"),
         imageAlt:
             "Chambre Grenade — décoration ocre inspirée des teintures végétales, Atelier Ilys",
+        images: folderImages("cochonnier"),
         features: ["Vue champs de lavandes", "Couleurs vives", "Linge en option", "lit 160cm", "12m2"],
     },
 ];
@@ -221,13 +229,8 @@ const rooms = [
                 {
                     rooms.map((room) => (
                         <article class="card hover:shadow-md transition-shadow">
-                            <div class="overflow-hidden aspect-[4/3]">
-                                <img
-                                    src={room.image}
-                                    alt={room.imageAlt}
-                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                                    loading="lazy"
-                                />
+                            <div class="aspect-[4/3]">
+                                <ImageCarousel images={room.images} alt={room.imageAlt} class="w-full h-full" />
                             </div>
                             <div class="p-5">
                                 <h3 class="font-heading text-xl text-indigo mb-1">

@@ -1,4 +1,6 @@
 ---
+import ImageCarousel from './ImageCarousel.astro'
+
 interface Props {
   title: string
   subtitle?: string
@@ -7,6 +9,7 @@ interface Props {
   price: string
   image: string
   imageAlt: string
+  images?: string[]
   features?: string[]
   link?: string
 }
@@ -19,20 +22,17 @@ const {
   price,
   image,
   imageAlt,
+  images = [],
   features = [],
   link = '/reserve-ton-sejour',
 } = Astro.props
+
+const carouselImages = images.length > 0 ? images : [image]
 ---
 
 <article class="card flex flex-col md:flex-row overflow-hidden hover:shadow-md transition-shadow duration-200">
-  <div class="md:w-2/5 overflow-hidden aspect-[4/3] md:aspect-auto">
-    <img
-      src={image}
-      alt={imageAlt}
-      class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-      loading="lazy"
-      decoding="async"
-    />
+  <div class="md:w-2/5 aspect-[4/3] md:aspect-auto">
+    <ImageCarousel images={carouselImages} alt={imageAlt} class="w-full h-full" />
   </div>
   <div class="md:w-3/5 p-6 flex flex-col">
     <div class="mb-3">
