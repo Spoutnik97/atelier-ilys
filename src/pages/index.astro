@@ -60,15 +60,15 @@ const localBusinessLd = {
 const pressLogos = [
     {
         name: "Wonderbox",
-        src: "src/assets/uploads/1893707-193x241-1-150x150.jpeg",
+        src: "src/assets/optimized/uploads/logo-vectoriel-wonderbox.jpg",
     },
     {
         name: "ELLE",
-        src: "src/assets/uploads/165954746053441227-225x300.jpg",
+        src: "src/assets/optimized/uploads/elle-magazine.png",
     },
     {
         name: "La Thomassine",
-        src: "src/assets/uploads/parc-du-luberon-217x300.png",
+        src: "src/assets/optimized/uploads/parc-du-luberon-217x300.png",
     },
 ];
 ---
@@ -221,8 +221,8 @@ const pressLogos = [
                             class="text-warm-text/70 text-sm leading-relaxed mb-4"
                         >
                             Maisonnette, loft ou chambres dans notre magnanerie
-                            du XVIII<sup>e</sup> siècle. 30 hectares de nature, 
-                            jardins tinctorial. Dès 110 €/nuit.
+                            du XVIII<sup>e</sup> siècle. 30 hectares de nature, jardins
+                            tinctorial. Dès 110 €/nuit.
                         </p>
                         <a href="/sejournez" class="btn-primary text-sm"
                             >Voir l'hébergement</a
@@ -281,10 +281,8 @@ const pressLogos = [
                         <img
                             src={logo.src}
                             alt={`Logo ${logo.name}`}
-                            class="h-8 object-contain opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                            class="h-32 w-auto object-contain"
                             loading="lazy"
-                            width="120"
-                            height="40"
                         />
                     ))
                 }
