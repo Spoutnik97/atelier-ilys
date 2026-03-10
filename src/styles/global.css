@@ -6,9 +6,9 @@
 @tailwind utilities;
 
 :root {
-  --color-indigo: #3D5A80;
-  --color-ochre: #C8963E;
-  --color-cream: #F5F0E8;
+  --color-indigo: #2F4673;
+  --color-ochre: #D9B26F;
+  --color-cream: #F5F5F7;
   --color-terracotta: #B85C38;
   --color-green: #5C7A4E;
   --color-text: #2C2416;

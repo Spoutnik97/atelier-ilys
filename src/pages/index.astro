@@ -1,15 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EcoBadges from "../components/EcoBadges.astro";
-const _uploads = import.meta.glob("../assets/uploads/**/*", {
+const _uploads = import.meta.glob("../assets/optimized/uploads/**/*", {
     eager: true,
     as: "url",
 });
 const asset = (p: string): string =>
-    (_uploads as Record<string, string>)[`../assets/uploads/${p}`] ??
+    (_uploads as Record<string, string>)[`../assets/optimized/uploads/${p}`] ??
     `https://atelier-ilys.com/wp-content/uploads/${p}`;
 
-const heroImage = asset("2025/04/e2f58e9c-660b-4e9f-ab38-0d5d9b24b5f6-1.jpg");
+const heroImage = asset("vue-sud-300x270.jpg");
 
 const localBusinessLd = {
     "@context": "https://schema.org",
@@ -60,15 +60,15 @@ const localBusinessLd = {
 const pressLogos = [
     {
         name: "Wonderbox",
-        src: "https://via.placeholder.com/120x40/F5F0E8/3D5A80?text=Wonderbox",
+        src: "src/assets/uploads/1893707-193x241-1-150x150.jpeg",
     },
     {
         name: "ELLE",
-        src: "https://via.placeholder.com/80x40/F5F0E8/3D5A80?text=ELLE",
+        src: "src/assets/uploads/165954746053441227-225x300.jpg",
     },
     {
         name: "La Thomassine",
-        src: "https://via.placeholder.com/140x40/F5F0E8/3D5A80?text=La+Thomassine",
+        src: "src/assets/uploads/parc-du-luberon-217x300.png",
     },
 ];
 ---
@@ -86,8 +86,8 @@ const pressLogos = [
         <!-- image pane -->
         <div class="w-full md:w-1/2 h-64 md:h-auto relative">
             <img
-                src={heroImage}
-                alt="Bains de teinture végétale à l'indigo dans l'atelier Ilys, Haute-Provence"
+                src={asset("vuesud.jpg")}
+                alt="Vue sud de la magnanerie, Haute-Provence"
                 class="w-full h-full object-cover"
                 fetchpriority="high"
                 decoding="sync"
@@ -168,8 +168,8 @@ const pressLogos = [
                 >
                     <div class="overflow-hidden aspect-[4/3]">
                         <img
-                            src='asset("2024/01/stageindigo.jpg")'
-                            alt="Participantes plongeant des tissus dans un bain d'indigo lors d'un stage à l'Atelier Ilys"
+                            src={asset("guiau.jpg")}
+                            alt="Participants plongeant des tissus dans un bain d'indigo lors d'un stage à l'Atelier Ilys"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy"
                         />
@@ -202,8 +202,8 @@ const pressLogos = [
                 >
                     <div class="overflow-hidden aspect-[4/3]">
                         <img
-                            src='asset("2023/06/giteauprintemps-750.jpg")'
-                            alt="Maisonnette en pierre dans le domaine de la magnanerie Atelier Ilys, Pierrerue"
+                            src={asset("IMG_7233-300x225.jpeg")}
+                            alt="Terrasse ombragée pour se relaxer, Atelier Ilys, Pierrerue"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy"
                         />
@@ -236,8 +236,8 @@ const pressLogos = [
                 >
                     <div class="overflow-hidden aspect-[4/3]">
                         <img
-                            src='asset("2022/05/coreopsis750.jpg")'
-                            alt="Sachets de plantes tinctoriales — cosmos, coreopsis et écorce de chêne — de la boutique Atelier Ilys"
+                            src={asset("IMG_7214.jpg")}
+                            alt="cosmosmos sulfureux frais et prets à être séché du jardin tinctorial de l'atelier ilys"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy"
                         />

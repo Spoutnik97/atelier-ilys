@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Gallery from "../components/Gallery.astro";
-const _uploads = import.meta.glob('../assets/uploads/**/*', { eager: true, as: 'url' })
-const asset = (p: string): string => (_uploads as Record<string, string>)[`../assets/uploads/${p}`] ?? `https://atelier-ilys.com/wp-content/uploads/${p}`
+const _uploads = import.meta.glob('../assets/optimized/uploads/**/*', { eager: true, as: 'url' })
+const asset = (p: string): string => (_uploads as Record<string, string>)[`../assets/optimized/uploads/${p}`] ?? `https://atelier-ilys.com/wp-content/uploads/${p}`
 
 
 const gallerySections = [
@@ -10,59 +10,202 @@ const gallerySections = [
         id: "le-lieu",
         title: "Le lieu — La magnanerie",
         images: [
-            {
-                src: asset("2023/06/vuedemsemble-750.jpg"),
-                alt: "Vue de la façade de la magnanerie du XVIIIe siècle à Pierrerue, Haute-Provence",
+           
+             {
+                src: asset("galeriephoto/le lieu/arrieredugite-750.jpg"),
+                alt: " arriere du gite au printemps",
+            },
+             {
+                src: asset("galeriephoto/le lieu/arriredugiteenjuillet.jpeg"),
+                alt: "arriere du gite en juillet",
+            },
+             {
+                src: asset("galeriephoto/le lieu/arriveealateierilysJPG.JPG"),
+                alt: "chemin d'accès à l'atelier ilys",
+            },
+             {
+                src: asset("galeriephoto/le lieu/aterrissagemontgolfiere.jpeg"),
+                alt: "aterrissage de montgolfière devant la magnanerie",
+            },
+             {
+                src: asset("galeriephoto/le lieu/coinrepos.JPG"),
+                alt: "coin repos dans le jardin",
+            },
+             {
+                src: asset("galeriephoto/le lieu/colline750.JPG"),
+                alt: "la magnanerie vue de la garigue environnante",
+            },
+             {
+                src: asset("galeriephoto/le lieu/coupedeslavandeenaout.jpeg"),
+                alt: "coupe des lavandes devant le jardin en aout",
+            },
+{
+                src: asset("galeriephoto/le lieu/facdenordenete.JPG"),
+                alt: "coté nord de la magnanerie en juillet",
+            },
+             {
+                src: asset("galeriephoto/le lieu/iristerrassearriere.jpeg"),
+                alt: "les iris de la terrasse arriere",
+            },
+             {
+                src: asset("galeriephoto/le lieu/jardinetauprimtemps-300x225.jpg"),
+                alt: "jardin au printemps",
+            },
+             {
+                src: asset("galeriephoto/le lieu/lavandesenmai.jpeg"),
+                alt: "champs de lavandes en mai",
+            },
+             {
+                src: asset("galeriephoto/le lieu/leparking.jpg"),
+                alt: "parking de l'atelier ilys",
             },
             {
-                src: asset("2023/06/jardinouest-750.jpg"),
-                alt: "Vue aérienne du domaine Atelier Ilys — 30 hectares de nature provençale",
+                src: asset("galeriephoto/le lieu/lepuits.jpg"),
+                alt: "l'ancien puits ",
+            },
+             {
+                src: asset("galeriephoto/le lieu/letilleul-750.jpg"),
+                alt: "sous le tilleul",
+            },
+             {
+                src: asset("galeriephoto/le lieu/leverdeluneenete.JPG"),
+                alt: "lever de lune en été",
+            },
+             {
+                src: asset("galeriephoto/le lieu/magnanerieenhiver.jpeg"),
+                alt: "magnanerie en hiver",
+            },
+             {
+                src: asset("galeriephoto/le lieu/mongolfierequise posedanslechampsarriere.jpeg"),
+                alt: "passage de montgolfiere devant la magnanerie",
+            },
+             {
+                src: asset("galeriephoto/le lieu/olivierenjuillet.jpg"),
+                alt: "la douceur des oliviers en juillet",
             },
             {
-                src: asset("2023/06/giteauprintemps-750.jpg"),
-                alt: "La piscine du domaine entourée de lavande et d'oliviers",
+                src: asset("galeriephoto/le lieu/petitgitenehiver.jpeg"),
+                alt: "le petit gite en hiver",
             },
-            {
-                src: asset("2023/06/terasseauprimtemps.jpg"),
-                alt: "Terrasse ombragée de la magnanerie avec vue sur la garrigue provençale",
+             {
+                src: asset("galeriephoto/le lieu/repossousletillel.JPG"),
+                alt: "coin repos sous le tilleul",
             },
-            {
-                src: asset("2023/06/lejardin-ea-rotated-e1688129407723.jpg"),
-                alt: "L'allée de cyprès menant au domaine Atelier Ilys à Pierrerue",
+             {
+                src: asset("galeriephoto/le lieu/terrasse2-300x300.jpg"),
+                alt: "la terrasse partagée",
             },
-            {
-                src: asset("2024/01/vuealentour.jpg"),
-                alt: "Le puits ancien dans la cour de la magnanerie Atelier Ilys",
+             {
+                src: asset("galeriephoto/le lieu/terrassearriere-750.jpg"),
+                alt: "la terrasse arrière",
+            },
+             {
+                src: asset("galeriephoto/le lieu/terrasseenaout.JPG"),
+                alt: "la terrasse ombragée",
+            },
+             {
+                src: asset("galeriephoto/le lieu/terrasseenmai.jpeg"),
+                alt: "la terrasse en mai",
+            },
+             {
+                src: asset("galeriephoto/le lieu/terrasselete.jpeg"),
+                alt: "terrasse l'été",
+            },
+             {
+                src: asset("galeriephoto/le lieu/terrassenordenmars.jpeg"),
+                alt: "la terrasse nord en mars",
+            },
+             {
+                src: asset("galeriephoto/le lieu/vélosàpreter.JPG"),
+                alt: "les 2 vélos mis à disposition",
+            },
+             {
+                src: asset("galeriephoto/le lieu/vue densemble-225x300.jpg"),
+                alt: "vue d'emsemble de la magnanerie",
+            },
+             {
+                src: asset("galeriephoto/le lieu/vue lavande arriere-750.jpg"),
+                alt: "champs de lavande coté nord",
+            },
+             {
+                src: asset("galeriephoto/le lieu/vueaerienne.jpg"),
+                alt: "vue aerienne",
+            },
+             {
+                src: asset("galeriephoto/le lieu/vuesud lavande-750.jpg"),
+                alt: "vue coté sud en été",
+            },
+             {
+                src: asset("galeriephoto/le lieu/vuesudprintemps.jpg"),
+                alt: "vue coté sur au printemps",
             },
         ],
     },
-    {
-        id: "atelier-jardin",
-        title: "L'atelier et le jardin",
+   
+     {
+        id: "l'atelier",
+        title: "L'atelier",
         images: [
             {
-                src: asset("2024/01/atelier-scaled.jpg"),
-                alt: "L'atelier de teinture végétale avec ses cuves, fils et bains colorés",
+                src: asset("galeriephoto/l'atelier/2atelier750.JPG"),
+                alt: "decoupe des tissus",
+            },
+             {
+                src: asset("galeriephoto/l'atelier/atelier2-300x300.jpg"),
+                alt: "plande travail cuisson",
+            },
+             {
+                src: asset("galeriephoto/l'atelier/atelier3-300x300.jpg"),
+                alt: "table de travail pour les stagiaires",
+            },
+             {
+                src: asset("galeriephoto/l'atelier/atelier4-300x300.jpg"),
+                alt: "rangement des matières premières",
+            },
+             {
+                src: asset("galeriephoto/l'atelier/atelierhiver-300x300.jpg"),
+                alt: "le nuancier et les paniers de cueillette",
+            },
+             {
+                src: asset("galeriephoto/l'atelier/ateliernuancier750.jpg"),
+                alt: "les tissus décatis",
+            },
+        ],
+    },
+
+     {
+        id: "Le jardin",
+        title: "Le jardin",
+        images: [
+            {
+                src: asset("galeriephoto/le jardin tinctorial/coreopsis750-300x300.jpg"),
+                alt: "plantation de coréopsis tinctoriaux",
             },
             {
-                src: asset("2024/01/atelierteinture.jpg"),
-                alt: "Jardin de plantes tinctoriales — cosmos sulfureux, coreopsis et indigotier en fleur",
+                src: asset("galeriephoto/le jardin tinctorial/cosmos750-300x300.jpg"),
+                alt: "plantation de cosmos sulfureux",
             },
             {
-                src: asset("2022/05/alatelier750.jpg"),
-                alt: "Séchage de fils teints à l'indigo sur des branches dans le jardin",
+                src: asset("galeriephoto/le jardin tinctorial/cueilletteaccueil-300x300.jpg"),
+                alt: "cueillette dans la guarigue zu fond du jardin",
             },
             {
-                src: asset("2024/02/atelierhiver.jpg"),
-                alt: "Pots de teinture végétale — résines, poudres et extrait de plantes tinctoriales",
+                src: asset("galeriephoto/le jardin tinctorial/IMG_6690.jpeg"),
+                alt: "camomille des teinturiers",
             },
             {
-                src: asset("2022/05/atelier750.jpg"),
-                alt: "Rangées de plantes colorantes dans le jardin de l'Atelier Ilys",
+                src: asset("galeriephoto/le jardin tinctorial/IMG_6691.jpeg"),
+                alt: "millepertuis",
             },
+            
             {
-                src: asset("2022/05/ateliernuancier750.jpg"),
-                alt: "Isabelle Lys dans son atelier préparant un bain de teinture végétale",
+                src: asset("galeriephoto/le jardin tinctorial/jardin750-300x300.jpg"),
+                alt: "jardin tinctorial en février",
+            },
+            
+            {
+                src: asset("galeriephoto/le jardin tinctorial/tournesol750-300x300.jpg"),
+                alt: "tournesol",
             },
         ],
     },
@@ -71,37 +214,178 @@ const gallerySections = [
         title: "Les stages",
         images: [
             {
-                src: asset("2024/01/stageindigo.jpg"),
-                alt: "Groupe de participants lors d'un stage teinture à l'indigo à l'Atelier Ilys",
+                src: asset("galeriephoto/les stages/animation famille tarascon.jpg"),
+                alt: "animation famille personnalisée",
             },
             {
-                src: asset("2024/01/stagepigment.jpg"),
-                alt: "Tissu sortant du bain d'indigo — la couleur verte s'oxyde en bleu à l'air libre",
+                src: asset("galeriephoto/les stages/animation famille.jpg"),
+                alt: "animation famille",
             },
             {
-                src: asset("2024/01/atelierfamille.jpg"),
-                alt: "Atelier écoprint — impression de feuilles sur soie par chaleur et pression",
+                src: asset("galeriephoto/les stages/animationfetedesherbes.jpg"),
+                alt: "animation famille personnalisée",
             },
             {
-                src: asset("2024/01/ecoprint3.jpg"),
-                alt: "Enfants lors d'un atelier famille de teinture végétale à l'Atelier Ilys",
+                src: asset("galeriephoto/les stages/atelier ecoprint entrecopines.jpeg"),
+                alt: "ecorint entre copines",
             },
             {
-                src: asset("2022/11/indigodecouverte750.jpg"),
-                alt: "Participante montrant ses créations teintées à la gaude et au coreopsis",
+                src: asset("galeriephoto/les stages/atelier encre.JPG"),
+                alt: "atelier encres végétales",
+            },
+             {
+                src: asset("galeriephoto/les stages/atelier encres végétales.jpeg"),
+                alt: "encres végétales en été",
             },
             {
-                src: asset("2024/01/atelierfamille2.jpg"),
-                alt: "Fabrication de pigments naturels lors du stage beaux-arts Atelier Ilys",
+                src: asset("galeriephoto/les stages/atelier enfant.jpg"),
+                alt: "",
             },
             {
-                src: asset("2022/11/ecoprint4.jpg"),
-                alt: "Fil de laine suspendu après teinture végétale — ocre, vert, terracotta",
+                src: asset("galeriephoto/les stages/atelier famille.jpeg"),
+                alt: "",
             },
             {
-                src: asset("2024/01/stageteinture3.jpg"),
-                alt: "Stage teinture végétale en plein air sur la terrasse de la magnanerie",
+                src: asset("galeriephoto/les stages/atelier famille.jpg"),
+                alt: "atelier enfant",
             },
+            {
+                src: asset("galeriephoto/les stages/atelier personnalisé pour jeunes enfants.JPG"),
+                alt: "atelier personnalisé pour jeunes enfant",
+            },
+             {
+                src: asset("galeriephoto/les stages/baladejardin750-1-300x300.jpg"),
+                alt: "ballade commentée au jardin",
+            },
+            {
+                src: asset("galeriephoto/les stages/belleteinture de shibori prete à etreouverte.jpeg"),
+                alt: "teinture shibori cousu",
+            },
+            {
+                src: asset("galeriephoto/les stages/bob ecoprint.jpg"),
+                alt: "bob ecoprint",
+            },
+            {
+                src: asset("galeriephoto/les stages/broyage de pigment.JPG"),
+                alt: "broyage de pigment",
+            },
+            {
+                src: asset("galeriephoto/les stages/coldelaine pret àtremper dans la cuve dindigo.jpeg"),
+                alt: "trempage de laine dans l'indigo",
+            },
+             {
+                src: asset("galeriephoto/les stages/cours d'aquarelle par claire Charcot.JPG"),
+                alt: "cours d'aquarelle",
+            },
+            {
+                src: asset("galeriephoto/les stages/cueillette au jardin pour ecoprint.JPG"),
+                alt: "cueilette au jardin tinctorial pour ecoprint",
+            },
+            {
+                src: asset("galeriephoto/les stages/cueillettepour ecoprint.jpg"),
+                alt: "cueilette du stage ecoprint",
+            },
+            {
+                src: asset("galeriephoto/les stages/cueillettepourecoprint.jpeg"),
+                alt: "cueillet pour prépzrer la création en ecprint",
+            },
+            {
+                src: asset("galeriephoto/les stages/decouverte teinture de laine.JPG"),
+                alt: "dezcouverte teinture de laine",
+            },
+             {
+                src: asset("galeriephoto/les stages/echantillons de l'atelier teinture.jpeg"),
+                alt: "echantillons de l'atelier teinture",
+            },
+            {
+                src: asset("galeriephoto/les stages/ecoprint stagiare.JPG"),
+                alt: "résultat d'ecoprint",
+            },
+            {
+                src: asset("galeriephoto/les stages/ecoprintencours.jpeg"),
+                alt: "ecoprint en cours",
+            },
+            {
+                src: asset("galeriephoto/les stages/experience de tatakizome.jpeg"),
+                alt: "tatakizome",
+            },
+            {
+                src: asset("galeriephoto/les stages/fabrication de pigment.JPG"),
+                alt: "fabrication de pgment",
+            },
+            {
+                src: asset("galeriephoto/les stages/indigo3-300x300.jpg"),
+                alt: "teinture à l'indigo",
+            },
+            {
+                src: asset("galeriephoto/les stages/lajoieapresunjourdetravail d'indigo.jpeg"),
+                alt: "fin de stage 1 journée d'indigo",
+            },
+            {
+                src: asset("galeriephoto/les stages/lescoupeurseclatantesdelatelierteinture.jpeg"),
+                alt: "les couleurs eclatantes de l'atelier teinture",
+            },
+             {
+                src: asset("galeriephoto/les stages/leschechedindigo.jpeg"),
+                alt: "chèches indigos",
+            },
+            {
+                src: asset("galeriephoto/les stages/lesmainsdanslacuvedindigo.jpeg"),
+                alt: "les mains dans la cuve d'indigo",
+            },
+            {
+                src: asset("galeriephoto/les stages/montersapremierecuvedindigo.jpeg"),
+                alt: "monter sa première cuve d'indigo",
+            },
+            {
+                src: asset("galeriephoto/les stages/ouverture des bundle apres cuisson ecoprint.JPG"),
+                alt: "ouverture des budle d'ecoprint",
+            },
+            {
+                src: asset("galeriephoto/les stages/oxygenation de l'indigo pendant un stage.jpeg"),
+                alt: "oxygénation de l'indigo",
+            },
+            {
+                src: asset("galeriephoto/les stages/participante stage d'ecoprint.jpg"),
+                alt: "pzrticipante stage ecoprint",
+            },
+            {
+                src: asset("galeriephoto/les stages/preparatinoduneocprintavecisabelle.JPG"),
+                alt: "preparation ecoprint avec isabelle",
+            },
+            {
+                src: asset("galeriephoto/les stages/preparationecoprint.jpg"),
+                alt: "preparation d'une creation ecoprint",
+            },
+            {
+                src: asset("galeriephoto/les stages/resultat ecoprint.JPG"),
+                alt: "ecoprint terminé",
+            },
+            {
+                src: asset("galeriephoto/les stages/sechage dunecreation.JPG"),
+                alt: "sechage d'une création de stagiaire",
+            },
+            {
+                src: asset("galeriephoto/les stages/sechage teinture apres stage.JPG"),
+                alt: "sechage de teinture",
+            },
+            {
+                src: asset("galeriephoto/les stages/stage indigo.jpg"),
+                alt: "stage indigo",
+            },
+            {
+                src: asset("galeriephoto/les stages/stage pigment personnalisé.JPG"),
+                alt: "stage pigment personnalisé",
+            },
+            {
+                src: asset("galeriephoto/les stages/travail personnel en indigo.jpeg"),
+                alt: "création en indigo",
+            },
+            {
+                src: asset("galeriephoto/les stages/travaux de stagiaire ingigoetecoprint.jpeg"),
+                alt: "creations de stagiaires",
+            },
+            
         ],
     },
     {
@@ -109,29 +393,70 @@ const gallerySections = [
         title: "Les créations",
         images: [
             {
-                src: asset("2024/02/ecoprint-soie.jpg"),
-                alt: "Écharpe en soie teintée à l'indigo naturel, dégradé bleu foncé à pâle",
+                src: asset("galeriephoto/les créations/robeindigo-300x300.jpg"),
+                alt: "rode en soie dégradée indigo",
             },
             {
-                src: asset("2022/05/foulardviolet750.jpg"),
-                alt: "Aquarelles naturelles réalisées avec des pigments végétaux de l'Atelier Ilys",
+                src: asset("galeriephoto/les créations/rideau-rotated-e1671278448752-300x300.jpg"),
+                alt: "rideau shibori ecorces de chêne",
             },
             {
-                src: asset("2022/05/foulardcosmos750.jpg"),
-                alt: "Créations écoprint sur papier — empreintes de fougère et feuilles de vigne",
+                src: asset("galeriephoto/les créations/papier1-300x300.jpg"),
+                alt: "papier ecoprint",
             },
             {
-                src: asset("2024/01/motif3-1.jpg"),
-                alt: "Carré de soie teint avec cosmos sulfureux — tons jaunes et orangés naturels",
+                src: asset("galeriephoto/les créations/IMG_7988.jpeg"),
+                alt: "couette indigo",
             },
             {
-                src: asset("2024/02/robeindigo.jpg"),
-                alt: "Pots d'encre naturelle préparés à l'Atelier Ilys — sépia, ocre, bleu indigo",
+                src: asset("galeriephoto/les créations/IMG_4044.jpeg"),
+                alt: "pull upcyclé indigo",
             },
             {
-                src: asset("2022/05/coreopsis750.jpg"),
-                alt: "Toile de lin teintée à la coque de noix et au sumac — tons chauds terreux",
+                src: asset("galeriephoto/les créations/IMG_3340.JPG"),
+                alt: "tableau ecoprint et indigo",
             },
+            {
+                src: asset("galeriephoto/les créations/IMG_3338.JPG"),
+                alt: "tableau cosùos sulfureux",
+            },
+            {
+                src: asset("galeriephoto/les créations/IMG_2929.JPG"),
+                alt: "au bord de l'eau",
+            },
+            {
+                src: asset("galeriephoto/les créations/IMG_0232.jpg"),
+                alt: "foulard soie shibori cousu",
+            },
+            {
+                src: asset("galeriephoto/les créations/figuier-300x300.jpg"),
+                alt: "nappe feuilles de figuier",
+            },
+            {
+                src: asset("galeriephoto/les créations/eboutique-300x300.jpg"),
+                alt: "rideaux gingko",
+            },
+            {
+                src: asset("galeriephoto/les créations/coussiniiris-300x300.jpg"),
+                alt: "coussin iris",
+            },
+            {
+                src: asset("galeriephoto/les créations/cosmos1-300x300.jpg"),
+                alt: "foulard cosmos sulfureux",
+            },
+             {
+                src: asset("galeriephoto/les créations/bodycouleur-300x300.jpg"),
+                alt: "sac lin  recyclé",
+            },
+            {
+                src: asset("galeriephoto/les créations/bodybleu-300x300.jpg"),
+                alt: "body bébé indigo",
+            },
+            {
+                src: asset("galeriephoto/les créations/boutique-300x300.jpg"),
+                alt: "sac lin  recyclé",
+            },
+            
         ],
     },
     {
@@ -139,16 +464,36 @@ const gallerySections = [
         title: "Service personnalisé",
         images: [
             {
-                src: asset("2026/03/isarecadre.png"),
-                alt: "Teinture de pièces textiles en série pour une marque de mode éco-responsable",
+                src: asset("galeriephoto/service personnalisé/famile2-300x300.jpg"),
+                alt: "atelier famille",
+            },
+             {
+                src: asset("galeriephoto/service personnalisé/tarascon750-300x300.jpg"),
+                alt: "atelier famille personnalisé à tarascon",
             },
             {
-                src: asset("2022/11/marianne.jpg"),
-                alt: "Démonstration de teinture végétale lors d'un événement pour une école d'art",
+                src: asset("galeriephoto/service personnalisé/lemperi2-rotated-e1670172059152-300x300.jpg"),
+                alt: "Atelier famille personnalisé chateau de Lemperi",
             },
             {
-                src: asset("2022/11/guillaume.jpg"),
-                alt: "Atelier de teinture à domicile organisé pour un groupe d'entreprise",
+                src: asset("galeriephoto/service personnalisé/IMG_0595.jpeg"),
+                alt: "Atelier ecoprint à La Cité, Forcalquier",
+            },
+            {
+                src: asset("galeriephoto/service personnalisé/teinturecamilaine-300x300.jpg"),
+                alt: "Teinture à facon de col mérinos tricoté artisnalement pr Camilaine",
+            },
+            {
+                src: asset("galeriephoto/service personnalisé/IMG_6355.jpeg"),
+                alt: "atelier personnalisé à la ferme de la Thomassine",
+            },
+            {
+                src: asset("galeriephoto/service personnalisé/IMG_7964.jpeg"),
+                alt: "atelier encre personnalisé à la ferme de la Thomassine",
+            },
+            {
+                src: asset("galeriephoto/service personnalisé/famillesalon-rotated-e1670522848728-300x300.jpg"),
+                alt: "Atelier famille salon de provence",
             },
         ],
     },
@@ -157,33 +502,60 @@ const gallerySections = [
         title: "Dormir sur place",
         images: [
             {
-                src: asset("2023/06/salon1-750.jpg"),
-                alt: "La Maisonnette — gîte en pierre pour 2 personnes dans le domaine Atelier Ilys",
+                src: asset("galeriephoto/dormir sur place/IMG_0986.jpeg"),
+                alt: "couloir étage",
             },
             {
-                src: asset("2023/07/azur-750.jpg"),
-                alt: "Le Grand Pré Loft — espace de 200 m² pour groupes, Atelier Ilys",
+                src: asset("galeriephoto/dormir sur place/IMG_0990.jpeg"),
+                alt: "salle de bain partagée",
             },
             {
-                src: asset("2023/06/chambrerose5-750.jpg"),
-                alt: "Chambre Azur — chambre d'hôtes aux tons bleus dans la magnanerie",
+                src: asset("galeriephoto/dormir sur place/IMG_0991.jpeg"),
+                alt: "douche salle de bain partagée",
             },
             {
-                src: asset("2023/06/chambreverte5-750.jpg"),
-                alt: "Chambre Verte — chambre d'hôtes avec vue sur la garrigue provençale",
+                src: asset("galeriephoto/dormir sur place/IMG_1245.jpeg"),
+                alt: "porte fenetre de la cuisine",
+            },
+           {
+                src: asset("galeriephoto/dormir sur place/IMG_6715.jpeg"),
+                alt: "cuisine",
+            },
+             {
+                src: asset("galeriephoto/dormir sur place/IMG_6717.jpeg"),
+                alt: "plande travail cuisine",
+            },
+             {
+                src: asset("galeriephoto/dormir sur place/IMG_6720.jpeg"),
+                alt: "entrée",
+            },  
+             {
+                src: asset("galeriephoto/dormir sur place/IMG_6722.jpeg"),
+                alt: "entrée vers cuisine",
             },
             {
-                src: asset("2023/06/salledebain-750.jpg"),
-                alt: "Chambre Rose — chambre romantique aux teintes rosées et ocres",
-            },
+                src: asset("galeriephoto/dormir sur place/IMG_6723.jpeg"),
+                alt: "salle à manger",
+            },   
             {
-                src: asset("2023/06/jardinouest-750.jpg"),
-                alt: "Chambre Grenade — décoration rouge et dorée inspirée des couleurs végétales",
-            },
+                src: asset("galeriephoto/dormir sur place/IMG_6724.jpeg"),
+                alt: "perspective de la salle à manger",
+            },  
+            {
+                src: asset("galeriephoto/dormir sur place/IMG_6727.jpeg"),
+                alt: "cuisine vue de la salle à manger",
+            },   
+            {
+                src: asset("galeriephoto/dormir sur place/IMG_6734.jpeg"),
+                alt: "escalier central",
+            }, 
+            {
+                src: asset("galeriephoto/dormir sur place/IMG_6739.jpeg"),
+                alt: "porte cuisine",
+            }, 
         ],
     },
-];
-
+]
 
 ---
 
@@ -199,7 +571,7 @@ const gallerySections = [
             </p>
             <h1 class="section-title text-4xl md:text-5xl">Photos</h1>
             <p class="text-warm-text/70 mt-4">
-                Découvrez en images le domaine, l'atelier, les stages et les
+                Découvrez en images le domaine, l'atelier, le jardin tinctorial, les stages et les
                 créations de l'Atelier Ilys.
             </p>
         </div>
