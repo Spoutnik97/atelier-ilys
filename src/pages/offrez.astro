@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro'
 import SumUpButton from '../components/SumUpButton.astro'
 
-const SUMUP_STORE_URL = 'https://store.sumup.com/atelier-ilys'
+const SUMUP_STORE_URL = 'https://atelier-ilys.sumupstore.com/'
 
 const giftCategories = [
   {
@@ -11,10 +11,10 @@ const giftCategories = [
     subtitle: 'L\'expérience la plus précieuse',
     description: 'Offrez une journée ou demi-journée de teinture végétale artisanale à vos proches. Une expérience unique, créative et mémorable en Haute-Provence.',
     items: [
-      { name: 'Bon cadeau demi-journée', price: '55 €', url: `${SUMUP_STORE_URL}/bon-cadeau-demi-journee` },
-      { name: 'Bon cadeau journée complète', price: '110 €', url: `${SUMUP_STORE_URL}/bon-cadeau-journee` },
-      { name: 'Bon cadeau week-end (2j)', price: '220 €', url: `${SUMUP_STORE_URL}/bon-cadeau-weekend` },
-      { name: 'Bon cadeau atelier famille', price: '35 € / adulte', url: `${SUMUP_STORE_URL}/bon-cadeau-famille` },
+      { name: 'Bon cadeau demi-journée', price: '55 €', url: `${SUMUP_STORE_URL}/catégorie/bons-cadeaux` },
+      { name: 'Bon cadeau journée complète', price: '110 €', url: `${SUMUP_STORE_URL}/catégorie/bons-cadeaux` },
+      { name: 'Bon cadeau week-end (2j)', price: '220 €', url: `${SUMUP_STORE_URL}/catégorie/bons-cadeaux` },
+      { name: 'Bon cadeau atelier famille', price: '35 € / adulte', url: `${SUMUP_STORE_URL}/catégorie/bons-cadeaux` },
     ],
   },
   {
@@ -23,9 +23,8 @@ const giftCategories = [
     subtitle: 'Pour teindre à la maison',
     description: 'Nos plantes tinctoriales séchées et nos kits de teinture, pour que vos proches puissent explorer la couleur végétale chez eux.',
     items: [
-      { name: 'Kit Découverte Indigo', price: '35 €', url: `${SUMUP_STORE_URL}/kit-indigo` },
-      { name: 'Kit Plantes Tinctoriales', price: '45 €', url: `${SUMUP_STORE_URL}/kit-plantes` },
-      { name: 'Cosmos sulfureux (50g)', price: '6 €', url: `${SUMUP_STORE_URL}/cosmos-sulfureux` },
+      { name: 'Kit de teinture végétale, col 100% laine mérinos', price: '40 €', url: `${SUMUP_STORE_URL}/product/kit-de-teinture-vegetale-col-100-laine-merinos` },
+      { name: 'Cosmos sulfureux (50g)', price: '6 €', url: `${SUMUP_STORE_URL}/product/cosmos-sulfureux-seches-produit-naturel-pour-teinture-vegetale` },
       { name: 'Coreopsis tinctoria (50g)', price: '6 €', url: `${SUMUP_STORE_URL}/coreopsis-tinctoria` },
     ],
   },
