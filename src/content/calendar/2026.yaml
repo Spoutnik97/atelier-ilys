@@ -1,10 +1,11 @@
 events:
-  - startDate: "2026-08-29/30"
-    title: Stage Beaux arts
+  
+  - startDate: "2026-07-17/18"
+    title: Stage beaux arts
     type: beauxarts
-    description: "Comment fabriquer des pigments naturels et les utiliser pour la peinture, l'aquarelle et le pastel"
-    price: "220 €, repas non compris"
-    spots: 8
+    description: "fabrication d'encres, pigments, aquarelle, pastels"
+    price: "220 € les 2 jours, repas non compris"
+    spots: 10
 
   - startDate: "2026-07-29/30/31"
     title: Découverte teinture végétale
@@ -13,13 +14,6 @@ events:
     price: "330 € les 3 jours, repas non compris"
     spots: 4
 
-  - startDate: "2026-08-7/8/9"
-    title: Stage découverte teinture ecoprint indigo
-    type: indigo - teinture - ecoprint
-    description: "3 jours pour découvrir les bases de la couleur végétale"
-    price: "330 € les 3 jours, repas non compris"
-    spots: 6
-
   - startDate: "2026-08-4/5/6"
     title: Stage Écoprint 
     type: teinture - ecoprint
@@ -27,37 +21,24 @@ events:
     price: "330 € les 3 jours, repas non compris"
     spots: 10
 
-  - startDate: "2026-08-18/19/20"
+  - startDate: "2026-08-7/8/9"
+    title: Stage découverte teinture ecoprint indigo
+    type: indigo - teinture - ecoprint
+    description: "3 jours pour découvrir les bases de la couleur végétale"
+    price: "330 € les 3 jours, repas non compris"
+    spots: 6
+
+  - startDate: "2026-08-18/19"
     title: Stage indigo
     type: indigo
     description: "Découverte de l'indigo naturel, montage d'une cuve, teinture d'échantillon, motifs à base de pate d'argile et chèche personnalisé. Journée complète."
     price: "220 € les 2 jours, repas non compris"
     spots: 10
 
-  - startDate: "2026-07-17/18"
-    title: Stage beaux arts
+    - startDate: "2026-08-29/30"
+    title: Stage Beaux arts
     type: beauxarts
-    description: "fabrication d'encres, pigments, aquarelle, pastels"
-    price: "220 € les 2 jours, repas non compris"
-    spots: 10
-
-  - startDate: "2026-08-4/5/6"
-    title: Stage Ecoprint
-    type: ecoprint
-    description: "Session estivale — parfaite pour imprimer soie et coton et tester différentes méthodes. Groupe limité pour un suivi personnalisé."
-    price: "330 € les 3 jours, repas non compris"
-    spots: 6
-
-  - startDate: "2026-08-10/11/12/13/14"
-    title: motifs en teinture végétale
-    type: teinture
-    description: "5 jours d'immersion pour tester tout type de motifs sur soie et fibres cellulosique"
-    price: "550 € les 5 jours, repas non compris"
-    spots: 6
-
-  - startDate: "2026-08-29/30"
-    title: Stage beaux arts
-    type: beauxarts
-    description: "fabrication d'encres, pigments, aquarelle, pastel"
-    price: "220 € les 2 jours, repas non compris"
-    spots: 10
+    description: "Comment fabriquer des pigments naturels et les utiliser pour la peinture, l'aquarelle et le pastel"
+    price: "220 €, repas non compris"
+    spots: 8
+   
