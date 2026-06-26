@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Spoutnik97/atelier-ilys
   branch: main
-  base_url: https://atelier-ilys.com
+  base_url: https://www.atelier-ilys.com
   auth_endpoint: api/auth
 
 media_folder: public/images
