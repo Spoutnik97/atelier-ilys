@@ -1,5 +1,4 @@
 events:
-  
   - startDate: "2026-07-17/18"
     title: Stage beaux arts
     type: beauxarts
@@ -15,7 +14,7 @@ events:
     spots: 4
 
   - startDate: "2026-08-4/5/6"
-    title: Stage Écoprint 
+    title: Stage Écoprint
     type: teinture - ecoprint
     description: "3 jours de stages d'initiation pour découvrir la diversité des impressions de plates sur fibres naturelles"
     price: "330 € les 3 jours, repas non compris"
@@ -35,10 +34,9 @@ events:
     price: "220 € les 2 jours, repas non compris"
     spots: 10
 
-    - startDate: "2026-08-29/30"
+  - startDate: "2026-08-29/30"
     title: Stage Beaux arts
     type: beauxarts
     description: "Comment fabriquer des pigments naturels et les utiliser pour la peinture, l'aquarelle et le pastel"
     price: "220 €, repas non compris"
     spots: 8
-   
