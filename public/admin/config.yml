@@ -1,17 +1,13 @@
 backend:
   name: github
-  repo: owner/atelier-ilys  # TODO: update with real GitHub username/repo
+  repo: Spoutnik97/atelier-ilys
   branch: main
-  # For local development, comment out the backend above and use:
-  # name: git-gateway
-
-# OAuth proxy for Decap CMS (Vercel)
-# auth_endpoint: api/auth
+  base_url: https://atelier-ilys.com
+  auth_endpoint: api/auth
 
 media_folder: public/images
 public_folder: /images
 
-# Locale for the CMS UI
 locale: fr
 
 collections:
@@ -27,30 +23,17 @@ collections:
             widget: list
             summary: "{{fields.startDate}} — {{fields.title}}"
             fields:
-              - label: Date de début
+              - label: Date(s) du stage
                 name: startDate
-                widget: date
-                format: "YYYY-MM-DD"
-                date_format: "DD/MM/YYYY"
-              - label: Date de fin (optionnel)
-                name: endDate
-                widget: date
-                format: "YYYY-MM-DD"
-                date_format: "DD/MM/YYYY"
-                required: false
+                widget: string
+                hint: "Ex: 2026-07-17 ou 2026-07-17/18 ou 2026-07-29/30/31"
               - label: Titre du stage
                 name: title
                 widget: string
               - label: Type de stage
                 name: type
-                widget: select
-                options:
-                  - { label: "Indigo", value: "indigo" }
-                  - { label: "Teinture végétale", value: "teinture" }
-                  - { label: "Écoprint", value: "ecoprint" }
-                  - { label: "Pigments & Encres", value: "pigments" }
-                  - { label: "Atelier famille", value: "famille" }
-                  - { label: "Beaux-Arts", value: "beaux-arts" }
+                widget: string
+                hint: "Ex: indigo, teinture, ecoprint, beauxarts, teinture - ecoprint"
               - label: Description
                 name: description
                 widget: text
@@ -59,7 +42,7 @@ collections:
                 name: price
                 widget: string
                 required: false
-                hint: "Ex: 110 €"
+                hint: "Ex: 220 € les 2 jours, repas non compris"
               - label: Nombre de places
                 name: spots
                 widget: number
