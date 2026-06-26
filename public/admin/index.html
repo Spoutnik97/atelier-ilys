@@ -5,6 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Administration — Atelier Ilys</title>
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+    <script>
+      // BroadcastChannel relay: GitHub sets Cross-Origin-Opener-Policy: same-origin on their
+      // OAuth pages, which permanently nulls window.opener in the callback popup.
+      // BroadcastChannel bypasses this — it works across same-origin tabs/windows without opener.
+      try {
+        var _decapAuthChannel = new BroadcastChannel('decap-cms-auth');
+        _decapAuthChannel.onmessage = function (e) {
+          if (!e.data) return;
+          _decapAuthChannel.close();
+          if (e.data.type === 'success') {
+            window.dispatchEvent(new MessageEvent('message', {
+              data: 'authorization:github:success:' + JSON.stringify({
+                token: e.data.token,
+                provider: e.data.provider,
+              }),
+              origin: window.location.origin,
+            }));
+          } else if (e.data.type === 'error') {
+            window.dispatchEvent(new MessageEvent('message', {
+              data: 'authorization:github:error:' + e.data.message,
+              origin: window.location.origin,
+            }));
+          }
+        };
+      } catch (_) {}
+    </script>
     <script defer src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
