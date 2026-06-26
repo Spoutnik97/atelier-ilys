@@ -39,9 +39,3 @@ events:
       peinture, l'aquarelle et le pastel
     price: 220 €, repas non compris
     spots: 8
-  - startDate: 2026-09-29/30/31
-    title: Test guillaume
-    type: hellost
-    description: coucou
-    price: "97"
-    spots: 3
