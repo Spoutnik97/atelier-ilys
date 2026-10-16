@@ -48,7 +48,7 @@ export const POST: APIRoute = async ({ request }) => {
       from: "contact@atelier-ilys.com",
       to: "atelier.ilys@gmail.com",
       replyTo: email,
-      subject: `[Contact] Message de ${name}`,
+      subject: `${data.lang === "en" ? "[EN] " : ""}[Contact] Message de ${name}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #F5F0E8; border: 1px solid #EAE2D0;">
           <h2 style="color: #3D5A80; border-bottom: 2px solid #C8963E; padding-bottom: 8px;">Nouveau message — Atelier Ilys</h2>

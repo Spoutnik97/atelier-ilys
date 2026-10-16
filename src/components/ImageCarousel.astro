@@ -1,4 +1,6 @@
 ---
+import { getLang, useTranslations } from '../i18n'
+
 interface Props {
   images: string[]
   alt: string
@@ -6,6 +8,7 @@ interface Props {
 }
 
 const { images, alt, class: className = '' } = Astro.props
+const t = useTranslations(getLang(Astro.url))
 const id = `carousel-${Math.random().toString(36).slice(2, 9)}`
 ---
 
@@ -26,12 +29,12 @@ const id = `carousel-${Math.random().toString(36).slice(2, 9)}`
       <button
         class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg leading-none transition-colors z-10"
         data-prev
-        aria-label="Image précédente"
+        aria-label={t('carousel.prev')}
       >&#8249;</button>
       <button
         class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg leading-none transition-colors z-10"
         data-next
-        aria-label="Image suivante"
+        aria-label={t('carousel.next')}
       >&#8250;</button>
       <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" data-dots>
         {images.map((_, i) => (

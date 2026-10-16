@@ -1,12 +1,26 @@
 ---
+import { getLang, localizePath, useTranslations } from '../i18n'
+
+const lang = getLang(Astro.url)
+const t = useTranslations(lang)
+const en = lang === 'en'
+
+// Values stay in French (they end up in the email sent to the atelier)
 const workshopTypes = [
-  'Teinture à l\'indigo',
-  'Teinture végétale',
-  'Pigments et encres naturelles',
-  'Écoprint',
-  'Atelier famille',
-  'Beaux-arts (pigments)',
-  'Stage personnalisé',
+  { value: 'Teinture à l\'indigo', en: 'Indigo dyeing' },
+  { value: 'Teinture végétale', en: 'Plant dyeing' },
+  { value: 'Pigments et encres naturelles', en: 'Natural pigments and inks' },
+  { value: 'Écoprint', en: 'Eco-print' },
+  { value: 'Atelier famille', en: 'Family workshop' },
+  { value: 'Beaux-arts (pigments)', en: 'Fine arts (pigments)' },
+  { value: 'Stage personnalisé', en: 'Custom workshop' },
+]
+
+const durations = [
+  { value: 'demi-journee', fr: 'Demi-journée (2h30) — 55 €', en: 'Half day (2.5 h) — €55' },
+  { value: 'journee', fr: 'Journée complète — 110 €', en: 'Full day — €110' },
+  { value: '2-jours', fr: '2 jours — 220 €', en: '2 days — €220' },
+  { value: 'famille', fr: 'Atelier famille (2h30) — 35 € / adulte', en: 'Family workshop (2.5 h) — €35 / adult' },
 ]
 ---
 
@@ -16,10 +30,15 @@ const workshopTypes = [
   action="/api/booking-workshop"
   class="space-y-5"
   novalidate
+  data-sending={t('form.sending')}
+  data-submit={t('form.sendRequest')}
+  data-success={t('booking.success')}
+  data-error={t('form.error')}
 >
+  <input type="hidden" name="lang" value={lang} />
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
     <div>
-      <label for="booking-name" class="form-label">Nom et prénom <span class="text-terracotta">*</span></label>
+      <label for="booking-name" class="form-label">{t("form.name")} <span class="text-terracotta">*</span></label>
       <input
         type="text"
         id="booking-name"
@@ -27,11 +46,11 @@ const workshopTypes = [
         required
         autocomplete="name"
         class="form-input"
-        placeholder="Marie Dupont"
+        placeholder={t("form.namePlaceholder")}
       />
     </div>
     <div>
-      <label for="booking-email" class="form-label">Email <span class="text-terracotta">*</span></label>
+      <label for="booking-email" class="form-label">{t("form.email")} <span class="text-terracotta">*</span></label>
       <input
         type="email"
         id="booking-email"
@@ -39,13 +58,13 @@ const workshopTypes = [
         required
         autocomplete="email"
         class="form-input"
-        placeholder="marie@exemple.fr"
+        placeholder={t("form.emailPlaceholder")}
       />
     </div>
   </div>
 
   <div>
-    <label for="booking-phone" class="form-label">Téléphone <span class="text-terracotta">*</span></label>
+    <label for="booking-phone" class="form-label">{t("form.phone")} <span class="text-terracotta">*</span></label>
     <input
       type="tel"
       id="booking-phone"
@@ -53,44 +72,41 @@ const workshopTypes = [
       required
       autocomplete="tel"
       class="form-input"
-      placeholder="06 12 34 56 78"
+      placeholder={t("form.phonePlaceholder")}
     />
   </div>
 
   <div>
-    <label for="booking-type" class="form-label">Type de stage <span class="text-terracotta">*</span></label>
+    <label for="booking-type" class="form-label">{t("booking.type")} <span class="text-terracotta">*</span></label>
     <select id="booking-type" name="workshopType" required class="form-input">
-      <option value="">Choisissez un type de stage…</option>
-      {workshopTypes.map((t) => <option value={t}>{t}</option>)}
+      <option value="">{t('booking.typeChoose')}</option>
+      {workshopTypes.map((w) => <option value={w.value}>{en ? w.en : w.value}</option>)}
     </select>
   </div>
 
   <div>
-    <label for="booking-duration" class="form-label">Durée souhaitée <span class="text-terracotta">*</span></label>
+    <label for="booking-duration" class="form-label">{t("booking.duration")} <span class="text-terracotta">*</span></label>
     <select id="booking-duration" name="duration" required class="form-input">
-      <option value="">Choisissez une durée…</option>
-      <option value="demi-journee">Demi-journée (2h30) — 55 €</option>
-      <option value="journee">Journée complète — 110 €</option>
-      <option value="2-jours">2 jours — 220 €</option>
-      <option value="famille">Atelier famille (2h30) — 35 € / adulte</option>
+      <option value="">{t('booking.durationChoose')}</option>
+      {durations.map((d) => <option value={d.value}>{en ? d.en : d.fr}</option>)}
     </select>
   </div>
 
   <div>
-    <label for="booking-date" class="form-label">Date(s) souhaitée(s) <span class="text-terracotta">*</span></label>
+    <label for="booking-date" class="form-label">{t("booking.date")} <span class="text-terracotta">*</span></label>
     <input
       type="text"
       id="booking-date"
       name="preferredDate"
       required
       class="form-input"
-      placeholder="ex: juillet 2026, ou une date précise"
+      placeholder={t("booking.datePlaceholder")}
     />
-    <p class="text-xs text-warm-text/50 mt-1">Consultez le <a href="/planifiez" class="underline">calendrier des stages</a> pour les dates disponibles.</p>
+    <p class="text-xs text-warm-text/50 mt-1">{t('booking.dateHintBefore')} <a href={localizePath('/planifiez', lang)} class="underline">{t('booking.dateHintLink')}</a> {t('booking.dateHintAfter')}</p>
   </div>
 
   <div>
-    <label for="booking-participants" class="form-label">Nombre de participants</label>
+    <label for="booking-participants" class="form-label">{t("booking.participants")}</label>
     <input
       type="number"
       id="booking-participants"
@@ -103,13 +119,13 @@ const workshopTypes = [
   </div>
 
   <div>
-    <label for="booking-wishes" class="form-label">Vos souhaits ou questions</label>
+    <label for="booking-wishes" class="form-label">{t("booking.wishes")}</label>
     <textarea
       id="booking-wishes"
       name="wishes"
       rows="4"
       class="form-input resize-y"
-      placeholder="Précisions sur votre projet, niveau, fibres à teindre, besoins particuliers…"
+      placeholder={t("booking.wishesPlaceholder")}
     ></textarea>
   </div>
 
@@ -119,13 +135,13 @@ const workshopTypes = [
   <div id="booking-status" class="hidden" role="alert" aria-live="polite"></div>
 
   <button type="submit" class="btn-primary w-full sm:w-auto" id="booking-submit">
-    Envoyer ma demande
+    {t('form.sendRequest')}
   </button>
-  <p class="text-xs text-warm-text/50">Nous vous confirmons la disponibilité par email sous 48h.</p>
+  <p class="text-xs text-warm-text/50">{t("booking.note")}</p>
 </form>
 
 <script>
-  const form = document.getElementById('booking-form')
+  const form = document.getElementById('booking-form') as HTMLFormElement | null
   const status = document.getElementById('booking-status')
   const submit = document.getElementById('booking-submit')
 
@@ -137,7 +153,7 @@ const workshopTypes = [
     if (honey?.value) return
 
     submit.setAttribute('disabled', 'true')
-    submit.textContent = 'Envoi en cours…'
+    submit.textContent = form.dataset.sending || ''
     status.className = 'hidden'
 
     try {
@@ -151,18 +167,18 @@ const workshopTypes = [
       const data = await res.json()
 
       if (res.ok && data.ok) {
-        status.textContent = 'Votre demande a bien été reçue ! Nous vous répondons dans les 48h pour confirmer les disponibilités.'
+        status.textContent = form.dataset.success || ''
         status.className = 'p-4 bg-botanical/10 border border-botanical text-botanical rounded text-sm'
         form.reset()
       } else {
         throw new Error(data.error || 'Erreur')
       }
     } catch {
-      status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous contacter directement par email.'
+      status.textContent = form.dataset.error || ''
       status.className = 'p-4 bg-terracotta/10 border border-terracotta text-terracotta rounded text-sm'
     } finally {
       submit.removeAttribute('disabled')
-      submit.textContent = 'Envoyer ma demande'
+      submit.textContent = form.dataset.submit || ''
       status.classList.remove('hidden')
       status.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }

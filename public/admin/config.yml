@@ -43,6 +43,20 @@ collections:
                 widget: string
                 required: false
                 hint: "Ex: 220 € les 2 jours, repas non compris"
+              - label: Titre en anglais
+                name: titleEn
+                widget: string
+                required: false
+                hint: "Affiché sur la version anglaise du site. Laisser vide = titre français."
+              - label: Description en anglais
+                name: descriptionEn
+                widget: text
+                required: false
+              - label: Tarif en anglais
+                name: priceEn
+                widget: string
+                required: false
+                hint: "Ex: €220 for 2 days, meals not included"
               - label: Nombre de places
                 name: spots
                 widget: number

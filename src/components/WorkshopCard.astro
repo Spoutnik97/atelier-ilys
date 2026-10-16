@@ -1,4 +1,6 @@
 ---
+import { getLang, localizePath, useTranslations } from "../i18n";
+
 interface Props {
     title: string;
     description: string;
@@ -19,9 +21,13 @@ const {
     image,
     imageAlt,
     type = "",
-    link = "/reserver",
+    link,
     details = "",
 } = Astro.props;
+
+const lang = getLang(Astro.url);
+const t = useTranslations(lang);
+const href = link ?? localizePath("/reserver", lang);
 
 const typeColors: Record<string, string> = {
     indigo: "bg-indigo text-cream",
@@ -67,7 +73,7 @@ const badgeClass = typeColors[type] || "bg-ochre text-cream";
             <summary
                 class="cursor-pointer text-sm font-medium text-indigo hover:underline"
             >
-                En savoir plus
+                {t("workshop.more")}
             </summary>
             <p class="text-warm-text/80 text-sm leading-relaxed mt-2">
                 {details}
@@ -85,8 +91,8 @@ const badgeClass = typeColors[type] || "bg-ochre text-cream";
                 >
             </div>
         </div>
-        <a href={link} class="btn-primary mt-4 text-sm text-center">
-            Réserver ce stage
+        <a href={href} class="btn-primary mt-4 text-sm text-center">
+            {t("workshop.book")}
         </a>
     </div>
 </article>

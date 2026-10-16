@@ -1,4 +1,9 @@
 ---
+import { getLang, localizePath, useTranslations } from "../i18n";
+
+const lang = getLang(Astro.url);
+const t = useTranslations(lang);
+const l = (path: string) => localizePath(path, lang);
 const year = new Date().getFullYear();
 ---
 
@@ -11,9 +16,9 @@ const year = new Date().getFullYear();
                     Atelier Ilys
                 </h3>
                 <p class="text-cream/80 text-sm leading-relaxed">
-                    Teintures végétales artisanales en Haute-Provence.<br />
-                    Stages, hébergement et services personnalisés<br />
-                    au cœur d'une magnanerie du XVIII<sup>e</sup> siècle.
+                    {t("footer.about1")}<br />
+                    {t("footer.about2")}<br />
+                    <Fragment set:html={t("footer.about3")} />
                 </p>
                 <div class="mt-4 flex gap-3">
                     <a
@@ -55,67 +60,67 @@ const year = new Date().getFullYear();
 
             <!-- Navigation -->
             <div>
-                <h3 class="font-heading text-lg text-ochre mb-3">Navigation</h3>
+                <h3 class="font-heading text-lg text-ochre mb-3">{t("footer.navigation")}</h3>
                 <ul class="space-y-2 text-sm text-cream/80">
                     <li>
                         <a
-                            href="/atelier-ilys"
+                            href={l("/atelier-ilys")}
                             class="hover:text-ochre transition-colors"
-                            >L'atelier</a>
+                            >{t("nav.atelier")}</a>
                     </li>
                     <li>
                         <a
-                            href="/initiation"
+                            href={l("/initiation")}
                             class="hover:text-ochre transition-colors"
-                            >Stages de teinture</a>
+                            >{t("footer.workshops")}</a>
                     </li>
                     <li>
                         <a
-                            href="/planifiez"
+                            href={l("/planifiez")}
                             class="hover:text-ochre transition-colors"
-                            >Calendrier 2026</a>
+                            >{t("footer.calendar")}</a>
                     </li>
                     <li>
                         <a
-                            href="/reserver"
+                            href={l("/reserver")}
                             class="hover:text-ochre transition-colors"
-                            >Réserver un stage</a>
+                            >{t("footer.bookWorkshop")}</a>
                     </li>
                     <li>
                         <a
-                            href="/sejournez"
+                            href={l("/sejournez")}
                             class="hover:text-ochre transition-colors"
-                            >Hébergement</a>
+                            >{t("footer.lodging")}</a>
                     </li>
                     <li>
                         <a
-                            href="/reserve-ton-sejour"
+                            href={l("/reserve-ton-sejour")}
                             class="hover:text-ochre transition-colors"
-                            >Réserver un séjour</a>
+                            >{t("footer.bookStay")}</a>
                     </li>
                     <li>
                         <a
-                            href="/galerie-photo"
+                            href={l("/galerie-photo")}
                             class="hover:text-ochre transition-colors"
-                            >Galerie photos</a>
+                            >{t("footer.gallery")}</a>
                     </li>
                     <li>
                         <a
-                            href="/service-personnalise"
+                            href={l("/service-personnalise")}
                             class="hover:text-ochre transition-colors"
-                            >Service personnalisé</a>
+                            >{t("footer.custom")}</a>
                     </li>
                     <li>
                         <a
-                            href="/boutique"
+                            href={l("/boutique")}
                             class="hover:text-ochre transition-colors"
-                            >Boutique</a>
+                            >{t("nav.shop")}</a>
                     </li>
                     <li>
                         <a
-                            href="/offrez"
+                            href={l("/offrez")}
                             class="hover:text-ochre transition-colors"
-                            >Offrir un cadeau</a>
+                            >{t("footer.gift")}</a>
                     </li>
                 </ul>
             </div>
@@ -151,8 +156,8 @@ const year = new Date().getFullYear();
                     </p>
                 </address>
                 <div class="mt-4">
-                    <a href="/contact" class="btn-ochre text-sm py-2 px-4">
-                        Nous écrire
+                    <a href={l("/contact")} class="btn-ochre text-sm py-2 px-4">
+                        {t("footer.write")}
                     </a>
                 </div>
             </div>
@@ -161,10 +166,10 @@ const year = new Date().getFullYear();
         <div
             class="border-t border-cream/20 mt-10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-cream/50"
         >
-            <p>&copy; {year} Atelier Ilys — Tous droits réservés</p>
+            <p>&copy; {year} Atelier Ilys — {t("footer.rights")}</p>
             <a
-                href="/mentions-legales"
-                class="hover:text-cream transition-colors">Mentions légales</a
+                href={l("/mentions-legales")}
+                class="hover:text-cream transition-colors">{t("footer.legal")}</a
             >
         </div>
     </div>

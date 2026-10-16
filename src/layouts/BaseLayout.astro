@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Analytics from "@vercel/analytics/astro";
+import { getLang, stripLang, localizePath, useTranslations } from "../i18n";
 
 interface Props {
     title: string;
@@ -22,19 +23,28 @@ const {
     jsonLd,
 } = Astro.props;
 
+const lang = getLang(Astro.url);
+const t = useTranslations(lang);
+const basePath = stripLang(Astro.url.pathname);
 const siteUrl = "https://atelier-ilys.com";
+const homeUrl = `${siteUrl}${localizePath("/", lang)}`;
+const altUrls = {
+    fr: `${siteUrl}${localizePath(basePath, "fr")}`,
+    en: `${siteUrl}${localizePath(basePath, "en")}`,
+};
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
 const ogImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
 const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
 // Breadcrumb JSON-LD
-const breadcrumbItems = canonicalPath
+const isHome = basePath === "/";
+const breadcrumbItems = !isHome
     ? [
-          { "@type": "ListItem", position: 1, name: "Accueil", item: siteUrl },
+          { "@type": "ListItem", position: 1, name: t("site.home"), item: homeUrl },
           { "@type": "ListItem", position: 2, name: title, item: canonicalUrl },
       ]
-    : [{ "@type": "ListItem", position: 1, name: "Accueil", item: siteUrl }];
+    : [{ "@type": "ListItem", position: 1, name: t("site.home"), item: homeUrl }];
 
 const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -44,7 +54,7 @@ const breadcrumbLd = {
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,6 +63,33 @@ const breadcrumbLd = {
         <title>{title} | Atelier Ilys</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hreflang="fr" href={altUrls.fr} />
+        <link rel="alternate" hreflang="en" href={altUrls.en} />
+        <link rel="alternate" hreflang="x-default" href={altUrls.fr} />
+
+        <!--
+            Language auto-detection: on the very first visit only, visitors whose
+            browser is not set to French are sent to the English version.
+            Once a language is chosen (detected or via the FR/EN switch) it is
+            remembered in localStorage and never overridden. Bots are skipped so
+            that search engines index both versions.
+        -->
+        <script is:inline>
+            (function () {
+                try {
+                    if (/bot|crawl|spider|slurp|lighthouse/i.test(navigator.userAgent)) return;
+                    if (localStorage.getItem("lang")) return;
+                    var langs = navigator.languages || [navigator.language || ""];
+                    var pref = String(langs[0] || "").toLowerCase().indexOf("fr") === 0 ? "fr" : "en";
+                    localStorage.setItem("lang", pref);
+                    var p = location.pathname;
+                    var isEn = p === "/en" || p.indexOf("/en/") === 0;
+                    if (pref === "en" && !isEn) {
+                        location.replace((p === "/" ? "/en/" : "/en" + p) + location.search + location.hash);
+                    }
+                } catch (e) {}
+            })();
+        </script>
 
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
@@ -60,7 +97,8 @@ const breadcrumbLd = {
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={ogImage} />
-        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:locale" content={lang === "en" ? "en_GB" : "fr_FR"} />
+        <meta property="og:locale:alternate" content={lang === "en" ? "fr_FR" : "en_GB"} />
         <meta property="og:site_name" content="Atelier Ilys" />
 
         <!-- Twitter -->

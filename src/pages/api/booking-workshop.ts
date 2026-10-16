@@ -66,7 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
       from: "reservations@atelier-ilys.com",
       to: "atelier.ilys@gmail.com",
       replyTo: email,
-      subject: `[Stage] Demande de ${name} — ${workshopType}`,
+      subject: `${data.lang === "en" ? "[EN] " : ""}[Stage] Demande de ${name} — ${workshopType}`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #F5F0E8; border: 1px solid #EAE2D0;">
           <h2 style="color: #3D5A80; border-bottom: 2px solid #C8963E; padding-bottom: 8px;">Nouvelle demande de stage — Atelier Ilys</h2>

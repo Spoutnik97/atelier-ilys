@@ -83,8 +83,20 @@ Each event has the following fields:
 | `description` | No | Free text |
 | `price` | No | e.g. `220 € les 2 jours, repas non compris` |
 | `spots` | No | Integer (1–30) |
+| `titleEn` / `descriptionEn` / `priceEn` | No | English versions shown on `/en/planifiez` (French used when empty) |
 
 To edit events through the CMS, go to `/admin` → **Calendrier des stages**.
+
+---
+
+## Translations (FR / EN)
+
+- French is the default language, at the root (`/initiation`). English pages live in `src/pages/en/` with the same slugs (`/en/initiation`).
+- Text of shared components (header, footer, forms, cards…) is in `src/i18n/index.ts`.
+- Page content is translated directly in each `src/pages/en/*.astro` file: **when you change a French page, update its English twin**.
+- The FR/EN button in the header switches to the same page in the other language and remembers the choice (`localStorage`).
+- On the first visit, a browser not set to French is redirected to the English version (bots are not redirected). Once a choice is stored it is never overridden.
+- Form emails sent from the English site have an `[EN]` prefix in their subject.
 
 ---
 

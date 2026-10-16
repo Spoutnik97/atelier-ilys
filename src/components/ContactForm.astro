@@ -1,13 +1,24 @@
 ---
+import { getLang, useTranslations } from '../i18n'
+
 interface Props {
   formId?: string
   successMessage?: string
 }
 
+const lang = getLang(Astro.url)
+const t = useTranslations(lang)
+
 const {
   formId = 'contact-form',
-  successMessage = 'Votre message a bien été envoyé. Nous vous répondrons sous 48h.',
+  successMessage = t('contact.success'),
 } = Astro.props
+
+const labels = {
+  sending: t('form.sending'),
+  submit: t('contact.send'),
+  error: t('form.error'),
+}
 ---
 
 <form
@@ -17,9 +28,10 @@ const {
   class="space-y-5"
   novalidate
 >
+  <input type="hidden" name="lang" value={lang} />
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
     <div>
-      <label for={`${formId}-name`} class="form-label">Nom et prénom <span class="text-terracotta">*</span></label>
+      <label for={`${formId}-name`} class="form-label">{t("form.name")} <span class="text-terracotta">*</span></label>
       <input
         type="text"
         id={`${formId}-name`}
@@ -27,11 +39,11 @@ const {
         required
         autocomplete="name"
         class="form-input"
-        placeholder="Marie Dupont"
+        placeholder={t("form.namePlaceholder")}
       />
     </div>
     <div>
-      <label for={`${formId}-email`} class="form-label">Email <span class="text-terracotta">*</span></label>
+      <label for={`${formId}-email`} class="form-label">{t("form.email")} <span class="text-terracotta">*</span></label>
       <input
         type="email"
         id={`${formId}-email`}
@@ -39,32 +51,32 @@ const {
         required
         autocomplete="email"
         class="form-input"
-        placeholder="marie@exemple.fr"
+        placeholder={t("form.emailPlaceholder")}
       />
     </div>
   </div>
 
   <div>
-    <label for={`${formId}-phone`} class="form-label">Téléphone</label>
+    <label for={`${formId}-phone`} class="form-label">{t("form.phone")}</label>
     <input
       type="tel"
       id={`${formId}-phone`}
       name="phone"
       autocomplete="tel"
       class="form-input"
-      placeholder="06 12 34 56 78"
+      placeholder={t("form.phonePlaceholder")}
     />
   </div>
 
   <div>
-    <label for={`${formId}-message`} class="form-label">Message <span class="text-terracotta">*</span></label>
+    <label for={`${formId}-message`} class="form-label">{t("contact.message")} <span class="text-terracotta">*</span></label>
     <textarea
       id={`${formId}-message`}
       name="message"
       required
       rows="5"
       class="form-input resize-y"
-      placeholder="Votre message…"
+      placeholder={t("contact.messagePlaceholder")}
     ></textarea>
   </div>
 
@@ -74,11 +86,11 @@ const {
   <div id={`${formId}-status`} class="hidden" role="alert" aria-live="polite"></div>
 
   <button type="submit" class="btn-primary w-full sm:w-auto" id={`${formId}-submit`}>
-    Envoyer le message
+    {t('contact.send')}
   </button>
 </form>
 
-<script define:vars={{ formId, successMessage }}>
+<script define:vars={{ formId, successMessage, labels }}>
   const form = document.getElementById(formId)
   const status = document.getElementById(`${formId}-status`)
   const submit = document.getElementById(`${formId}-submit`)
@@ -92,7 +104,7 @@ const {
     if (honey && honey.value) return
 
     submit.setAttribute('disabled', 'true')
-    submit.textContent = 'Envoi en cours…'
+    submit.textContent = labels.sending
     status.className = 'hidden'
 
     try {
@@ -113,11 +125,11 @@ const {
         throw new Error(data.error || 'Erreur')
       }
     } catch (err) {
-      status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous contacter par email.'
+      status.textContent = labels.error
       status.className = 'p-4 bg-terracotta/10 border border-terracotta text-terracotta rounded text-sm'
     } finally {
       submit.removeAttribute('disabled')
-      submit.textContent = 'Envoyer le message'
+      submit.textContent = labels.submit
       status.classList.remove('hidden')
       status.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }
