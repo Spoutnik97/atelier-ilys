@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Gallery from "../../components/Gallery.astro";
+const _uploads = import.meta.glob('../../assets/optimized/uploads/**/*', { eager: true, as: 'url' })
+
+// File names are French, so English alt texts are built from the section label.
+const galleryImages = (folder: string, label: string) =>
+    Object.entries(_uploads as Record<string, string>)
+        .filter(([k]) => k.includes(`/uploads/galeriephoto/${folder}/`))
+        .map(([, v], i) => ({
+            src: v,
+            alt: `${label} — photo ${i + 1}`,
+        }))
+
+const gallerySections = [
+    { id: "le-lieu",              title: "The place — the silk farm", images: galleryImages("le lieu", "The Atelier Ilys estate and silk farm") },
+    { id: "l-atelier",            title: "The studio",                images: galleryImages("l'atelier", "The Atelier Ilys studio") },
+    { id: "le-jardin",            title: "The garden",                images: galleryImages("le jardin tinctorial", "The dye garden") },
+    { id: "les-stages",           title: "The workshops",             images: galleryImages("les stages", "A plant-dyeing workshop") },
+    { id: "les-creations",        title: "Creations",                 images: galleryImages("les créations", "A plant-dyed creation") },
+    { id: "service-personnalise", title: "Bespoke service",           images: galleryImages("service personnalisé", "Bespoke plant-dyeing service") },
+    { id: "dormir-sur-place",     title: "Staying on site",           images: galleryImages("dormir sur place", "Accommodation at Atelier Ilys") },
+]
+---
+
+<BaseLayout
+    title="Photo Gallery — The Studio, Workshops and Accommodation"
+    description="Atelier Ilys photo gallery: the estate, the studio and the garden, plant-dyeing workshops, creations, our bespoke service and accommodation in Pierrerue."
+    canonicalPath="/en/galerie-photo"
+>
+    <section class="py-16 bg-cream-dark border-b text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <p class="text-ochre text-sm uppercase tracking-widest mb-3">
+                Gallery
+            </p>
+            <h1 class="section-title text-4xl md:text-5xl">Photos</h1>
+            <p class="text-warm-text/70 mt-4">
+                Discover the estate, the studio, the dye garden, the workshops and the
+                creations of Atelier Ilys in pictures.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-12 bg-cream">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6">
+            <Gallery sections={gallerySections} />
+        </div>
+    </section>
+
+    <section class="py-12 bg-indigo text-center text-cream">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="font-heading text-2xl text-cream mb-4">
+                Come and experience it for yourself
+            </h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/en/initiation" class="btn-ochre">See the workshops</a>
+                <a
+                    href="/en/sejournez"
+                    class="btn-secondary border-cream text-cream hover:bg-cream hover:text-indigo"
+                    >Stay on site</a
+                >
+            </div>
+        </div>
+    </section>
+</BaseLayout>

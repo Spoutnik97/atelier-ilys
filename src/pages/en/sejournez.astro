@@ -1,0 +1,326 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AccommodationCard from "../../components/AccommodationCard.astro";
+import ImageCarousel from "../../components/ImageCarousel.astro";
+const _uploads = import.meta.glob("../../assets/optimized/uploads/**/*", {
+    eager: true,
+    as: "url",
+});
+const asset = (p: string): string =>
+    (_uploads as Record<string, string>)[`../../assets/optimized/uploads/${p}`] ??
+    `https://atelier-ilys.com/wp-content/uploads/${p}`;
+
+const folderImages = (folder: string): string[] =>
+    Object.entries(_uploads as Record<string, string>)
+        .filter(([k]) => k.includes(`/uploads/sejourner/${folder}/`))
+        .map(([, v]) => v);
+
+const lodgingLd = {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    name: "Atelier Ilys — Accommodation",
+    description:
+        "Charming accommodation in an 18th-century silk farm in Pierrerue (Forcalquier), Haute-Provence. A cottage, a loft and guest rooms set in a 30-hectare natural estate.",
+    url: "https://atelier-ilys.com/en/sejournez",
+    telephone: "+33764443715",
+    email: "atelier.ilys@gmail.com",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "1080 route de fontienne",
+        addressLocality: "Pierrerue",
+        postalCode: "04300",
+        addressCountry: "FR",
+    },
+    priceRange: "€€",
+    amenityFeature: [
+        {
+            "@type": "LocationFeatureSpecification",
+            name: "Garden",
+            value: true,
+        },
+        {
+            "@type": "LocationFeatureSpecification",
+            name: "Parking",
+            value: true,
+        },
+        { "@type": "LocationFeatureSpecification", name: "WiFi", value: true },
+    ],
+};
+
+const accommodations = [
+    {
+        title: "La Maisonnette",
+        subtitle: "Self-contained holiday cottage · 25 m²",
+        description:
+            "A fully equipped, self-contained little stone house at the heart of the estate. Ideal for a couple on a nature getaway, or for combining a workshop with your stay. Studio with a fully equipped kitchen, sitting area, 140 cm bed, bathroom and private garden.",
+        capacity: "2 guests",
+        price: "€110 + €20 cleaning",
+        image: asset("2023/06/giteauprintemps-750.jpg"),
+        imageAlt:
+            "La Maisonnette — 25 m² stone holiday cottage on the Atelier Ilys estate, Pierrerue",
+        images: folderImages("gite"),
+        features: [
+            "Equipped kitchen",
+            "Private garden with garden furniture",
+            "Direct view over a lavender field",
+            "Linen provided",
+            "Plancha and barbecue",
+            "Parking",
+            "WiFi",
+        ],
+    },
+    {
+        title: "Le Loft",
+        subtitle: "Spacious loft · 130 m²",
+        description:
+            "An exceptional 130 m² loft sleeping up to 12 guests — ideal for groups, creative seminars or retreats. Private entrance, large kitchen opening onto the dining room, sitting room overlooking the lavender, several living areas, a bathroom and the Grenade room with a 160 cm double bed and views over the lavender fields. The living space connects to the three guest rooms of the house described below, accommodating 12 guests in total.",
+        capacity: "2 to 12 guests",
+        price: "€250 for 4 guests (loft + one double room + 2 beds in the sitting room); rooms charged extra for up to 8 additional guests; + €80 cleaning",
+        image: asset("2024/01/legrandpre.jpg"),
+        imageAlt:
+            "Le Grand Pré Loft — 130 m² space for groups in the Atelier Ilys silk farm",
+        images: folderImages("loft"),
+        features: [
+            "Large dining room and kitchen",
+            "Large sitting room",
+            "Private entrance",
+            "Plancha and barbecue",
+            "WiFi",
+            "Parking",
+             "Garden furniture",
+             "Shared terrace",
+        ],
+    },
+];
+
+const rooms = [
+    {
+        title: "Azur room",
+        subtitle: "Double room · Lavender field views",
+        description:
+            "A cool, restful room in shades of blue and white. 140 cm double bed, private bathroom and views over the lavender fields. 15 m².",
+        capacity: "2 guests, one 140 cm bed",
+        price: "€90",
+        imageAlt:
+            "Azur room — double room in shades of blue in the Atelier Ilys silk farm",
+        images: folderImages("chambre bleue"),
+        features: [
+            "Private bathroom",
+            "Lavender field views",
+            "Linen optional", "140 cm bed", "15 m²",
+        ],
+    },
+    {
+        title: "Green room",
+        subtitle: "Double room · Lavender field views",
+        description:
+            "Decorated in soft botanical hues, this room is an invitation to unwind, with views over the Provençal lavender fields. 140 cm double bed, shared bathroom.",
+        capacity: "2 guests",
+        price: "€80",
+        imageAlt:
+            "Green room — botanical-toned room overlooking the lavender fields, Atelier Ilys",
+        images: folderImages("chambre verte"),
+        features: ["Garrigue views", "Linen optional", "Shared bathroom", "140 cm bed", "15 m²"],
+    },
+    {
+        title: "Pink room",
+        subtitle: "Double room · Provençal charm",
+        description:
+            "The most romantic room on the estate, in soft pinks and ochres. Vintage furniture, plant-dyed fabrics and a wrought-iron double bed.",
+        capacity: "4 guests",
+        price: "€85",
+        imageAlt:
+            "Pink room — romantic room in shades of pink, Atelier Ilys, Pierrerue",
+        images: folderImages("chambre rose"),
+        features: [
+            "Lavender field views",
+            "One 160 cm double bed, one single bed, one extra bed",
+            "Linen optional", "20 m²",
+        ],
+    },
+    {
+        title: "Grenade room",
+        subtitle: "Double room · Bold colours",
+        description:
+            "The vivid colours of Provence: golden ochre, limestone white and ink black. An energising, welcoming room with a shared terrace. 12 m².",
+        capacity: "2 guests",
+        price: "included in the loft price",
+        imageAlt:
+            "Grenade room — ochre décor inspired by plant dyes, Atelier Ilys",
+        images: folderImages("grenade"),
+        features: ["Lavender field views", "Bold colours", "Linen optional", "160 cm bed", "12 m²"],
+    },
+];
+---
+
+<BaseLayout
+    title="Accommodation — Cottage, Loft and Guest Rooms in Provence"
+    description="Stay at Atelier Ilys in an 18th-century silk farm in Pierrerue, Haute-Provence. Cottage for 2 from €110/night, loft for 12, four guest rooms. Natural pool, gardens and 30 hectares of nature."
+    canonicalPath="/en/sejournez"
+    jsonLd={lodgingLd}
+>
+    <!-- Hero -->
+    <section class="relative py-24 overflow-hidden bg-indigo-dark">
+        <div class="absolute inset-0">
+            <img
+                src={asset("2023/06/vuedemsemble-750.jpg")}
+                alt="View of the Atelier Ilys estate — stone silk farm and gardens surrounded by nature"
+                class="w-full h-full object-cover opacity-35"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-indigo-dark/80 to-indigo-dark/40"
+            >
+            </div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 text-cream">
+            <div class="max-w-2xl">
+                <p class="text-ochre text-sm uppercase tracking-widest mb-4">
+                    Accommodation · Haute-Provence
+                </p>
+                <h1
+                    class="font-heading text-5xl md:text-6xl text-cream leading-tight mb-6"
+                >
+                    Stay<br />with us
+                </h1>
+                <p class="text-cream/80 text-xl leading-relaxed mb-8">
+                    Extend the experience by staying in our 18th-century silk
+                    farm, surrounded by lavender fields. Thirty hectares of
+                    nature, a dye garden, a natural spring-water pool, and
+                    Provence right on your doorstep.
+                </p>
+                <a href="/en/reserve-ton-sejour" class="btn-ochre text-base"
+                    >Book a stay</a
+                >
+            </div>
+        </div>
+    </section>
+
+    <!-- Gîtes -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-ochre text-sm uppercase tracking-widest mb-3">
+                    Holiday cottages
+                </p>
+                <h2 class="section-title">Whole-property rentals</h2>
+                <p class="section-subtitle">
+                    For a fully independent stay
+                </p>
+            </div>
+            <div class="space-y-8">
+                {accommodations.map((a) => <AccommodationCard {...a} />)}
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-ochre text-sm uppercase tracking-widest mb-3">
+                    Guest rooms
+                </p>
+                <h2 class="section-title">Our four rooms</h2>
+                <p class="section-subtitle">
+                    Each one tinted with a plant colour
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {
+                    rooms.map((room) => (
+                        <article class="card hover:shadow-md transition-shadow">
+                            <div class="aspect-[4/3]">
+                                <ImageCarousel images={room.images} alt={room.imageAlt} class="w-full h-full" />
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-heading text-xl text-indigo mb-1">
+                                    {room.title}
+                                </h3>
+                                <p class="text-ochre text-sm italic mb-2">
+                                    {room.subtitle}
+                                </p>
+                                <p class="text-warm-text/70 text-sm leading-relaxed mb-3">
+                                    {room.description}
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    {room.features.map((f) => (
+                                        <span class="text-xs bg-cream-dark px-2 py-1 rounded text-warm-text/70">
+                                            {f}
+                                        </span>
+                                    ))}
+                                </div>
+                                <div class="flex items-center justify-between pt-3 border-t border-cream-dark">
+                                    <span class="text-sm text-warm-text/60">
+                                        Sleeps:{" "}
+                                        <strong class="text-warm-text">
+                                            {room.capacity}
+                                        </strong>
+                                    </span>
+                                    <div class="text-right">
+                                        <span class="font-heading text-xl text-ochre">
+                                            {room.price}
+                                        </span>
+                                        <span class="text-xs text-warm-text/50">
+                                            /night
+                                        </span>
+                                    </div>
+                                </div>
+                                <a
+                                    href="/en/reserve-ton-sejour"
+                                    class="btn-primary mt-3 text-sm block text-center"
+                                >
+                                    Book this room
+                                </a>
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities -->
+    <section class="py-16 bg-cream-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="section-title mb-3">The estate</h2>
+            <p class="section-subtitle">Everything that makes this place special</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
+                {
+                    [
+                        { icon: "🏊", label: "Natural spring-water pool" },
+                        { icon: "🪻", label: "Lavender fields" },
+                        { icon: "🌿", label: "Dye garden" },
+                        { icon: "🌄", label: "30 ha of garrigue" },
+                        { icon: "🚗", label: "Free parking" },
+                        { icon: "📶", label: "WiFi included" },
+                        { icon: "🧺", label: "Household linen included" },
+                        { icon: "☀️", label: "Terraces" },
+                    ].map(({ icon, label }) => (
+                        <div class="bg-white p-4 rounded-sm shadow-sm">
+                            <p class="text-3xl mb-2">{icon}</p>
+                            <p class="text-sm font-medium text-warm-text">
+                                {label}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-indigo text-center text-cream">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="font-heading text-3xl text-cream mb-4">
+                Ready to stay with us?
+            </h2>
+            <p class="text-cream/80 mb-8">
+                We reply to every request within 48 hours to confirm
+                availability and rates.
+            </p>
+            <a href="/en/reserve-ton-sejour" class="btn-ochre text-base"
+                >Book my stay</a
+            >
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,250 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SumUpButton from "../../components/SumUpButton.astro";
+const _uploads = import.meta.glob('../../assets/optimized/uploads/**/*', { eager: true, as: 'url' })
+const asset = (p: string): string => (_uploads as Record<string, string>)[`../../assets/optimized/uploads/${p}`] ?? `https://atelier-ilys.com/wp-content/uploads/${p}`
+
+
+// Replace with real SumUp store URL
+const SUMUP_STORE_URL = "https://atelier-ilys.sumupstore.com";
+
+const products = [
+    {
+        name: "Sulphur cosmos",
+        subtitle: "Cosmos sulphureus",
+        description:
+            "Dried sulphur cosmos flowers, the dye plant that gives rich yellow and deep orange tones. Organically grown and hand-picked. Dyes wool, silk and cotton.",
+        price: "€10",
+        weight: "50g bag",
+        image: asset("2024/01/cosmos.jpg"),
+        imageAlt:
+            "Bag of dried sulphur cosmos flowers for plant dyeing, Atelier Ilys",
+        url: `${SUMUP_STORE_URL}/cosmos-sulfureux`,
+        colors: ["Golden yellow", "Deep orange"],
+    },
+    {
+        name: "Coreopsis tinctoria",
+        subtitle: "Coreopsis tinctoria",
+        description:
+            "Dyer's coreopsis flower heads, a traditional dye plant yielding beautiful orange and red tones. Dried and packed by hand.",
+        price: "€10",
+        weight: "50g bag",
+        image: asset("2022/05/coreopsis210.jpg"),
+        imageAlt:
+            "Dried coreopsis tinctoria flowers for plant dyeing, Atelier Ilys",
+        url: `${SUMUP_STORE_URL}/coreopsis-tinctoria`,
+        colors: ["Orange", "reddish brown", "brown"],
+    },
+
+];
+
+const kits = [
+    {
+        name: "Indigo Discovery Kit",
+        description:
+            "Everything you need to set up your first indigo vat at home: natural indigo powder, slaked lime and an illustrated step-by-step guide.",
+        price: "€46",
+        image: asset(""),
+        imageAlt:
+            "Complete kit for natural indigo dyeing at home — Atelier Ilys",
+        url: `${SUMUP_STORE_URL}/kit-indigo`,
+    },
+    {
+        name: "Plant dyeing kit for silk",
+        description:
+            "1 bag of a dye plant chosen from cosmos, weld, madder or logwood, 2 mordants to fix the colour (alum, iron sulphate), a 50 × 50 cm piece of silk and a recipe guide.",
+        price: "€46",
+        image: asset(""),
+        imageAlt:
+            "Kit with dried plants, a piece of silk and a recipe guide for plant dyeing on animal fibres — Atelier Ilys",
+        url: `${SUMUP_STORE_URL}/kit-plantes`,
+    },
+     {
+        name: "Plant dyeing kit for cotton",
+        description:
+            "1 bag of a dye plant chosen from cosmos, weld, madder or logwood, 2 mordants to fix the colour (alum, iron sulphate, soda crystals), a 150 × 50 cm piece of cotton and a recipe guide.",
+        price: "€46",
+        image: asset(""),
+        imageAlt:
+            "Kit with a dye plant, a piece of cotton and a recipe guide for plant dyeing on cellulose fibres — Atelier Ilys",
+        url: `${SUMUP_STORE_URL}/kit-plantes`,
+    },
+    {
+        name: "Plant-based inks kit",
+        description:
+            "5 × 10ml vials, 5 bags of selected dye plants (cosmos, oak galls, weld, madder, logwood), alum, iron sulphate for an intense black, guar gum and a recipe guide.",
+        price: "€46",
+        image: asset(""),
+        imageAlt:
+            "Kit of 5 dye plants and a recipe guide for plant-based inks — Atelier Ilys",
+        url: `${SUMUP_STORE_URL}/kit-plantes`,
+    },
+];
+
+
+---
+
+<BaseLayout
+    title="Shop — Dye plants and plant dyeing kits"
+    description="Atelier Ilys shop: dried dye plants (cosmos, coreopsis, oak bark), plant dyeing kits and gift vouchers. Delivery within France. Hand-harvested."
+    canonicalPath="/en/boutique"
+>
+    <section class="py-16 bg-cream-dark border-b text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <p class="text-ochre text-sm uppercase tracking-widest mb-3">
+                Shop
+            </p>
+            <h1 class="section-title text-4xl md:text-5xl">
+                Online shop
+            </h1>
+            <p class="section-subtitle">
+                Dye plants, dyeing kits & gift vouchers
+            </p>
+            <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+                Find our creations at the studio and at MAN TERRA, the new shop for local makers and producers, 1 boulevard Latourette, 04300 Forcalquier.
+                Our dye plants and seeds are grown or gathered by hand
+                in our garden in Haute-Provence, so you can dye at home
+                the natural way.
+            </p>
+        </div>
+    </section>
+
+    <!-- Plants -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title mb-2 text-center">Plants & Seeds</h2>
+            <p class="section-subtitle text-center mb-12">
+                Grown and dried by hand in Pierrerue
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {
+                    products.map((product) => (
+                        <article class="card hover:shadow-md transition-shadow">
+                            <div class="overflow-hidden aspect-[4/3]">
+                                <img
+                                    src={product.image}
+                                    alt={product.imageAlt}
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="p-5">
+                                <div class="mb-3">
+                                    <h3 class="font-heading text-xl text-indigo">
+                                        {product.name}
+                                    </h3>
+                                    <p class="text-xs text-warm-text/50 italic">
+                                        {product.subtitle}
+                                    </p>
+                                </div>
+                                <p class="text-warm-text/70 text-sm leading-relaxed mb-3">
+                                    {product.description}
+                                </p>
+                                <div class="flex flex-wrap gap-1 mb-4">
+                                    {product.colors.map((c) => (
+                                        <span class="text-xs bg-ochre/10 text-ochre px-2 py-0.5 rounded">
+                                            {c}
+                                        </span>
+                                    ))}
+                                </div>
+                                <div class="flex items-center justify-between pt-3 border-t border-cream-dark mb-3">
+                                    <span class="text-xs text-warm-text/50">
+                                        {product.weight}
+                                    </span>
+                                    <span class="font-heading text-xl text-ochre">
+                                        {product.price}
+                                    </span>
+                                </div>
+                                <SumUpButton
+                                    label="Order"
+                                    url={product.url}
+                                    variant="ochre"
+                                />
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Kits -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title mb-2 text-center">Dyeing kits</h2>
+            <p class="section-subtitle text-center mb-12">
+                Everything you need to dye at home
+            </p>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            >
+                {
+                    kits.map((kit) => (
+                        <article class="card hover:shadow-md transition-shadow flex flex-col">
+                            <div class="overflow-hidden aspect-[4/3]">
+                                <img
+                                    src={kit.image}
+                                    alt={kit.imageAlt}
+                                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="p-5 flex flex-col flex-1">
+                                <h3 class="font-heading text-xl text-indigo mb-2">
+                                    {kit.name}
+                                </h3>
+                                <p class="text-warm-text/70 text-sm leading-relaxed flex-1 mb-4">
+                                    {kit.description}
+                                </p>
+                                <div class="flex items-center justify-between pt-3 border-t border-cream-dark mb-3">
+                                    <span class="text-xs text-warm-text/50">
+                                        Delivery within France included
+                                    </span>
+                                    <span class="font-heading text-xl text-ochre">
+                                        {kit.price}
+                                    </span>
+                                </div>
+                                <SumUpButton
+                                    label="Order this kit"
+                                    url={kit.url}
+                                    variant="primary"
+                                />
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Note -->
+    <section class="py-12 bg-cream-dark text-center">
+        <div class="max-w-2xl mx-auto px-4">
+            <p class="text-warm-text/70 text-sm leading-relaxed">
+                <strong>Please note:</strong> our shop uses SumUp for secure
+                payment. You will be redirected to our secure payment page.
+                <br />For group orders or any questions, please get in touch
+                with us directly.
+            </p>
+            <a href="/en/contact" class="btn-secondary mt-4 inline-block"
+                >Contact us</a
+            >
+        </div>
+    </section>
+
+    <!-- CTA gift -->
+    <section class="py-12 bg-indigo text-cream text-center">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="font-heading text-2xl text-cream mb-3">
+                Looking for a gift?
+            </h2>
+            <p class="text-cream/80 mb-6">
+                Explore our gift ideas: workshops, plants and original
+                creations.
+            </p>
+            <a href="/en/offrez" class="btn-ochre">See gift ideas</a>
+        </div>
+    </section>
+</BaseLayout>
