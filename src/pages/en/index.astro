@@ -1,0 +1,319 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EcoBadges from "../../components/EcoBadges.astro";
+const _uploads = import.meta.glob("../../assets/optimized/uploads/**/*", {
+    eager: true,
+    as: "url",
+});
+const asset = (p: string): string =>
+    (_uploads as Record<string, string>)[`../../assets/optimized/uploads/${p}`] ??
+    `https://atelier-ilys.com/wp-content/uploads/${p}`;
+
+const heroImage = asset("vue-sud-300x270.jpg");
+
+const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Atelier Ilys",
+    description:
+        "Artisan plant-dyeing workshops, accommodation and bespoke services in Haute-Provence. An 18th-century former silk farm (magnanerie) in Pierrerue, near Forcalquier.",
+    url: "https://atelier-ilys.com",
+    telephone: "+33764443715",
+    email: "atelier.ilys@gmail.com",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "1080 route de fontienne",
+        addressLocality: "Pierrerue",
+        postalCode: "04300",
+        addressCountry: "FR",
+        addressRegion: "Provence-Alpes-Côte d'Azur",
+    },
+    geo: {
+        "@type": "GeoCoordinates",
+        latitude: 43.9617,
+        longitude: 5.7833,
+    },
+    image: "https://atelier-ilys.com/images/og-default.jpg",
+    openingHoursSpecification: [
+        {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+            ],
+            opens: "09:00",
+            closes: "18:00",
+        },
+    ],
+    priceRange: "€€",
+    hasMap: "https://maps.google.com/?q=Pierrerue+04300",
+    sameAs: [
+        "https://www.facebook.com/atelier ilys",
+        "https://www.instagram.com/atelier.ilys/",
+    ],
+};
+
+const pressLogos = [
+    {
+        name: "Wonderbox",
+        src: asset("logo-vectoriel-wonderbox.jpg"),
+    },
+    {
+        name: "ELLE",
+        src: asset("elle-magazine.png"),
+    },
+    {
+        name: "La Thomassine",
+        src: asset("parc-du-luberon-217x300.png"),
+    },
+];
+---
+
+<BaseLayout
+    title="Natural plant dyes from Haute-Provence"
+    description="Atelier Ilys — artisan plant-dyeing workshops, accommodation in an 18th-century former silk farm (magnanerie) and bespoke services. Pierrerue, Haute-Provence."
+    canonicalPath="/en/"
+    jsonLd={localBusinessLd}
+>
+    <!-- Hero -->
+    <section
+        class="min-h-[90vh] flex flex-col md:flex-row items-center overflow-hidden bg-indigo-dark"
+    >
+        <!-- image pane -->
+        <div class="w-full md:w-1/2 h-64 md:h-auto relative">
+            <img
+                src={asset("vuesud.jpg")}
+                alt="South view of the silk farm, Haute-Provence"
+                class="w-full h-full object-cover"
+                fetchpriority="high"
+                decoding="sync"
+            />
+        </div>
+        <!-- text pane -->
+        <div class="w-full md:w-1/2 flex items-center">
+            <div class="relative max-w-2xl px-4 sm:px-6 lg:px-8 py-24">
+                <p
+                    class="text-ochre font-medium tracking-widest uppercase text-sm mb-4"
+                >
+                    Pierrerue · Haute-Provence
+                </p>
+                <h1
+                    class="font-heading text-5xl md:text-6xl lg:text-7xl text-cream leading-tight mb-6"
+                >
+                    Plant colours<br />
+                    <em class="text-ochre not-italic">from Haute-Provence</em>
+                </h1>
+                <p class="text-cream/80 text-xl leading-relaxed mb-8 max-w-xl">
+                    Immerse yourself in the age-old art of natural dyeing.
+                    Hands-on workshops, charming accommodation and bespoke
+                    creations at the heart of an 18<sup>th</sup>-century former
+                    silk farm (magnanerie).
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="/en/initiation" class="btn-ochre text-base"
+                        >Discover our workshops</a
+                    >
+                    <a
+                        href="/en/sejournez"
+                        class="btn-secondary text-base border-cream text-cream hover:bg-cream hover:text-indigo"
+                        >Stay with us</a
+                    >
+                </div>
+            </div>
+        </div>
+        <!-- Scroll hint -->
+        <div
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-cream/50"
+        >
+            <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Eco Badges -->
+    <EcoBadges />
+
+    <!-- 3-column feature cards -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <h2 class="section-title">The Ilys experience</h2>
+                <p class="section-subtitle">
+                    Art, nature and authenticity in Provence
+                </p>
+                <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+                    Isabelle Lys opens the doors of her studio to share her
+                    passion for plant dyes, in an exceptional natural setting.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Stages -->
+                <article
+                    class="card group hover:shadow-lg transition-shadow duration-300"
+                >
+                    <div class="overflow-hidden aspect-[4/3]">
+                        <img
+                            src={asset("guiau.jpg")}
+                            alt="Participants dipping fabric into an indigo vat during a workshop at Atelier Ilys"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-indigo/10 flex items-center justify-center mb-3"
+                        >
+                            <span class="text-xl">🌿</span>
+                        </div>
+                        <h3 class="font-heading text-2xl text-indigo mb-2">
+                            Dyeing workshops
+                        </h3>
+                        <p
+                            class="text-warm-text/70 text-sm leading-relaxed mb-4"
+                        >
+                            Indigo, plants, eco-print, pigments: workshops for
+                            every level, by the half-day, full day or weekend.
+                            From €35 for families.
+                        </p>
+                        <a href="/en/initiation" class="btn-primary text-sm"
+                            >See the workshops</a
+                        >
+                    </div>
+                </article>
+
+                <!-- Séjour -->
+                <article
+                    class="card group hover:shadow-lg transition-shadow duration-300"
+                >
+                    <div class="overflow-hidden aspect-[4/3]">
+                        <img
+                            src={asset("IMG_7233-300x225.jpeg")}
+                            alt="Shaded terrace for relaxing, Atelier Ilys, Pierrerue"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-ochre/10 flex items-center justify-center mb-3"
+                        >
+                            <span class="text-xl">🏡</span>
+                        </div>
+                        <h3 class="font-heading text-2xl text-indigo mb-2">
+                            Stay on site
+                        </h3>
+                        <p
+                            class="text-warm-text/70 text-sm leading-relaxed mb-4"
+                        >
+                            A little cottage, a loft or rooms in our
+                            18<sup>th</sup>-century silk farm. 30 hectares of
+                            nature and dye gardens. From €110/night.
+                        </p>
+                        <a href="/en/sejournez" class="btn-primary text-sm"
+                            >See the accommodation</a
+                        >
+                    </div>
+                </article>
+
+                <!-- Boutique -->
+                <article
+                    class="card group hover:shadow-lg transition-shadow duration-300"
+                >
+                    <div class="overflow-hidden aspect-[4/3]">
+                        <img
+                            src={asset("IMG_7214.jpg")}
+                            alt="Freshly picked sulphur cosmos from the Atelier Ilys dye garden, ready to be dried"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-terracotta/10 flex items-center justify-center mb-3"
+                        >
+                            <span class="text-xl">🛍️</span>
+                        </div>
+                        <h3 class="font-heading text-2xl text-indigo mb-2">
+                            Shop
+                        </h3>
+                        <p
+                            class="text-warm-text/70 text-sm leading-relaxed mb-4"
+                        >
+                            Dye plants, seeds and home dyeing kits. Sulphur
+                            cosmos, coreopsis, oak bark… All our seeds and
+                            preparations.
+                        </p>
+                        <a href="/en/boutique" class="btn-primary text-sm"
+                            >Visit the shop</a
+                        >
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press / Partners -->
+    <section class="py-14 bg-cream-dark border-y border-cream-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-warm-text/50 text-sm uppercase tracking-widest mb-8">
+                In the press / Partners
+            </p>
+            <div
+                class="flex flex-wrap justify-center items-center gap-8 md:gap-16"
+            >
+                {
+                    pressLogos.map((logo) => (
+                        <img
+                            src={logo.src}
+                            alt={`${logo.name} logo`}
+                            class="h-32 w-auto object-contain"
+                            loading="lazy"
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-indigo text-cream text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <p class="text-ochre text-sm uppercase tracking-widest mb-4">
+                Live the experience
+            </p>
+            <h2 class="font-heading text-4xl md:text-5xl text-cream mb-6">
+                Book your workshop
+            </h2>
+            <p class="text-cream/80 text-lg leading-relaxed mb-8">
+                Tailor-made workshops on request — groups, companies and
+                individuals.<br />
+                We adapt every workshop to your wishes and your level.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/en/reserver" class="btn-ochre text-base"
+                    >Book a workshop</a
+                >
+                <a
+                    href="/en/planifiez"
+                    class="btn-secondary text-base border-cream text-cream hover:bg-cream hover:text-indigo"
+                    >See the calendar</a
+                >
+            </div>
+        </div>
+    </section>
+</BaseLayout>
