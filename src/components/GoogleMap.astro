@@ -1,4 +1,6 @@
 ---
+import { getLang, useTranslations } from "../i18n";
+
 interface Props {
     title?: string;
     height?: string;
@@ -6,6 +8,7 @@ interface Props {
 
 const { title = "Atelier Ilys — Pierrerue, Haute-Provence", height = "400px" } =
     Astro.props;
+const t = useTranslations(getLang(Astro.url));
 
 // Embedded Google Maps for Pierrerue / Forcalquier area
 const mapSrc =
@@ -13,7 +16,7 @@ const mapSrc =
 ---
 
 <h2 class="text-center text-2xl font-semibold mb-4 text-indigo">
-    Où se trouve Atelier Ilys ?
+    {t("map.title")}
 </h2>
 <div
     class="relative rounded-sm overflow-hidden border-4 border-ochre shadow-lg"

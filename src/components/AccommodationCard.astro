@@ -1,5 +1,6 @@
 ---
 import ImageCarousel from './ImageCarousel.astro'
+import { getLang, localizePath, useTranslations } from '../i18n'
 
 interface Props {
   title: string
@@ -24,8 +25,12 @@ const {
   imageAlt,
   images = [],
   features = [],
-  link = '/reserve-ton-sejour',
+  link,
 } = Astro.props
+
+const lang = getLang(Astro.url)
+const t = useTranslations(lang)
+const href = link ?? localizePath('/reserve-ton-sejour', lang)
 
 const carouselImages = images.length > 0 ? images : [image]
 ---
@@ -49,16 +54,16 @@ const carouselImages = images.length > 0 ? images : [image]
     )}
     <div class="flex items-center justify-between pt-3 border-t border-cream-dark">
       <div class="text-sm">
-        <span class="text-warm-text/60">Capacité : </span>
+        <span class="text-warm-text/60">{t('accommodation.capacity')}</span>
         <span class="font-medium text-warm-text">{capacity}</span>
       </div>
       <div class="text-right">
         <span class="font-heading text-xl text-ochre font-semibold">{price}</span>
-        <span class="text-xs text-warm-text/60">/nuit</span>
+        <span class="text-xs text-warm-text/60">{t('accommodation.night')}</span>
       </div>
     </div>
-    <a href={link} class="btn-primary mt-4 text-sm text-center">
-      Réserver ce séjour
+    <a href={href} class="btn-primary mt-4 text-sm text-center">
+      {t('accommodation.book')}
     </a>
   </div>
 </article>

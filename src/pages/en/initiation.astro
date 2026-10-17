@@ -1,0 +1,267 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import WorkshopCard from "../../components/WorkshopCard.astro";
+
+const _uploads = import.meta.glob("../../assets/optimized/uploads/**/*", {
+    eager: true,
+    as: "url",
+});
+const asset = (p: string): string =>
+    (_uploads as Record<string, string>)[`../../assets/optimized/uploads/${p}`] ??
+    `https://atelier-ilys.com/wp-content/uploads/${p}`;
+
+const workshops = [
+    {
+        type: "indigo",
+        title: "Indigo dyeing",
+        description:
+            "Natural indigo is the oldest dye known to us. Learn how to set up an organic indigo vat, discover the magic of oxidation, and leave with your own unique blue creations. Half-day, full-day or multi-day workshops, as you prefer.",
+        details: "Indigo is a blue pigment extracted from several plants: true indigo, woad and Japanese indigo (dyer's knotweed). Unlike other colours, it does not dissolve in water, which calls for a very particular dyeing process: setting up an indigo vat. Our indigo workshops let you discover and master the age-old art of indigo dyeing and understand the natural chemistry at work, while everyone leaves with unique, personalised creations. Half day: the workshop runs from 2pm to 5.30pm. First you will learn how to use an indigo vat, then make a range of samples in different shades of blue, with patterns created using Japanese shibori techniques. You will then dye a cotton stole with your own patterns. Isabelle will guide you through the patterns and the use of the indigo vat to achieve a fast, 100% natural blue. Full day: full-day workshops start at 9.30am with setting up an indigo vat, which gradually activates so that it is ready to use in the afternoon. You will then prepare a clay-based resist paste to try out some patterns. While your creations dry, Isabelle takes you into the garden to learn to recognise indigo plants (when the plants are mature) and explains a little more about indigo and how to look after a vat. The afternoon is devoted to dyeing. First you will learn how to use an indigo vat, then make a range of samples, including a blue shade chart and patterns created using Japanese shibori techniques. You will also dye the patterns you prepared in the morning. You will finish by dyeing your personalised cotton stole and completing all the finishing steps for a long-lasting, 100% natural blue. You leave with your creations and the recipe for making and maintaining an indigo vat. Full day – making indigo pigment: the day begins by picking plants in the garden. Then it's back to the studio to turn them into insoluble indigo pigment and understand how it forms. The afternoon is devoted to using indigo: setting up a small vat, then handling and experimenting with indigo pigment. This workshop is only possible when the Japanese indigo plants are in leaf. Aprons and gloves are provided. Lunch is not provided – please bring a picnic. Give your clothes a new look: if you would like to make a personal creation, Isabelle can help you do so at the studio. You can bring your own white clothes or buy the fabric of your dreams on site. Quote on request, priced by fabric weight from €10 per 100g. Large formats: this workshop teaches you how to set up an iron vat, a henna vat or a 1-2-3 vat (100 litres minimum), prepare large pieces of fabric for dyeing, then dye your creations. Limited to 4 people. You may bring up to 2.5kg of fabric, and you can stay overnight on site (see 'Stay on site' on the website). Price on request. For all workshops, meals are not provided; tea and coffee are available, and gloves and aprons are lent.",
+
+        duration: "Full day (9am–5pm)",
+        price: "€110",
+        image: asset("initiation/shibori.jpg"),
+        imageAlt: "Green colour turning blue through oxidation",
+    },
+    {
+        type: "plant dyeing",
+        title: "Plant dyeing",
+        description:
+            "Garden plants, wild foraging, onion skins… Discover the endless palette of local plant dyes and learn how to use mordants to fix colours for good.",
+        details: "These workshops introduce participants to traditional dyeing techniques using local plants and raise awareness of the sustainable use of natural resources, while everyone creates unique, personalised pieces dyed in nature's own colours. Participants learn how to extract natural dyes and fix them onto textiles, discovering an environmentally friendly artisan craft. When the season and weather allow, you will pick plants in the garden and turn them into colour for dyeing. Otherwise, Isabelle will have gathered the plants at their peak, then dried and stored them away from damp and light, ready for you at the studio. Half-day dyeing: the workshop runs from 2pm to 5.30pm and costs €55. It begins with mordanting a scarf – applying a treatment so that the colour bonds to the fabric – while the dye bath is prepared and the colour extracted. Participants then create patterns on the pieces to be dyed using the Japanese shibori technique, use their dye bath and complete the finishing steps. Isabelle will guide you through the patterns and the dyeing so that you achieve bright, fast, natural colours. A day of plant dyeing: 6 hours, €110. Dye plants hold an infinite palette of colours, each plant with its own unique shade. But does the colour last? Yes, provided the fabric is properly prepared to take it. The morning is devoted to preparing the fabrics (scouring, rinsing, mordanting), discovering a few dye plants and the main families of natural dyes, then picking in the garden and preparing the dye baths. After a lunch break under the lime tree or on the terrace, the afternoon begins with dyeing a colour chart. Then it's time to dye your scarf. We take the time to go through every step in detail, so that you can recreate the recipes used. Isabelle will guide you to achieve fast, vibrant colours. You leave with your creations. Give your clothes a new look with plants from the garden: if you would like to make a personal creation, Isabelle can help you do so at the studio. You can bring your own fabric or white clothes, or buy the fabric of your dreams on site. Quote on request, from €10/100g.",
+        duration: "Full day (9am–5pm)",
+        price: "€110",
+        image: asset("2024/01/atelierteinture.jpg"),
+        imageAlt:
+            "Various fibres dyed with natural plants — ochre, green, rust, pink",
+    },
+    {
+        type: "ecoprint",
+        title: "Eco-print",
+        description:
+            "Eco-printing transfers the dyes in leaves directly onto fabric or paper using pressure and heat. Every piece is unique – a true botanical picture to take home with you.",
+        details: "Half-day taster: the workshop runs from 2pm to 5.30pm and costs €55. Recreate the atmosphere of the nature around you by capturing the imprint of plants on a scarf. The workshop begins with picking plants in the garden, along with a few explanations about tannin-rich plants, which make the prints more visible and delicate. Isabelle will help you choose those that give the best prints. Back at the studio, the plants are arranged harmoniously on the scarf you will have mordanted beforehand – that is, treated so that the colours are fixed for good. You will then roll it into small, tight bundles that are steamed. While they cook, you can try tataki-zome, the Japanese technique of printing leaves by hammering out the tannins they contain. And there it is: your unique, personalised scarf is ready. You unroll the little bundle and… surprise! But we won't say any more… You leave with your scarf printed with long-lasting patterns. A full day is also possible, making 2 eco-prints using different techniques.",
+        duration: "Half day (9am–12.30pm)",
+        price: "€55",
+        image: asset("initiation/ecoprint.jpg"),
+        imageAlt:
+            "Spring leaf prints on viscose, made by eco-printing",
+    },
+    {
+        type: "fine arts",
+        title: "Fine arts workshop",
+        description:
+            "Making natural pigments, inks, watercolours and pastels. Advanced techniques, extraction, preservation and creative uses. Materials provided.",
+        details: "Plant inks: the workshop runs from 2pm to 5.30pm and costs €55. Step into the shoes of medieval painters by making your own plant inks. Go and pick your plants in the garden and the surrounding garrigue, where Isabelle will teach you to recognise and gather the plants that give colour. Then it's back to the studio to extract the colour and make inks of varying thickness, depending on how you want to use them. Depending on the season, you will work with irises, sulphur cosmos, dyer's chamomile, madder, weld, oak galls and more. Isabelle will guide you so that you achieve bright, fast, natural colours. You leave with 5 plant inks and the recipes to make them again at home. Fine-art colours: 2 days, €220. Participants learn to make natural fine-art colours from local plants and mineral pigments. They discover age-old techniques for preparing inks and paints while creating unique, eco-friendly shades. The workshop combines artistic practice with respect for nature in an inspiring setting. Over 2 days, you will learn to make your own colours from plants picked in the garden. The first morning is devoted to extracting the colour and preparing the pigments. In the afternoon you will create a palette of plant inks; the colours may vary with the seasons. On the following days you will continue drying and grinding the pigment, then learn how to make your own soft and oil pastels, watercolours and more.",
+        duration: "2 full days",
+        price: "€220",
+        image: asset("2024/01/stagepigment.jpg"),
+        imageAlt:
+            "Jars of natural pigments in various colours — ochre, orange, red — prepared at Atelier Ilys",
+    },
+    {
+        type: "family",
+        title: "Family workshop",
+        description:
+            "A fun, hands-on workshop for sharing the magic of natural colours as a family. Children and parents alike leave delighted with their hand-dyed creations. Suitable from age 6.",
+        details: "The first part of the workshop takes place in the garden, picking the plants that will be used to extract the colour (when the season allows). Then it's back to the studio for a playful moment composing your creations as a family, using the Japanese shibori technique on cotton squares, which we then plunge into the dye. While the dye soaks into the fabric, take a moment to learn a little more about the history of plant dyeing. At last your works are ready! Marvel at your artistic talents as they come out of the dye bath, and leave with plenty of memories, your creations and the recipes used.",
+        duration: "Half day (2pm–4.30pm)",
+        price: "€35 / person",
+        image: asset("initiation/famille.JPG"),
+        imageAlt:
+            "Children and parents at a family plant-dyeing workshop at Atelier Ilys",
+    },
+];
+
+const eventLdItems = workshops.map((w, i) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: `${w.title} workshop — Atelier Ilys`,
+    description: w.description,
+    url: `https://atelier-ilys.com/en/reserver`,
+    organizer: {
+        "@type": "Organization",
+        name: "Atelier Ilys",
+        url: "https://atelier-ilys.com",
+    },
+    location: {
+        "@type": "Place",
+        name: "Atelier Ilys",
+        address: {
+            "@type": "PostalAddress",
+            streetAddress: "1080 route de fontienne",
+            addressLocality: "Pierrerue",
+            postalCode: "04300",
+            addressCountry: "FR",
+        },
+    },
+    offers: {
+        "@type": "Offer",
+        price: w.price.replace(/[^0-9]/g, ""),
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: "https://atelier-ilys.com/en/reserver",
+    },
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+}));
+---
+
+<BaseLayout
+    title="Plant-dyeing workshops — Indigo, Plants, Eco-print"
+    description="Artisan plant-dyeing workshops at Atelier Ilys (Pierrerue, Haute-Provence): indigo, plant dyes, eco-print, pigments and family workshops. From €35. All levels."
+    canonicalPath="/en/initiation"
+    jsonLd={eventLdItems}
+>
+    <!-- Hero -->
+    <section class="py-20 bg-cream-dark border-b border-cream-dark">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-ochre text-sm uppercase tracking-widest mb-3">
+                Discover
+            </p>
+            <h1 class="section-title text-4xl md:text-5xl">
+                Plant-dyeing workshops
+            </h1>
+            <p class="section-subtitle">
+                All levels · Small groups · Materials provided
+            </p>
+            <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+                Whether you are fascinated by the living world, a textile
+                artist, a teacher or simply looking for an authentic creative
+                experience, our workshops are made for you. Isabelle Lys
+                welcomes small groups for a personal, hands-on approach.
+            </p>
+        </div>
+    </section>
+
+    <!-- Pricing summary -->
+    <section class="py-10 bg-indigo text-cream">
+        <div class="max-w-7xl mx-auto px-4">
+            <div
+                class="flex flex-wrap justify-center gap-6 md:gap-12 text-center"
+            >
+                {
+                    [
+                        {
+                            label: "Half day",
+                            price: "€55",
+                            detail: "3½ hours",
+                        },
+                        {
+                            label: "Full day",
+                            price: "€110",
+                            detail: "7 hours",
+                        },
+                        {
+                            label: "Family workshop",
+                            price: "€35",
+                            detail: "2½ hours",
+                        },
+                    ].map(({ label, price, detail }) => (
+                        <div class="px-4">
+                            <p class="font-heading text-2xl text-ochre">
+                                {price}
+                            </p>
+                            <p class="text-sm font-medium text-cream">
+                                {label}
+                            </p>
+                            <p class="text-xs text-cream/60">{detail}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop cards -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {workshops.map((w) => <WorkshopCard {...w} />)}
+            </div>
+        </div>
+    </section>
+
+    <!-- What's included -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="section-title mb-3">What's included</h2>
+            <p class="section-subtitle">
+                Everything you need to learn and create
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10 text-left">
+                {
+                    [
+                        {
+                            icon: "🧪",
+                            label: "Raw materials",
+                            detail: "Plants, mordants, fibres",
+                        },
+                        {
+                            icon: "🥣",
+                            label: "Vats and equipment",
+                            detail: "Provided by the studio",
+                        },
+                        {
+                            icon: "📋",
+                            label: "Teaching materials",
+                            detail: "Technical sheets to take home",
+                        },
+                        {
+                            icon: "☕",
+                            label: "Coffee/tea welcome",
+                            detail: "Hot drinks on the house",
+                        },
+                        {
+                            icon: "🎨",
+                            label: "Your creations",
+                            detail: "You take your work home",
+                        },
+                        {
+                            icon: "👥",
+                            label: "Small group",
+                            detail: "Max. 8–10 people",
+                        },
+                    ].map(({ icon, label, detail }) => (
+                        <div class="flex gap-3 items-start">
+                            <span class="text-2xl">{icon}</span>
+                            <div>
+                                <p class="font-semibold text-sm text-warm-text">
+                                    {label}
+                                </p>
+                                <p class="text-xs text-warm-text/60">
+                                    {detail}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-ochre text-cream text-center">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="font-heading text-3xl text-cream mb-4">
+                Ready to give it a go?
+            </h2>
+            <p class="text-cream/90 mb-8">
+                Check the calendar for available dates or send us a request
+                for a tailor-made workshop.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a
+                    href="/en/planifiez"
+                    class="btn-primary bg-cream text-ochre hover:bg-cream-dark"
+                    >See the calendar</a
+                >
+                <a
+                    href="/en/reserver"
+                    class="btn-secondary border-cream text-cream hover:bg-cream hover:text-ochre"
+                    >Book a workshop</a
+                >
+            </div>
+        </div>
+    </section>
+</BaseLayout>

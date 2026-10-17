@@ -1,12 +1,19 @@
 ---
+import { getLang, useTranslations } from '../i18n'
+
+const lang = getLang(Astro.url)
+const t = useTranslations(lang)
+const en = lang === 'en'
+
+// Values stay in French (they end up in the email sent to the atelier)
 const rooms = [
-  'Maisonnette (2 personnes)',
-  'Le Grand Pré Loft (2–12 personnes)',
-  'Chambre Azur',
-  'Chambre Verte',
-  'Chambre Rose',
-  'Chambre Grenade',
-  'À définir / Je ne sais pas encore',
+  { value: 'Maisonnette (2 personnes)', en: 'Maisonnette (2 people)' },
+  { value: 'Le Grand Pré Loft (2–12 personnes)', en: 'Le Grand Pré Loft (2–12 people)' },
+  { value: 'Chambre Azur', en: 'Azur room' },
+  { value: 'Chambre Verte', en: 'Green room' },
+  { value: 'Chambre Rose', en: 'Pink room' },
+  { value: 'Chambre Grenade', en: 'Grenade room' },
+  { value: 'À définir / Je ne sais pas encore', en: 'Not sure yet' },
 ]
 ---
 
@@ -16,10 +23,15 @@ const rooms = [
   action="/api/booking-stay"
   class="space-y-5"
   novalidate
+  data-sending={t('form.sending')}
+  data-submit={t('form.sendRequest')}
+  data-success={t('stay.success')}
+  data-error={t('form.error')}
 >
+  <input type="hidden" name="lang" value={lang} />
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
     <div>
-      <label for="stay-name" class="form-label">Nom et prénom <span class="text-terracotta">*</span></label>
+      <label for="stay-name" class="form-label">{t("form.name")} <span class="text-terracotta">*</span></label>
       <input
         type="text"
         id="stay-name"
@@ -27,11 +39,11 @@ const rooms = [
         required
         autocomplete="name"
         class="form-input"
-        placeholder="Marie Dupont"
+        placeholder={t("form.namePlaceholder")}
       />
     </div>
     <div>
-      <label for="stay-email" class="form-label">Email <span class="text-terracotta">*</span></label>
+      <label for="stay-email" class="form-label">{t("form.email")} <span class="text-terracotta">*</span></label>
       <input
         type="email"
         id="stay-email"
@@ -39,13 +51,13 @@ const rooms = [
         required
         autocomplete="email"
         class="form-input"
-        placeholder="marie@exemple.fr"
+        placeholder={t("form.emailPlaceholder")}
       />
     </div>
   </div>
 
   <div>
-    <label for="stay-phone" class="form-label">Téléphone <span class="text-terracotta">*</span></label>
+    <label for="stay-phone" class="form-label">{t("form.phone")} <span class="text-terracotta">*</span></label>
     <input
       type="tel"
       id="stay-phone"
@@ -53,21 +65,21 @@ const rooms = [
       required
       autocomplete="tel"
       class="form-input"
-      placeholder="06 12 34 56 78"
+      placeholder={t("form.phonePlaceholder")}
     />
   </div>
 
   <div>
-    <label for="stay-room" class="form-label">Hébergement souhaité <span class="text-terracotta">*</span></label>
+    <label for="stay-room" class="form-label">{t("stay.room")} <span class="text-terracotta">*</span></label>
     <select id="stay-room" name="room" required class="form-input">
-      <option value="">Choisissez un hébergement…</option>
-      {rooms.map((r) => <option value={r}>{r}</option>)}
+      <option value="">{t('stay.roomChoose')}</option>
+      {rooms.map((r) => <option value={r.value}>{en ? r.en : r.value}</option>)}
     </select>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
     <div>
-      <label for="stay-arrival" class="form-label">Date d'arrivée <span class="text-terracotta">*</span></label>
+      <label for="stay-arrival" class="form-label">{t("stay.arrival")} <span class="text-terracotta">*</span></label>
       <input
         type="date"
         id="stay-arrival"
@@ -77,7 +89,7 @@ const rooms = [
       />
     </div>
     <div>
-      <label for="stay-departure" class="form-label">Date de départ <span class="text-terracotta">*</span></label>
+      <label for="stay-departure" class="form-label">{t("stay.departure")} <span class="text-terracotta">*</span></label>
       <input
         type="date"
         id="stay-departure"
@@ -89,7 +101,7 @@ const rooms = [
   </div>
 
   <div>
-    <label for="stay-guests" class="form-label">Nombre de personnes <span class="text-terracotta">*</span></label>
+    <label for="stay-guests" class="form-label">{t("stay.guests")} <span class="text-terracotta">*</span></label>
     <input
       type="number"
       id="stay-guests"
@@ -103,13 +115,13 @@ const rooms = [
   </div>
 
   <div>
-    <label for="stay-message" class="form-label">Message ou demandes particulières</label>
+    <label for="stay-message" class="form-label">{t("stay.message")}</label>
     <textarea
       id="stay-message"
       name="message"
       rows="4"
       class="form-input resize-y"
-      placeholder="Animaux, besoins spécifiques, combinaison stage + hébergement…"
+      placeholder={t("stay.messagePlaceholder")}
     ></textarea>
   </div>
 
@@ -119,13 +131,13 @@ const rooms = [
   <div id="stay-status" class="hidden" role="alert" aria-live="polite"></div>
 
   <button type="submit" class="btn-primary w-full sm:w-auto" id="stay-submit">
-    Envoyer ma demande
+    {t('form.sendRequest')}
   </button>
-  <p class="text-xs text-warm-text/50">Nous vous répondons dans les 48h pour confirmer la disponibilité.</p>
+  <p class="text-xs text-warm-text/50">{t("stay.note")}</p>
 </form>
 
 <script>
-  const form = document.getElementById('stay-form')
+  const form = document.getElementById('stay-form') as HTMLFormElement | null
   const status = document.getElementById('stay-status')
   const submit = document.getElementById('stay-submit')
 
@@ -137,7 +149,7 @@ const rooms = [
     if (honey?.value) return
 
     submit.setAttribute('disabled', 'true')
-    submit.textContent = 'Envoi en cours…'
+    submit.textContent = form.dataset.sending || ''
     status.className = 'hidden'
 
     try {
@@ -151,18 +163,18 @@ const rooms = [
       const data = await res.json()
 
       if (res.ok && data.ok) {
-        status.textContent = 'Votre demande de séjour a bien été reçue ! Nous vous répondons dans les 48h.'
+        status.textContent = form.dataset.success || ''
         status.className = 'p-4 bg-botanical/10 border border-botanical text-botanical rounded text-sm'
         form.reset()
       } else {
         throw new Error(data.error || 'Erreur')
       }
     } catch {
-      status.textContent = 'Une erreur est survenue. Merci de réessayer ou de nous contacter par email.'
+      status.textContent = form.dataset.error || ''
       status.className = 'p-4 bg-terracotta/10 border border-terracotta text-terracotta rounded text-sm'
     } finally {
       submit.removeAttribute('disabled')
-      submit.textContent = 'Envoyer ma demande'
+      submit.textContent = form.dataset.submit || ''
       status.classList.remove('hidden')
       status.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
     }

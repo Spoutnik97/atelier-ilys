@@ -1,17 +1,27 @@
 ---
 import logoSrc from "../assets/optimized/uploads/2022/05/cropped-atelier-ilys-bleu600.png";
 
-const navLinks = [
-    { href: "/atelier-ilys", label: "L'atelier" },
-    { href: "/initiation", label: "Stages" },
-    { href: "/planifiez", label: "Calendrier" },
-    { href: "/sejournez", label: "Séjournez" },
-    { href: "/galerie-photo", label: "Galerie" },
-    { href: "/boutique", label: "Boutique" },
-    { href: "/contact", label: "Contact" },
-];
+import { getLang, localizePath, stripLang, useTranslations } from "../i18n";
 
-const currentPath = Astro.url.pathname;
+const lang = getLang(Astro.url);
+const t = useTranslations(lang);
+const l = (path: string) => localizePath(path, lang);
+
+const navLinks = [
+    { href: "/atelier-ilys", label: t("nav.atelier") },
+    { href: "/initiation", label: t("nav.stages") },
+    { href: "/planifiez", label: t("nav.calendar") },
+    { href: "/sejournez", label: t("nav.stay") },
+    { href: "/galerie-photo", label: t("nav.gallery") },
+    { href: "/boutique", label: t("nav.shop") },
+    { href: "/contact", label: t("nav.contact") },
+].map((link) => ({ ...link, href: l(link.href) }));
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+// Same page in the other language
+const otherLang = lang === "fr" ? "en" : "fr";
+const switchHref = localizePath(stripLang(Astro.url.pathname), otherLang);
 ---
 
 <header class="bg-cream border-b border-cream-dark sticky top-0 z-50 shadow-sm">
@@ -20,9 +30,9 @@ const currentPath = Astro.url.pathname;
             <!-- Logo -->
             <div>
                 <a
-                    href="/"
+                    href={l("/")}
                     class="flex items-center gap-3 group"
-                    aria-label="Atelier Ilys — Accueil"
+                    aria-label={t("nav.homeAria")}
                 >
                     <img
                         src={logoSrc.src}
@@ -31,13 +41,13 @@ const currentPath = Astro.url.pathname;
                     />
                 </a>
                 <span class="block text-xs text-ochre tracking-wider uppercase"
-                    >Teintures végétales · Haute-Provence</span
+                    >{t("site.tagline")}</span
                 >
             </div>
             <!-- Desktop nav -->
             <nav
                 class="hidden lg:flex items-center gap-6"
-                aria-label="Navigation principale"
+                aria-label={t("nav.main")}
             >
                 {
                     navLinks.map(({ href, label }) => (
@@ -54,40 +64,64 @@ const currentPath = Astro.url.pathname;
                         </a>
                     ))
                 }
-                <a href="/reserver" class="btn-primary text-sm py-2 px-4">
-                    Réserver un stage
+                <a href={l("/reserver")} class="btn-primary text-sm py-2 px-4">
+                    {t("nav.book")}
+                </a>
+                <a
+                    href={switchHref}
+                    class="lang-switch text-sm font-semibold uppercase tracking-wide text-indigo hover:text-terracotta transition-colors"
+                    data-lang={otherLang}
+                    hreflang={otherLang}
+                    lang={otherLang}
+                    title={t("lang.switch")}
+                    aria-label={t("lang.switch")}
+                >
+                    {otherLang}
                 </a>
             </nav>
 
-            <!-- Mobile menu button -->
-            <button
-                id="menu-toggle"
-                class="lg:hidden p-2 rounded text-indigo hover:bg-cream-dark transition-colors"
-                aria-label="Ouvrir le menu"
-                aria-expanded="false"
-                aria-controls="mobile-menu"
-            >
-                <svg
-                    class="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+            <!-- Mobile: language switch + menu button -->
+            <div class="lg:hidden flex items-center gap-2">
+                <a
+                    href={switchHref}
+                    class="lang-switch p-2 text-sm font-semibold uppercase tracking-wide text-indigo hover:text-terracotta transition-colors"
+                    data-lang={otherLang}
+                    hreflang={otherLang}
+                    lang={otherLang}
+                    title={t("lang.switch")}
+                    aria-label={t("lang.switch")}
                 >
-                    <path
-                        id="menu-icon-open"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"></path>
-                    <path
-                        id="menu-icon-close"
-                        class="hidden"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
+                    {otherLang}
+                </a>
+                <button
+                    id="menu-toggle"
+                    class="p-2 rounded text-indigo hover:bg-cream-dark transition-colors"
+                    aria-label={t("nav.openMenu")}
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            id="menu-icon-open"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path
+                            id="menu-icon-close"
+                            class="hidden"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -98,7 +132,7 @@ const currentPath = Astro.url.pathname;
     >
         <nav
             class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3"
-            aria-label="Navigation mobile"
+            aria-label={t("nav.mobile")}
         >
             {
                 navLinks.map(({ href, label }) => (
@@ -114,14 +148,23 @@ const currentPath = Astro.url.pathname;
                     </a>
                 ))
             }
-            <a href="/reserver" class="btn-primary mt-2 text-center">
-                Réserver un stage
+            <a href={l("/reserver")} class="btn-primary mt-2 text-center">
+                {t("nav.book")}
             </a>
         </nav>
     </div>
 </header>
 
 <script>
+    // Remember the language chosen with the FR/EN switch
+    document.querySelectorAll<HTMLAnchorElement>(".lang-switch").forEach((a) => {
+        a.addEventListener("click", () => {
+            try {
+                localStorage.setItem("lang", a.dataset.lang || "fr");
+            } catch {}
+        });
+    });
+
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("mobile-menu");
     const iconOpen = document.getElementById("menu-icon-open");

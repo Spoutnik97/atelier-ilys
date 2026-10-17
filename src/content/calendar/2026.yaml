@@ -4,12 +4,18 @@ events:
     type: beauxarts
     description: fabrication d'encres, pigments, aquarelle, pastels
     price: 230 € les 2 jours, repas non compris
+    titleEn: Fine arts workshop
+    descriptionEn: Making inks, pigments, watercolours and pastels
+    priceEn: €230 for 2 days, meals not included
     spots: 10
   - startDate: 2026-10-15
     title: Découverte teinture végétale
     type: teinture
     description: Initiation la teinture végétale, du mordant à la couleur
     price: 115 € la journée, repas non compris
+    titleEn: Introduction to plant dyeing
+    descriptionEn: An introduction to plant dyeing, from mordant to colour
+    priceEn: €115 per day, meals not included
     spots: 6
   - startDate: 2026-10-14
     title: Stage Écoprint
@@ -17,12 +23,19 @@ events:
     description: 1 jours de stage d'initiation pour découvrir la diversité des
       impressions de plantes sur fibres cellulosiques
     price: 115 € la journée, repas non compris
+    titleEn: Eco-print workshop
+    descriptionEn: A one-day introductory workshop exploring the variety of plant
+      prints on cellulose fibres
+    priceEn: €115 per day, meals not included
     spots: 6
   - startDate: 2026-10-20
     title: Stage découverte écoprint
     type: ecoprint
     description: 1/2 jour pour découvrir les bases de l'écoprint
     price: 60 € la demi-journée
+    titleEn: Eco-print taster
+    descriptionEn: A half day to learn the basics of eco-printing
+    priceEn: €60 for a half day
     spots: 1
   - startDate: 2026-10-17/18
     title: Stage indigo
@@ -31,6 +44,10 @@ events:
       d'échantillon, motifs à base de pate d'argile et chèche personnalisé.
       Journée complète.
     price: 230 € les 2 jours, repas non compris
+    titleEn: Indigo workshop
+    descriptionEn: Discover natural indigo, set up a vat, dye samples, create
+      patterns with clay paste and a personalised scarf. Full days.
+    priceEn: €230 for 2 days, meals not included
     spots: 6
   - startDate: 2026-11-08/09/10/11
     title: "Stage 4 jours découverte teinture végétale: ecoprint, indigo, teinture
@@ -39,4 +56,9 @@ events:
     description: Une première approche de la teinture végétale en parcourant les
       différentes techniques. Possibilité de ne faire qu'une partie du stage.
     price: 450 € les 4 jours, repas non compris
+    titleEn: "4-day introduction to plant dyeing: eco-print, indigo, dyeing and
+      personal project"
+    descriptionEn: A first approach to plant dyeing, exploring the different
+      techniques. You can also join for part of the workshop only.
+    priceEn: €450 for 4 days, meals not included
     spots: 4

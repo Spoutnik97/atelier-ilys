@@ -17,6 +17,10 @@ const calendarCollection = defineCollection({
         type: z.string(),
         description: z.string().optional(),
         price: z.string().optional(),
+        // Optional English versions (French is used when empty)
+        titleEn: z.string().optional(),
+        descriptionEn: z.string().optional(),
+        priceEn: z.string().optional(),
         spots: z.number().optional(),
       }),
     ),

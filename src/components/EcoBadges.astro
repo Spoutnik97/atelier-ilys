@@ -1,5 +1,9 @@
 ---
-const badges = [
+import { getLang } from '../i18n'
+
+const lang = getLang(Astro.url)
+
+const badgesFr = [
   {
     icon: '🤲',
     label: 'Fait main',
@@ -26,6 +30,20 @@ const badges = [
     description: 'Créé en Haute-Provence, France',
   },
 ]
+
+const badgesEn = [
+  { icon: '🤲', label: 'Handmade', description: 'Every piece is crafted by hand' },
+  {
+    icon: '♻️',
+    label: 'Zero waste',
+    description: 'A process designed to minimise waste, using fabrics from the circular economy',
+  },
+  { icon: '🌿', label: 'Natural products', description: '100% plants, minerals and natural materials' },
+  { icon: '💧', label: 'Eco-friendly', description: 'Mindful use of water and natural resources' },
+  { icon: '☀️', label: 'Made in Provence', description: 'Created in Haute-Provence, France' },
+]
+
+const badges = lang === 'en' ? badgesEn : badgesFr
 ---
 
 <section class="py-10 bg-botanical/10 border-y border-botanical/20">

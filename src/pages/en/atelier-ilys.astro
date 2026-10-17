@@ -1,0 +1,326 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import atelierVideo from "../../assets/latelier/381bff86-5c73-4b62-b841-5098ba74e673.mp4";
+const _uploads = import.meta.glob("../../assets/optimized/uploads/**/*", {
+    eager: true,
+    as: "url",
+});
+const asset = (p: string): string =>
+    (_uploads as Record<string, string>)[`../../assets/optimized/uploads/${p}`] ??
+    `https://atelier-ilys.com/wp-content/uploads/${p}`;
+
+const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "Atelier Ilys",
+    description:
+        "Artisan plant-dyeing studio founded by Isabelle Lys in an 18th-century former silk farm (magnanerie) in Pierrerue, Haute-Provence.",
+    url: "https://atelier-ilys.com/en/atelier-ilys",
+    telephone: "+33764443715",
+    email: "atelier.ilys@gmail.com",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "1080 route de fontienne",
+        addressLocality: "Pierrerue",
+        postalCode: "04300",
+        addressCountry: "FR",
+    },
+    founder: {
+        "@type": "Person",
+        name: "Isabelle Lys",
+    },
+    foundingDate: "2021",
+};
+---
+
+<BaseLayout
+    title="The studio — Isabelle Lys, natural dyer"
+    description="Discover Atelier Ilys and its founder Isabelle Lys: an 18th-century former silk farm (magnanerie) in Pierrerue (Forcalquier), 30 hectares of nature and a passion for artisan plant dyeing."
+    canonicalPath="/en/atelier-ilys"
+    jsonLd={localBusinessLd}
+>
+    <!-- Hero -->
+    <section class="relative pt-24 bg-indigo-dark overflow-hidden">
+        <div class="absolute inset-0">
+            <img
+                src={asset("vuesud.jpg")}
+                alt="The 18th-century silk farm that is home to Atelier Ilys in Pierrerue, Haute-Provence"
+                class="w-full h-full object-cover opacity-30"
+            />
+            <div class="absolute inset-0 bg-indigo-dark/60"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 text-center text-cream">
+            <p class="text-ochre text-sm uppercase tracking-widest mb-4">
+                Pierrerue · Forcalquier · Haute-Provence
+            </p>
+            <h1 class="font-heading text-5xl md:text-6xl text-cream mb-6">
+                Atelier Ilys
+            </h1>
+            <p class="text-cream/80 text-xl max-w-2xl mx-auto">
+                A place for living, creating and sharing know-how, at the heart
+                of an 18<sup>th</sup>-century Provençal former silk farm
+                (magnanerie).
+            </p>
+        </div>
+    </section>
+
+    <!-- Video -->
+    <section class="bg-indigo-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <video
+                src={atelierVideo}
+                class="w-full rounded-sm shadow-lg"
+                autoplay
+                muted
+                loop
+                playsinline></video>
+        </div>
+    </section>
+
+    <!-- Isabelle's story -->
+    <section class="py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p
+                        class="text-ochre text-sm uppercase tracking-widest mb-3"
+                    >
+                        The founder
+                    </p>
+                    <h2 class="section-title">Isabelle Lys</h2>
+                    <p class="section-subtitle">
+                        Natural dyer & passer-on of know-how
+                    </p>
+                    <div class="space-y-4 text-warm-text/80 leading-relaxed">
+                        <p><b>Our Story</b></p>
+                        <p>
+                            Atelier Ilys was born of a passion for nature and
+                            art, and a desire to create authentic, lasting
+                            work. Founded by Isabelle Lys, the studio is far
+                            more than a simple creative space – it is a place
+                            where every leaf, every flower and every fibre
+                            tells its own unique story. Inspired by age-old
+                            techniques of plant dyeing and botanical printing,
+                            we chose to revisit them with a contemporary,
+                            environmentally friendly approach, drawing on
+                            in-depth training in plant dyeing undertaken
+                            mainly in Lauris.
+                        </p>
+                        <p><b>Our Vision</b></p>
+                        <p>
+                            At Atelier Ilys, we believe that art can and should
+                            live in harmony with nature. That is why we have
+                            chosen to work exclusively with natural, local
+                            materials, using entirely handcrafted processes
+                            that respect our planet. Each creation reflects our
+                            commitment to sustainable production, where our
+                            ecological footprint is kept to a minimum and
+                            natural beauty is allowed to shine. Atelier ILYS
+                            is based on a 30-hectare 18th-century farm in the
+                            Forcalquier / Montagne de Lure area, a land of
+                            scents and flavours and a territory unique in
+                            France, home to more than a third of the country's
+                            flora. The richness of this environment allows us
+                            to work almost entirely with fresh, local plants,
+                            achieving unique results that capture the rhythm of
+                            the seasons and the character of each plant, while
+                            protecting the environment.
+                        </p>
+                        <p><b>Our Craft</b></p>
+                        <p>
+                            Atelier Ilys is a creative space dedicated to
+                            celebrating age-old crafts: eco-print, plant
+                            dyeing, and the making of natural inks, pigments,
+                            watercolours and fine-art paints. Specialising in
+                            local plants, the studio offers unique creations in
+                            which every step, from harvesting the plants to
+                            preparing the pigments, is carried out by hand and
+                            with respect for the environment. Whether through
+                            indigo dyeing, delicate botanical prints or colours
+                            for the fine arts, Atelier Ilys celebrates the art
+                            of nature and the passing on of authentic
+                            techniques.
+                        </p>
+                        <p><b>Our Commitment</b></p>
+                        <p>
+                            Atelier Ilys is deeply rooted in an ethical,
+                            eco-responsible approach. We are convinced that
+                            craftsmanship can help build a more sustainable
+                            future. That is why we choose our materials with
+                            care, favouring local plants and reducing our water
+                            and energy use; all of the studio's waste is natural
+                            and recycled straight back into the garden. Every
+                            piece we create is not only beautiful but also kind
+                            to the environment.
+                        </p>
+                        <p><b>Join Our Community</b></p>
+                        <p>
+                            Atelier Ilys is also a community of people who love
+                            nature and craft. Whether you appreciate beautiful
+                            things, are a creative looking for inspiration, or
+                            are simply curious to learn more about our
+                            techniques, we invite you to join our world for a
+                            few hours or a few days. Take part in our
+                            workshops, discover our creations and share our
+                            passion for art and nature. Isabelle shares her
+                            knowledge through workshops open to everyone, from
+                            curious beginners to textile professionals, and
+                            also offers bespoke services for designers, brands
+                            and institutions. Thank you for being part of our
+                            adventure!
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img
+                        src={asset("IMG_5542.jpg")}
+                        alt="Isabelle Lys, founder of Atelier Ilys, in her studio in Pierrerue"
+                        class="rounded-sm shadow-lg w-full object-cover aspect-[3/4]"
+                        loading="lazy"
+                    />
+                    <div
+                        class="absolute -bottom-4 -left-4 bg-ochre text-cream px-4 py-3 rounded-sm shadow"
+                    >
+                        <p class="font-heading text-2xl">5+ years</p>
+                        <p class="text-xs opacity-90">
+                            of expertise in plant dyeing
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The property -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <p class="text-ochre text-sm uppercase tracking-widest mb-3">
+                    The estate
+                </p>
+                <h2 class="section-title">
+                    An 18th-century Provençal silk farm
+                </h2>
+                <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+                    30 hectares of garrigue scrubland and a dye garden in the
+                    hills above Forcalquier.
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+            >
+                <img
+                    src={asset(
+                        "2025/08/597eb4b2-dfcb-465d-b086-0a444fd9110a.jpg",
+                    )}
+                    alt="Aerial view of the Atelier Ilys estate — 30 hectares of nature in Pierrerue"
+                    class="w-full aspect-[4/3] object-cover rounded-sm shadow"
+                    loading="lazy"
+                />
+                <img
+                    src={asset("2022/11/baladejardin750-1.jpg")}
+                    alt="The Atelier Ilys dye-plant garden: discovering weld with Isabelle"
+                    class="w-full aspect-[4/3] object-cover rounded-sm shadow"
+                    loading="lazy"
+                />
+                <img
+                    src={asset("2024/02/atelierhiver.jpg")}
+                    alt="Inside the studio, with baskets ready for gathering dye plants"
+                    class="w-full aspect-[4/3] object-cover rounded-sm shadow"
+                    loading="lazy"
+                /><img
+                    src={asset("2024/01/motif3-1.jpg")}
+                    alt="Inside the studio, with a dye bath under way"
+                    class="w-full aspect-[4/3] object-cover rounded-sm shadow"
+                    loading="lazy"
+                />
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                {
+                    [
+                        { value: "30 ha", label: "Of natural land" },
+                        {
+                            value: "18th c.",
+                            label: "Historic building",
+                        },
+                        { value: "6", label: "Places to stay on site" },
+                        { value: "100%", label: "Natural & handmade" },
+                    ].map(({ value, label }) => (
+                        <div class="p-4">
+                            <p class="font-heading text-3xl text-ochre mb-1">
+                                {value}
+                            </p>
+                            <p class="text-sm text-warm-text/60">{label}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-20 bg-cream-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="section-title">Our values</h2>
+                <p class="section-subtitle">
+                    Craft, ecology and passing on knowledge
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {
+                    [
+                        {
+                            icon: "🌿",
+                            title: "Zero waste",
+                            text: "Every dye bath is reused, the plants are composted and the water goes back into the garden. Our studio thinks through every step to minimise its environmental impact.",
+                        },
+                        {
+                            icon: "🤲",
+                            title: "Handmade",
+                            text: "From garden to dye vat, through mordanting and successive baths: every creation passes through the hands of Isabelle or her participants. No machine replaces the human touch.",
+                        },
+                        {
+                            icon: "📚",
+                            title: "Sharing knowledge",
+                            text: "Plant dyeing is an age-old craft. Isabelle shares it with passion, so that everyone leaves with techniques they can repeat at home and a fresh way of seeing colour.",
+                        },
+                    ].map(({ icon, title, text }) => (
+                        <div class="bg-white p-8 rounded-sm shadow-sm border border-cream">
+                            <div class="text-3xl mb-4">{icon}</div>
+                            <h3 class="font-heading text-xl text-indigo mb-3">
+                                {title}
+                            </h3>
+                            <p class="text-warm-text/70 text-sm leading-relaxed">
+                                {text}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-indigo text-center text-cream">
+        <div class="max-w-2xl mx-auto px-4">
+            <h2 class="font-heading text-3xl text-cream mb-4">
+                Come and visit us
+            </h2>
+            <p class="text-cream/80 mb-8">
+                Discover our workshops, stay on site or get in touch about a
+                bespoke project.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/en/initiation" class="btn-ochre">Discover our workshops</a>
+                <a
+                    href="/en/contact"
+                    class="btn-secondary border-cream text-cream hover:bg-cream hover:text-indigo"
+                    >Contact us</a
+                >
+            </div>
+        </div>
+    </section>
+</BaseLayout>

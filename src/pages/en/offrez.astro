@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SumUpButton from '../../components/SumUpButton.astro'
+
+const SUMUP_STORE_URL = 'https://atelier-ilys.sumupstore.com'
+
+const giftCategories = [
+  {
+    icon: '🌿',
+    title: 'Give a workshop',
+    subtitle: 'The most precious experience',
+    description: 'Treat your loved ones to a full or half day of artisan plant dyeing. A unique, creative and memorable experience in Haute-Provence.',
+    items: [
+      { name: 'Half-day gift voucher', price: '€55', url: `${SUMUP_STORE_URL}/catégorie/bons-cadeaux` },
+      { name: 'Full-day gift voucher', price: '€110', url: `${SUMUP_STORE_URL}/catégorie/bons-cadeaux` },
+      { name: 'Weekend gift voucher (2 days)', price: '€220', url: `${SUMUP_STORE_URL}/catégorie/bons-cadeaux` },
+      { name: 'Family workshop gift voucher', price: '€35 / adult', url: `${SUMUP_STORE_URL}/catégorie/bons-cadeaux` },
+    ],
+  },
+  {
+    icon: '🌱',
+    title: 'Plants & Seeds',
+    subtitle: 'To dye at home',
+    description: 'Our dried dye plants and dyeing kits, so your loved ones can explore plant colours at home.',
+    items: [
+      { name: 'Plant dyeing kit, 100% merino wool snood', price: '€40', url: `${SUMUP_STORE_URL}/product/kit-de-teinture-vegetale-col-100-laine-merinos` },
+      { name: 'Sulphur cosmos (50g)', price: '€6', url: `${SUMUP_STORE_URL}/product/cosmos-sulfureux-seches-produit-naturel-pour-teinture-vegetale` },
+      { name: 'Coreopsis tinctoria (50g)', price: '€6', url: `${SUMUP_STORE_URL}/coreopsis-tinctoria` },
+    ],
+  },
+  {
+    icon: '🎨',
+    title: 'Fashion & Home',
+    subtitle: 'Original creations',
+    description: 'Scarves, silk squares and decorative pieces hand-dyed by Isabelle. One-of-a-kind creations in the natural colours of Provence.',
+    items: [],
+    comingSoon: true,
+  },
+]
+---
+
+<BaseLayout
+  title="Give a gift — Workshops, plants and handmade creations"
+  description="Atelier Ilys gift ideas: gift vouchers for plant dyeing workshops in Provence, dyeing kits, dye plants and handmade creations. From €6."
+  canonicalPath="/en/offrez"
+>
+  <section class="py-20 bg-cream-dark border-b text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-ochre text-sm uppercase tracking-widest mb-3">Gift ideas</p>
+      <h1 class="section-title text-4xl md:text-5xl">Give Atelier Ilys</h1>
+      <p class="section-subtitle">Natural, original gifts made in Provence</p>
+      <p class="text-warm-text/70 max-w-2xl mx-auto leading-relaxed">
+        For lovers of nature, colour and creativity: give a unique experience in Haute-Provence or lovingly prepared handmade products.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-16">
+        {giftCategories.map(({ icon, title, subtitle, description, items, comingSoon }) => (
+          <div>
+            <div class="text-center mb-10">
+              <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-indigo/10 text-3xl mb-4">
+                {icon}
+              </div>
+              <h2 class="section-title mb-1">{title}</h2>
+              <p class="section-subtitle">{subtitle}</p>
+              <p class="text-warm-text/70 max-w-xl mx-auto text-sm leading-relaxed">{description}</p>
+            </div>
+
+            {comingSoon ? (
+              <div class="bg-white border-2 border-dashed border-cream-dark rounded-sm p-12 text-center">
+                <p class="text-warm-text/50 text-lg mb-2">✨ Coming soon</p>
+                <p class="text-warm-text/40 text-sm">Our textile creations will be available shortly. Get in touch for a personalised order.</p>
+                <a href="/en/contact" class="btn-secondary mt-4 inline-block">Request a bespoke creation</a>
+              </div>
+            ) : (
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {items.map((item) => (
+                  <div class="bg-white p-5 rounded-sm shadow-sm border border-cream-dark flex flex-col">
+                    <h3 class="font-heading text-base text-indigo mb-2 flex-1">{item.name}</h3>
+                    <p class="font-heading text-xl text-ochre mb-3">{item.price}</p>
+                    <SumUpButton label="Order" url={item.url} variant="ochre" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-indigo text-cream text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="font-heading text-2xl text-cream mb-3">A personalised gift?</h2>
+      <p class="text-cream/80 mb-6">
+        Looking for something special? Get in touch and together we'll find the perfect gift.
+      </p>
+      <a href="/en/contact" class="btn-ochre">Write to us</a>
+    </div>
+  </section>
+</BaseLayout>
