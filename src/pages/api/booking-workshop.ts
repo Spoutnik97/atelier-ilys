@@ -23,43 +23,31 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Validation
-    if (
-      !name ||
-      !email ||
-      !phone ||
-      !workshopType ||
-      !duration ||
-      !preferredDate
-    ) {
-      return new Response(
-        JSON.stringify({ ok: false, error: "Champs requis manquants." }),
-        { status: 400 },
-      );
+    if (!name || !email || !phone || !workshopType || !duration || !preferredDate) {
+      return new Response(JSON.stringify({ ok: false, error: "Champs requis manquants." }), {
+        status: 400,
+      });
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return new Response(
-        JSON.stringify({ ok: false, error: "Email invalide." }),
-        { status: 400 },
-      );
+      return new Response(JSON.stringify({ ok: false, error: "Email invalide." }), { status: 400 });
     }
 
     const apiKey = import.meta.env.RESEND_API_KEY;
     if (!apiKey) {
       console.error("RESEND_API_KEY not set");
-      return new Response(
-        JSON.stringify({ ok: false, error: "Configuration email manquante." }),
-        { status: 500 },
-      );
+      return new Response(JSON.stringify({ ok: false, error: "Configuration email manquante." }), {
+        status: 500,
+      });
     }
 
     const resend = new Resend(apiKey);
 
     const durationLabels: Record<string, string> = {
-      "demi-journee": "Demi-journée (2h30) — 55 €",
-      journee: "Journée complète — 110 €",
-      "2-jours": "2 jours — 220 €",
-      famille: "Atelier famille (2h30) — 35 € / adulte",
+      "demi-journee": "Demi-journée (2h30) — 60 €",
+      journee: "Journée complète — 120 €",
+      "2-jours": "2 jours — 240 €",
+      famille: "Atelier famille (2h30) — 40 € / adulte",
     };
 
     await resend.emails.send({
@@ -124,10 +112,9 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ ok: true }), { status: 200 });
   } catch (err) {
     console.error("Booking workshop API error:", err);
-    return new Response(
-      JSON.stringify({ ok: false, error: "Erreur interne du serveur." }),
-      { status: 500 },
-    );
+    return new Response(JSON.stringify({ ok: false, error: "Erreur interne du serveur." }), {
+      status: 500,
+    });
   }
 };
 
