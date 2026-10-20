@@ -27,12 +27,12 @@ const id = `carousel-${Math.random().toString(36).slice(2, 9)}`
   {images.length > 1 && (
     <>
       <button
-        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg leading-none transition-colors z-10"
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-3xl leading-none transition-colors z-10"
         data-prev
         aria-label={t('carousel.prev')}
       >&#8249;</button>
       <button
-        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg leading-none transition-colors z-10"
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white rounded-full w-12 h-12 flex items-center justify-center text-3xl leading-none transition-colors z-10"
         data-next
         aria-label={t('carousel.next')}
       >&#8250;</button>
