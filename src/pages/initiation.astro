@@ -42,7 +42,7 @@ const workshops = [
             "La technique de l'écoprint consiste à imprimer directement les colorants des feuilles sur tissu ou papier par compression et chaleur. Chaque création est unique, un vrai tableau botanique que vous emportez chez vous.",
         details: "découverte 1/2journée Durée du stage de 14h à 17h30. Tarif 55 euros  Recréez l’atmosphère de la nature qui vous entoure en conservant une empreinte des plantes sur un foulard.L’atelier démarre par une cueillette des plantes au jardin avec quelques explications sur les plantes à tanins, qui rendent les empreintes plus visibles et délicates. Isabelle vous guidera pour sélectionner celles qui offrent les meilleures empreintes.Retour à l’atelier où les plantes sont disposées harmonieusement sur le foulard que vous aurez mordancé au préalable, c’est à dire imprégné d’un apprêt qui va permettre de fixer les couleurs durablement. Puis vous allez  confectionner de petits rouleaux serrés qui vont être cuits à la vapeur. Pendant la cuisson vous pourrez tester le tatakizome, cette technique japonaise qui permet l’impression de feuilles en révélant les tanins qu’elles contiennent.Ca y est votre foulard unique et personnalisé est prêt, vous ouvrez le petit rouleau et surprise! Mais on n’en dit pas plus …Vous repartez avec votre foulard imprimé avec des motifs solides.Possibilité de faire une journée entière avec la réalisation de 2 écoprint avec des techniques",
         duration: "Demi-journée (9h–12h30)",
-        price: "55 €",
+        price: "60 €",
         image: asset("initiation/ecoprint.jpg"),
         imageAlt:
             "Empreintes de feuilles de printemps imprimées sur viscose par écoprint",
@@ -54,7 +54,7 @@ const workshops = [
             "fabrication de pigments, encres, aquarelles et pastels naturels. Techniques avancées, extraction, conservation et applications créatives. Matériel fourni.",
         details: "Encres végétalesDurée du stage de 14h à 17h30. Tarif 55 euros Mettez-vous dans la peau des peintres du moyen-âge en créant vos encres végétales. Allez cueillir vos plantes au jardin et dans la garrigue environnante où avec Isabelle vous apprendrez à reconnaitre et cueillir les plantes qui donnent de la couleur. Puis retour à l’atelier pour extraire la couleur des plantes et en fabriquer des encres plus ou moins épaisses selon la façon dont on souhaite les utiliser. En fonction de la saison vous travaillerez avec des iris, des cosmos sulfureux, des camomilles des teinturiers, de la garance, du réséda, des noix de galle, etc …Isabelle vous guidera pour que vous obteniez des couleurs éclatantes, solides, et naturelles. Vous repartez avec 5 encres végétales et les recettes pour les refaire chez vous.  Couleurs beaux arts Durée 2 jours, tarif 220 euros. Les participants apprennent à fabriquer des couleurs naturelles pour les beaux-arts à partir de plantes et pigments minéraux locaux. Ils découvrent des techniques ancestrales de préparation d'encres et de peintures tout en créant des nuances uniques et écologiques. Le stage allie pratique artistique et respect de la nature dans un cadre inspirant. Ce stage se déroule sur 2 jours pendant lesquels vous apprendrez à réaliser vos propres couleurs à partir des plantes cueillies au jardin. La première matinée sera consacrée  à l'extraction de la couleur et à la préparation des pigments.  L’après-midi vous réaliserez une palette d’encres végétales. Les couleurs pourront varier selon les saisons. Les jours suivants vous poursuivrez le séchage et le broyage du pigment, puis vous apprendrez à fabriquer vos crayons de pastel secs et gras, vos aquarelles...",
         duration: "2 jours complets",
-        price: "220 €",
+        price: "240 €",
         image: asset("2024/01/stagepigment.jpg"),
         imageAlt:
             "Pots de pigments naturels de différentes couleurs — ocre, orange, rouge — préparés à l'Atelier Ilys",
@@ -66,7 +66,7 @@ const workshops = [
             "Un atelier ludique et pédagogique pour partager la magie des couleurs naturelles en famille. Les enfants comme les parents repartent émerveillés avec leurs créations teintes à la main. Accessible dès 6 ans.",
         details: "La première partie de l’atelier se déroule au jardin pour cueillir les plantes qui  seront utilisées pour extraire la couleur (lorsque la saison le permet).Puis retour à l’atelier pour un moment ludique à composer vos créations en famille selon la technique japonaise du shibori sur carrés de coton, qu’on ira plonger dans la teinture. Pendant que la teinture imprègne le tissu, prenez un moment pour en connaître un peu plus sur l’histoire de la teinture végétale.Enfin vos œuvres sont prêtes! Emerveillez -vous devant vos talents d’artistes à la sortie du bain de teinture, et repartez pleins de souvenirs avec vos œuvres  et les recettes utilisées.",
         duration: "Demi-journée (14h–16h30)",
-        price: "35 € / personne",
+        price: "40 € / personne",
         image: asset("initiation/famille.JPG"),
         imageAlt:
             "Enfants et parents lors d'un atelier famille de teinture végétale à l'Atelier Ilys",
@@ -145,17 +145,17 @@ const eventLdItems = workshops.map((w, i) => ({
                         {
                             label: "Demi-journée",
                             price: "60 €",
-                            detail: "3h30",
+                            detail: "3h",
                         },
                         {
                             label: "Journée complète",
                             price: "120 €",
-                            detail: "7h",
+                            detail: "6h",
                         },
                         {
                             label: "Atelier famille",
                             price: "40 €",
-                            detail: "2h30",
+                            detail: "2h",
                         },
                     ].map(({ label, price, detail }) => (
                         <div class="px-4">
